@@ -3,5 +3,8 @@ name: base
 channels:
   - conda-forge
 dependencies:
-  - pyopenssl=20.0.1
   - python=3.9.1
+  - pip
+  - pathlib
+  - docopt
+  - setuptools_scm

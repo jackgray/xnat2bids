@@ -4,4 +4,6 @@
 
 # First generate conda lock file for environment config to add to build
 # nevermind- conda not installed on doctor
-docker buildx build -t xnat2bids_test-image .
+docker buildx build \
+    -t xnat2bids_test-image \
+    .

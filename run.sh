@@ -1,12 +1,59 @@
 #!/bin/bash
-INPUT_DIR=/MRI_DATA/nyspi/test
-OUTPUT_DIR=/home/grayjoh/xnat2bids/out
+indir=/MRI_DATA/nyspi/patensasc/derivatives/radiologicsbids
+outdir=/home/grayjoh/xnat2bids/out
+freesurferlicense=/MRI_DATA/freesurferlicense.txt
+log=./log.txt
 
-docker run -it \
+# usage()
+# {
+#   echo "usage: $0 [-i xnat_input_base_directory -o output_directory] | [-h] "
+# }
+# # ############################## #
+# # ########### MAIN ############# #
+# # ############################## #
+# if [ "$1" == "" ]; then
+#   usage
+#   exit 1
+# fi
+
+# if [[ $# -eq 1 ]]; then
+#   usage
+#   exit
+# fi
+
+# if [[ $# -lt 6 ]]; then
+#   usage
+#   exit 1
+# fi
+# while [ "$1" != "" ]; do
+#     case $1 in
+#         -i )           shift
+#                        indir=$1
+#                        ;;
+#         -o )           shift
+#                        outdir=$1
+#                        ;;
+#         * )            usage
+#                        exit 1
+#     esac
+#     shift
+# done
+# #
+# Could error check for volumes being available and such
+echo Launching xnat2bids pipelines on $indir 
+echo Output will be written to $outdir 
+echo Job can be sent to background 
+echo Console output written locally to $log
+
+docker run \
+    --user=root \
     --name xnat2bids_test-container \
-    --mount type=bind,source="$INPUT_DIR",target=/opt \
-    --mount type=bind,source="$OUTPUT_DIR",target=/out \
+    --mount type=bind,source=$freesurferlicense,target=/opt/freesurfer/license.txt \
+    --mount type=bind,source="$indir",target=/input \
+    --mount type=bind,source="$outdir",target=/output \
     xnat2bids_test-image \
-    python3 /opt/xnat2bids.py $INPUT_DIR $OUTPUT_DIR
-    
-    
+    mv /src/xnat2bids.py /input && \
+    ls /src/ && \
+    ls /input \
+    # python3 /input/xnat2bids.py $indir $outdir \
+    > $log 2>&1 &

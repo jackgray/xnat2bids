@@ -21,7 +21,7 @@ log=./log.txt
 #   exit
 # fi
 
-# if [[ $# -lt 6 ]]; then
+# if [[ $# -lt 0 ]]; then
 #   usage
 #   exit 1
 # fi
@@ -42,8 +42,6 @@ log=./log.txt
 # Could error check for volumes being available and such
 echo Launching xnat2bids pipelines on $indir 
 echo Output will be written to $outdir 
-echo Job can be sent to background 
-echo Console output written locally to $log
 
 docker run \
     --user=root \
@@ -52,8 +50,7 @@ docker run \
     --mount type=bind,source="$indir",target=/input \
     --mount type=bind,source="$outdir",target=/output \
     xnat2bids_test-image \
-    mv /src/xnat2bids.py /input && \
-    ls /src/ && \
-    ls /input \
-    # python3 /input/xnat2bids.py $indir $outdir \
-    > $log 2>&1 &
+    micromamba activate base
+    ls /src && \
+    ls /input && \
+    python3 /src/xnat2bids.py $indir $outdir \

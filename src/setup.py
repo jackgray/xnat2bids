@@ -14,7 +14,6 @@ setup(
     long_description=long_description,
     long_description_content_type="text/markdown",
     url="https://github.com/jackgray/nyspiXnat2bids",
-    author="Jack Gray",
     author_email="jgrayau@gmail.com",
     classifiers=[  # Optional
         "Programming Language :: Python :: 3",
@@ -23,7 +22,6 @@ setup(
         "Programming Language :: Python :: 3.8",
         "Programming Language :: Python :: 3.9",
     ],
-    entry_points={"console_scripts": ["nyc_taxi_fare_train = nyc_taxi_fare.cli:train"]},
     package_dir={"": "src"},
     packages=find_packages(where="src"),
     python_requires=">=3.6",

@@ -1,13 +1,11 @@
-FROM mambaorg/micromamba:0.15.3 AS conda
+FROM continuumio/miniconda:latest as conda
 
-COPY ./src /src
-RUN micromamba install -y -n base -f /src/locks/specific-linux-64.conda.lock && \
-    micromamba clean --all --yes && \
-    python -m pip install -r /src/requirements.txt --no-deps
+ADD ./src/locks/specific-linux-64.conda.lock /locks/specific-linux-64.conda.lock 
 
-# Primary container
+RUN conda create -p /opt/env --copy --file /locks/specific-linux-64.conda.lock
 
+# Primary container: distroless to only keep system files needed for specific purpose
 FROM gcr.io/distroless/base-debian10
-COPY --from=conda /src /src
 
-CMD ["conda activate base"]
+COPY --from=conda /opt/env /opt/env
+

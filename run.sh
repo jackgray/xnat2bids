@@ -50,7 +50,4 @@ docker run \
     --mount type=bind,source="$indir",target=/input \
     --mount type=bind,source="$outdir",target=/output \
     xnat2bids_test-image \
-    micromamba activate base
-    ls /src && \
-    ls /input && \
     python3 /src/xnat2bids.py $indir $outdir \

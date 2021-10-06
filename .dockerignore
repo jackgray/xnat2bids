@@ -1,0 +1,5 @@
+helper_scripts/
+out/
+scratch/
+.git*
+test*

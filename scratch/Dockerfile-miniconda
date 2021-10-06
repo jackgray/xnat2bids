@@ -1,0 +1,14 @@
+FROM continuumio/miniconda3:latest as conda
+
+ADD ./app/locks/specific-osx-64.conda.lock /locks/specific-osx-64.conda.lock 
+
+RUN conda create -p /opt/env --copy --file /locks/specific-osx-64.conda.lock
+RUN echo "conda activate /opt/env" >> ~/.bashrc
+SHELL ["/bin/bash", "--login", "-c"]
+RUN python -c "import glob"
+
+COPY ./app /app
+
+WORKDIR /app 
+
+CMD ["./entrypoint.sh"]

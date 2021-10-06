@@ -26,7 +26,7 @@ EOF
 }
 
 overwrite=0
-scantypes=ALL
+scantypes=NIFTI,BIDS
 while getopts d:u:p:i:s:t:f:o:xh opt
 do
     case "$opt" in

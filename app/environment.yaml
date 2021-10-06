@@ -1,0 +1,27 @@
+# You can automatically generate this file from an existing environment,
+#   by running the following command within the environment that you
+#   want to clone.
+
+# conda env export --from-history | tee <project_path>/src/environment.yaml
+
+# --from-history will only include packages that were explicitly requested in the environment, excluding the transitive dependencies
+#   > best option to maximize cross-platform compatibility
+#   > but may include packages not necessary to build docs (can modify environment.yaml later)
+
+name: base
+channels:
+  - conda-forge
+  - nodefaults
+dependencies:
+  - python=3.8.*
+  - pip
+  - pathlib
+  - argparse
+  - os
+  - shutil
+  - glob
+  - errno
+  - requests
+  - datetime
+  - getpass
+  - zipfile

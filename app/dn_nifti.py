@@ -1,7 +1,22 @@
+#!/bin/python3
+
 '''
 This program is designed to take the project_id as single argument
 which points to the working.lst for that project.
 '''
+
+if not 'project_id' in locals():
+    print('Project ID was not passed into this function from index.py. \n\
+        searching for runtime arguments.')
+    import argparse
+
+    parser = argparse.ArgumentParser(description='Download output of dcm2bids from XNAT.')
+    parser.add_argument("project_id")
+    args = parser.parse_args()
+
+    project_id = args.project_id
+    print("Found project id")
+
 def download_niftis(project_id):
 
     print('Check if there is a project id ')
@@ -18,20 +33,16 @@ def download_niftis(project_id):
     #   working.lst ARGUMENT PARSER
     #   copy & paste anywhere for working.lst parsing in python
     #............................................................
-    if not project_id:
-        import argparse
-
-        parser = argparse.ArgumentParser(description='Download output of dcm2bids from XNAT.')
-        parser.add_argument("project_id")
-        args = parser.parse_args()
-
-        project_id = args.project_id
+    
     
     project_path = '/MRI_DATA/nyspi/' + project_id
     rawdata_path = project_path + '/rawdata'
     bidsonly_path = project_path + '/derivatives/bidsonly'
     working_list_file = project_id + '_working.lst'
     working_list_path = project_path + '/scripts/' + working_list_file
+    
+    print('Trying to read from working list path: ' + working_list_path)
+    print('Time could depend on /MRI_DATA i/o load...')
 
     with open(working_list_path) as f:
         jobs = f.readlines()
@@ -73,6 +84,10 @@ def download_niftis(project_id):
     session = requests.Session()    # Stores all the info we need for our session
     session.auth = (xnat_username, xnat_password)
     jsession_id = session.post(jsession_url)
+    if jsession_id in locals():
+        print("Successfully retrieved JSESSION ID from XNAT: " + jsession_id)
+    else:
+        print("JSESSION ID could not be retrieved.")
 
     # Put JSESSION auth ID returned by XNAT rest api inside cookies header
     # Now only the JSESSION ID is available to headers,
@@ -197,4 +212,4 @@ def download_niftis(project_id):
     #................................................
 
 if __name__ == '__main__':
-    download_niftis()
+    download_niftis(project_id)

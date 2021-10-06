@@ -1,13 +1,40 @@
 #!/usr/bin/python3
 
-# usage: python3 nifti2bids.py <project ID>
+'''
+usage: python3 nifti2bids.py <project ID>
+
+This program is designed to take the project_id as single argument
+which points to the working.lst for that project.
+
+It can also be called from index.py to run immediately after dn_nifti.py
+'''
+
 
 # bids src: /MRI_DATA/nyspi/<project_id>/derivativs/bidsonly/<exam_no>/scans/<series_no>/<BIDS>|<NIFTI>/<file>.json|.nii 
 # bids dst: /MRI_DATA/nyspi/<project_id>/rawdata/sub-*/ses-*/anat|fmap|func/*.json|*.nii.gz
 
 ## TODO: what to do with scans.tsv & dataset_description.json
 
+if not 'project_id' in locals():
+    print('Project ID was not passed into this function from index.py. \n\
+Searching for runtime arguments.')
+    import argparse
+
+    parser = argparse.ArgumentParser(description='Download output of dcm2bids from XNAT.')
+    parser.add_argument("project_id")
+    args = parser.parse_args()
+
+    project_id = args.project_id
+    print("Found project id")
+
+
 def nifti2bids(project_id):
+
+    print('Checking for project id ')
+    if 'project_id' in locals():
+        print('Project ID: ' + project_id)
+    else:
+        print("Could not find project_id argument.")
 
     import argparse
     import os
@@ -27,6 +54,9 @@ def nifti2bids(project_id):
     project_path = '/MRI_DATA/nyspi/' + project_id
     working_list_file = project_id + '_working.lst'
     working_list_path = project_path + '/scripts/' + working_list_file
+
+    print('Trying to read from working list path: ' + working_list_path)
+    print('Time could depend on /MRI_DATA i/o load...')
     with open(working_list_path) as f:
         jobs = f.readlines()
 
@@ -141,5 +171,5 @@ def nifti2bids(project_id):
 
 
 if __name__ == '__main__':
-    nifti2bids()
+    nifti2bids(project_id)
     

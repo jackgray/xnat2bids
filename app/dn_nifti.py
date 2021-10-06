@@ -2,7 +2,10 @@
 This program is designed to take the project_id as single argument
 which points to the working.lst for that project.
 '''
-def download_niftis():
+def download_niftis(project_id):
+
+    print('Check if there is a project id ')
+    print('Project ID: ' + project_id)
 
     import os
     import errno
@@ -15,13 +18,15 @@ def download_niftis():
     #   working.lst ARGUMENT PARSER
     #   copy & paste anywhere for working.lst parsing in python
     #............................................................
-    import argparse
+    if not project_id:
+        import argparse
 
-    parser = argparse.ArgumentParser(description='Download output of dcm2bids from XNAT.')
-    parser.add_argument("project_id")
-    args = parser.parse_args()
+        parser = argparse.ArgumentParser(description='Download output of dcm2bids from XNAT.')
+        parser.add_argument("project_id")
+        args = parser.parse_args()
 
-    project_id = args.project_id
+        project_id = args.project_id
+    
     project_path = '/MRI_DATA/nyspi/' + project_id
     rawdata_path = project_path + '/rawdata'
     bidsonly_path = project_path + '/derivatives/bidsonly'
@@ -42,8 +47,8 @@ def download_niftis():
         print(job)
 
         # working.lst format: <subj_id> '\t' <project_id> '\t' <exam_no> '\t' XNATnyspi20_E00253
-        exam_no = job.split("\t")[2]
-        print(exam_no)
+        exam_no = job.split()[2]
+        print("Grabbing " + exam_no + " as exam number")
         download_queue.append(exam_no)
 
     #............................................................
@@ -59,16 +64,19 @@ def download_niftis():
     xnat_url = 'https://xnat.nyspi.org'
     jsession_url = xnat_url + '/data/JSESSION'
 
-    resources = 'BIDS,NIFTI,MRIQC'
+    resources = 'BIDS,NIFTI'
 
     session_list_url = xnat_url + '/data/archive/projects/' + project_id + '/experiments?xsiType=xnat:mrSessionData&format=csv&columns=ID,label,xnat:subjectData/label'
     # bids_resource_url = xnat_url + '/data/projects/' + project_id + '/subjects/' + subject_id + '/experiments?ID=' + exam_no + '/resources/' + resources + '/scans/ALL/files?format=zip'
 
     # Logging into XNAT/ creating session
-    session = requests.Session()
+    session = requests.Session()    # Stores all the info we need for our session
     session.auth = (xnat_username, xnat_password)
     jsession_id = session.post(jsession_url)
 
+    # Put JSESSION auth ID returned by XNAT rest api inside cookies header
+    # Now only the JSESSION ID is available to headers,
+    # No XNAT username or password is stored
     session.text = {
         "cookies":
         {
@@ -77,13 +85,12 @@ def download_niftis():
     }
 
 
-
     #................................................
     #...........GET SESSION LIST.....................
     #................................................
     dt = datetime.datetime.now()
     year_month_day = str(dt.year) + str(dt.month) + str(dt.day)
-    session_list_csv = './XNAT_metadata/mrsessions_' + year_month_day + '.csv'
+    session_list_csv = bidsonly_path + '/XNAT_metadata/mrsessions_' + year_month_day + '.csv'
     print('starting download')
 
     if not os.path.exists(os.path.dirname(session_list_csv)):
@@ -126,7 +133,7 @@ def download_niftis():
 
         for line in lines:
             
-            args = job.split('\t')
+            args = job.split()
             arg_no = 0
 
             label = line.split(',')[-2]
@@ -150,16 +157,14 @@ def download_niftis():
                 mrsession_ids.append(mrsession_id)
                 scan_download_url = str(xnat_url + '/data/experiments/' + mrsession_id + '/scans/ALL/resources/' + resources + '/files?format=zip&structure=legacy')
                 # scan_download_url = xnat_url + '/data/archive/projects/' + project_id + '/experiments/' + mrsession_id + '/scans/ALL/resources/' + resources + '/files?format=zip&structure=legacy'
-                exam_path = bidsonly_path + '/' + label
+                unzipped_path = bidsonly_path + '/' + label
                 zipfile = label + '.zip'
-                zipfile_path = project_path + '/derivatives/bidsonly/' + zipfile
-
-
+                zipfile_path = bidsonly_path + zipfile
 
                 print('Entering scan download stage...')
     # IF EXAM FOLDER EXISTS DO NOT WRITE
     # TODO: Implement checksums to patch missing data seamlessly
-                if not os.path.exists(exam_path):
+                if not os.path.exists(unzipped_path):
                     try:
                         print("Creating directory structure for " + zipfile)
                         os.makedirs(os.path.dirname(zipfile_path))
@@ -167,7 +172,7 @@ def download_niftis():
                         if exc.errno != errno.EEXIST:
                             raise
                 else:
-                    print(exam_path + "\nDirectory exists for " + exam_no + ". Moving to next exam in working list.")
+                    print(unzipped_path + "\nDirectory exists for " + exam_no + ". Moving to next exam in working list.")
                     continue
     # WRITE ZIPFILE OF CURRENT SCAN
                 with open(zipfile_path, 'wb') as f:
@@ -187,8 +192,9 @@ def download_niftis():
                 with ZipFile(zipfile_path, 'r') as zipObj:
                     zipObj.extractall(bidsonly_path)
                     print("should have unzipped")
-
     #................................................
     #..............END XNAT DOWNLOAD.................
     #................................................
 
+if __name__ == '__main__':
+    download_niftis()

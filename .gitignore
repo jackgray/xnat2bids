@@ -2,3 +2,5 @@
 *keys*
 *credentials*
 nifti2bids/dn_nifti/MRI_DATA
+app/XNAT_metadata
+scratch

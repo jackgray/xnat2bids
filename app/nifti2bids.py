@@ -1,13 +1,13 @@
 #!/usr/bin/python3
 
-# usage: python3 nifti2bids.py <working-list-path>
+# usage: python3 nifti2bids.py <project ID>
 
 # bids src: /MRI_DATA/nyspi/<project_id>/derivativs/bidsonly/<exam_no>/scans/<series_no>/<BIDS>|<NIFTI>/<file>.json|.nii 
 # bids dst: /MRI_DATA/nyspi/<project_id>/rawdata/sub-*/ses-*/anat|fmap|func/*.json|*.nii.gz
 
 ## TODO: what to do with scans.tsv & dataset_description.json
 
-def nifti2bids():
+def nifti2bids(project_id):
 
     import argparse
     import os
@@ -15,14 +15,15 @@ def nifti2bids():
     import glob
     # import unzip
 
-    # Take args
-    parser = argparse.ArgumentParser(description='Move niftis to make them less annoying')
-    parser.add_argument("project_id")
-    # parser.add_argument("project_id")
-    # parser.add_argument("exam_no")
-    args = parser.parse_args()
+    if not project_id:
+        # Take args
+        parser = argparse.ArgumentParser(description='Move niftis to make them less annoying')
+        parser.add_argument("project_id")
+        # parser.add_argument("project_id")
+        # parser.add_argument("exam_no")
+        args = parser.parse_args()
+        project_id = args.project_id
 
-    project_id = args.project_id
     project_path = '/MRI_DATA/nyspi/' + project_id
     working_list_file = project_id + '_working.lst'
     working_list_path = project_path + '/scripts/' + working_list_file
@@ -37,7 +38,7 @@ def nifti2bids():
         active_job_no+=1
         print("\nRunning job " + str(active_job_no) + ' of ' + str(total_jobs))
 
-        args = job.split('\t')
+        args = job.split()
         arg_no = 0
         print('Using the following input arguments: ')
         for arg in args:
@@ -63,7 +64,7 @@ def nifti2bids():
 
         for file in file_dirs:
             
-            filename = file.split('/')[11]
+            filename = file.split('/')[10]
             print('FILENAME= ' + filename)
 
         # Create destination folders
@@ -138,8 +139,7 @@ def nifti2bids():
             print("\nSending: " + filename + "\nto: " + target_path)
             shutil.move(file, target_path)
 
+
 if __name__ == '__main__':
-    # service.py executed as script
-    # do something
     nifti2bids()
     

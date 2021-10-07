@@ -1,8 +1,12 @@
-#!/bin/python3
+#!/usr/bin/python3
 
 '''
+usage: python3 dn_nifti.py <project ID>
+
 This program is designed to take the project_id as single argument
 which points to the working.lst for that project.
+
+It can also be called from index.py to run immediately after dn_nifti.py
 '''
 
 if not 'project_id' in locals():
@@ -19,7 +23,6 @@ if not 'project_id' in locals():
 
 def download_niftis(project_id):
 
-    print('Check if there is a project id ')
     print('Project ID: ' + project_id)
 
     import os
@@ -28,6 +31,7 @@ def download_niftis(project_id):
     import datetime
     import getpass
     from zipfile import ZipFile
+    from subprocess import Popen
 
     #............................................................
     #   working.lst ARGUMENT PARSER
@@ -106,7 +110,8 @@ def download_niftis(project_id):
     dt = datetime.datetime.now()
     year_month_day = str(dt.year) + str(dt.month) + str(dt.day)
     session_list_csv = bidsonly_path + '/XNAT_metadata/mrsessions_' + year_month_day + '.csv'
-    print('starting download')
+    print('Checking for mrsessions.csv file (should be in ' + bidsonly_path + ')...')
+    print('If it doesn\'t exist, we will attempt to download it.')
 
     if not os.path.exists(os.path.dirname(session_list_csv)):
         try:
@@ -117,7 +122,7 @@ def download_niftis(project_id):
                 raise
 
     with open(session_list_csv, 'wb') as f:
-        print("Opening file to write response contents to...")
+        print("Opening csv file to write exams list to...")
         with session.get(session_list_url, stream=True) as r:
             print("Checking status...")
             if not r.raise_for_status():
@@ -198,15 +203,29 @@ def download_niftis(project_id):
                         if not r.raise_for_status():
                             print("no status returned")
                         print("Attempting to write file...")
-                        chunk_size = 128
+                        chunk_size = 512
                         for chunk in r.iter_content(chunk_size=chunk_size):
                             f.write(chunk)
                             print("~~ writing " + str(chunk_size) + "mb chunks ~~~")
                     # Put close session command here
-                print("attempting to unzip " + zipfile_path)
-                with ZipFile(zipfile_path, 'r') as zipObj:
-                    zipObj.extractall(bidsonly_path)
-                    print("should have unzipped")
+                        
+                        # Alternatively, we can use subprocess.popen() to call
+                        # a shell command, like rsync
+                        p = Popen(["rsync"])
+
+                print("Download complete. Attempting to unzip " + zipfile_path)
+                try:
+                    with ZipFile(zipfile_path, 'r') as zipObj:
+                        zipObj.extractall(bidsonly_path)
+                except OSError as exc:
+                        if exc.errno != errno.EEXIST:
+                            raise
+
+                if os.path.isdir(bidsonly_path + '/' + exam_no):
+                    print("File unzipped. Check " + bidsonly_path)
+                else:
+                    print("There was a problem and we were unable to extract the downloaded files. Check if the download completed successfully.")
+
     #................................................
     #..............END XNAT DOWNLOAD.................
     #................................................

@@ -5,7 +5,6 @@
 
 # needs environment.yaml file placed inside ./src and saves env lock files to ./src/locks
 
-
 # generate lock files
 # (can remove platforms not needed)
 conda-lock \
@@ -14,9 +13,10 @@ conda-lock \
     -p osx-64 \
     -p linux-64 \
     -p linux-aarch64 \
+    -p linux-32 \
     -p win-64 \
     -p win-32 \
-    -f ../src/environment.yaml \
-    --filename-template '../src/locks/specific-{platform}.conda.lock'
+    -f ./src/environment.yaml \
+    --filename-template './src/locks/specific-{platform}.conda.lock'
 
 

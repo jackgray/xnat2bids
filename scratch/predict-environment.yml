@@ -1,9 +1,0 @@
-# conda env export --from-history
-
-name: xnat2bids
-channels:
-  - conda-forge
-dependencies:
-  - pip
-  - pathlib
-  - docopt

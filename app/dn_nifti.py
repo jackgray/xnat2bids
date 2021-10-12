@@ -7,8 +7,15 @@ This program is designed to take the project_id as single argument
 which points to the working.lst for that project.
 
 It can also be called from index.py to run immediately after dn_nifti.py
+
+TODO: best auth security without manual login
+1. .netrc file
+2. ssh (requires NRG_Selenium)
+3. remove trailing whitespace from working.lst file reads
 '''
 
+# First check if this script is being run from xnat2bids.py
+# in which case the project_id variable will already be defined
 if not 'project_id' in locals():
     print('Project ID was not passed into this function from index.py. \n\
         searching for runtime arguments.')
@@ -39,14 +46,14 @@ def download_niftis(project_id):
     #............................................................
     
     
-    project_path = '/MRI_DATA/nyspi/' + project_id
+    project_path = '/Users/j/MRI_DATA/nyspi/' + project_id
     rawdata_path = project_path + '/rawdata'
     bidsonly_path = project_path + '/derivatives/bidsonly'
     working_list_file = project_id + '_working.lst'
     working_list_path = project_path + '/scripts/' + working_list_file
     
     print('Trying to read from working list path: ' + working_list_path)
-    print('Time could depend on /MRI_DATA i/o load...')
+    print('Time to access file could depend on /MRI_DATA i/o load...')
 
     with open(working_list_path) as f:
         jobs = f.readlines()
@@ -70,6 +77,7 @@ def download_niftis(project_id):
     #   END COPY & PASTE (continue indent for loop above)
     #............................................................
 
+
     # sh = hashlib.sha1()
     # sh.update('dnniftinyspidoctor')
     print("\nLog into XNAT to download data: ")
@@ -82,13 +90,12 @@ def download_niftis(project_id):
     resources = 'BIDS,NIFTI'
 
     session_list_url = xnat_url + '/data/archive/projects/' + project_id + '/experiments?xsiType=xnat:mrSessionData&format=csv&columns=ID,label,xnat:subjectData/label'
-    # bids_resource_url = xnat_url + '/data/projects/' + project_id + '/subjects/' + subject_id + '/experiments?ID=' + exam_no + '/resources/' + resources + '/scans/ALL/files?format=zip'
 
     # Logging into XNAT/ creating session
     session = requests.Session()    # Stores all the info we need for our session
     session.auth = (xnat_username, xnat_password)
     jsession_id = session.post(jsession_url)
-    if jsession_id in locals():
+    if len(jsession_id) > 2:
         print("Successfully retrieved JSESSION ID from XNAT: " + jsession_id)
     else:
         print("JSESSION ID could not be retrieved.")
@@ -176,10 +183,9 @@ def download_niftis(project_id):
                 mrsession_id = line.split(',')[0]
                 mrsession_ids.append(mrsession_id)
                 scan_download_url = str(xnat_url + '/data/experiments/' + mrsession_id + '/scans/ALL/resources/' + resources + '/files?format=zip&structure=legacy')
-                # scan_download_url = xnat_url + '/data/archive/projects/' + project_id + '/experiments/' + mrsession_id + '/scans/ALL/resources/' + resources + '/files?format=zip&structure=legacy'
                 unzipped_path = bidsonly_path + '/' + label
                 zipfile = label + '.zip'
-                zipfile_path = bidsonly_path + zipfile
+                zipfile_path = bidsonly_path + '/' + zipfile
 
                 print('Entering scan download stage...')
     # IF EXAM FOLDER EXISTS DO NOT WRITE
@@ -201,17 +207,17 @@ def download_niftis(project_id):
 
                         print("Checking status...")
                         if not r.raise_for_status():
-                            print("no status returned")
+                            print("no status raised (good)")
                         print("Attempting to write file...")
-                        chunk_size = 512
+                        chunk_size = 256000000 # 256mb
                         for chunk in r.iter_content(chunk_size=chunk_size):
                             f.write(chunk)
-                            print("~~ writing " + str(chunk_size) + "mb chunks ~~~")
+                            print("~~ writing " + str(chunk_size) + "kb chunks ~~~")
                     # Put close session command here
                         
                         # Alternatively, we can use subprocess.popen() to call
                         # a shell command, like rsync
-                        p = Popen(["rsync"])
+                    # p = Popen(["nohup", "rsync", "-bwlimit=10000", "" scan_download_url])
 
                 print("Download complete. Attempting to unzip " + zipfile_path)
                 try:

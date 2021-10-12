@@ -6,7 +6,7 @@ usage: python3 nifti2bids.py <project ID>
 This program is designed to take the project_id as single argument
 which points to the working.lst for that project.
 
-It can also be called from index.py to run immediately after dn_nifti.py
+It can also be called from xnat2bids.py to run immediately after dn_nifti.py
 '''
 
 
@@ -25,31 +25,16 @@ Searching for runtime arguments.')
     args = parser.parse_args()
 
     project_id = args.project_id
-    print("Found project id")
+    print("Set project ID as " + project_id)
 
 
 def nifti2bids(project_id):
-
-    print('Checking for project id ')
-    if 'project_id' in locals():
-        print('Project ID: ' + project_id)
-    else:
-        print("Could not find project_id argument.")
 
     import argparse
     import os
     import shutil
     import glob
     # import unzip
-
-    if not project_id:
-        # Take args
-        parser = argparse.ArgumentParser(description='Move niftis to make them less annoying')
-        parser.add_argument("project_id")
-        # parser.add_argument("project_id")
-        # parser.add_argument("exam_no")
-        args = parser.parse_args()
-        project_id = args.project_id
 
     project_path = '/MRI_DATA/nyspi/' + project_id
     working_list_file = project_id + '_working.lst'
@@ -75,7 +60,7 @@ def nifti2bids(project_id):
             arg_no+=1
             print('arg' + str(arg_no) + ': ' + arg)
     
-        # working.lst format: <subj_id> '\t' <project_id> '\t' <exam_no> '\t' XNATnyspi20_E00253
+        # working.lst format: <subj_id> ' ' <project_id> ' ' <exam_no> ' ' XNATnyspi20_E00253
         exam_no = args[2]
         project_id = args[1]
         subj_id = args[0] 
@@ -94,7 +79,7 @@ def nifti2bids(project_id):
 
         for file in file_dirs:
             
-            filename = file.split('/')[10]
+            filename = file.split('/')[-1]
             print('FILENAME= ' + filename)
 
         # Create destination folders

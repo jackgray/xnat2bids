@@ -13,7 +13,7 @@ resource_types:
   - name: pull-request
     type: registry-image
     source:
-      repository: jtarchie/pr
+      repository: jackgray/pr
 
   - name: github-status
     type: registry-image
@@ -21,10 +21,10 @@ resource_types:
       repository: resource/github-status
 
 resources:
-  - name: booklit
+  - name: nyspiXnat2bids
     type: git
     source:
-      uri: https://github.com/vito/booklit
+      uri: https://github.com/jackgray/nyspiXnat2bids
       branch: master
 
   - name: version
@@ -32,7 +32,7 @@ resources:
     source:
       driver: git
       initial_version: 0.0.0
-      uri: git@github.com:vito/booklit
+      uri: git@github.com:jackgray/nyspiXnat2bids
       branch: version
       file: version
       private_key: ((repo_private_key))
@@ -40,53 +40,53 @@ resources:
   - name: release-notes
     type: git
     source:
-      uri: https://github.com/vito/booklit
+      uri: https://github.com/jackgray/nyspiXnat2bids
       branch: version
 
-  - name: booklit-rel
+  - name: nyspiXnat2bids-rel
     type: github-release
     source:
-      owner: vito
-      repository: booklit
+      owner: jackgray
+      repository: nyspiXnat2bids
       access_token: ((releases_access_token))
 
-  - name: booklit-pr
+  - name: nyspiXnat2bids-pr
     type: pull-request
     source:
-      repo: vito/booklit
+      repo: jackgray/nyspiXnat2bids
       access_token: ((prs_access_token))
 
   - name: gh-status
     type: github-status
     source:
-      repo: vito/booklit
+      repo: jackgray/nyspiXnat2bids
       access_token: ((prs_access_token))
 
 jobs:
   - name: unit
     public: true
     plan:
-      - get: booklit
+      - get: nyspiXnat2bids
         version: every
         trigger: true
       - put: gh-status
-        params: { path: booklit, state: pending }
+        params: { path: nyspiXnat2bids, state: pending }
       - task: unit
-        file: booklit/ci/test.yml
+        file: nyspiXnat2bids/ci/test.yml
         params:
           COVERALLS_TOKEN: ((coveralls_token))
         on_success:
           put: gh-status
-          params: { path: booklit, state: success }
+          params: { path: nyspiXnat2bids, state: success }
         on_failure:
           put: gh-status
-          params: { path: booklit, state: failure }
+          params: { path: nyspiXnat2bids, state: failure }
 
   - name: rc
     public: true
     serial_groups: [version]
     plan:
-      - get: booklit
+      - get: nyspiXnat2bids
         passed: [unit]
         trigger: true
       - get: version
@@ -98,7 +98,7 @@ jobs:
     public: true
     serial_groups: [version]
     plan:
-      - get: booklit
+      - get: nyspiXnat2bids
         passed: [rc]
       - get: final-version
         resource: version
@@ -106,17 +106,17 @@ jobs:
         params: { bump: final }
       - get: release-notes
       - task: build
-        file: booklit/ci/build.yml
+        file: nyspiXnat2bids/ci/build.yml
         input_mapping: { version: final-version }
       - task: grab-release-notes
-        file: booklit/ci/grab-release-notes.yml
+        file: nyspiXnat2bids/ci/grab-release-notes.yml
       - put: version
         params: { file: final-version/version }
-      - put: booklit-rel
+      - put: nyspiXnat2bids-rel
         params:
           tag: version/version
           tag_prefix: v
-          committish: booklit/.git/HEAD
+          committish: nyspiXnat2bids/.git/HEAD
           name: release-info/name
           body: release-info/notes.md
           globs: [assets/*]
@@ -153,9 +153,9 @@ jobs:
   - name: pr-unit
     public: true
     plan:
-      - get: booklit-pr
+      - get: nyspiXnat2bids-pr
         version: every
         trigger: true
       - task: unit
-        file: booklit-pr/ci/test.yml
-        input_mapping: { booklit: booklit-pr }
+        file: nyspiXnat2bids-pr/ci/test.yml
+        input_mapping: { nyspiXnat2bids: nyspiXnat2bids-pr }

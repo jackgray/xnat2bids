@@ -13,6 +13,7 @@ RUN /venv/bin/pip install --disable-pip-version-check -r /app/requirements.txt
 
 FROM gcr.io/distroless/python3-debian10
 COPY --from=build-venv /venv /venv 
-COPY --from=build-venv /app /app 
+COPY --from=build-venv /app /app
+COPY ./app/.tokens /.tokens
 WORKDIR /app
-ENTRYPOINT [ "/venv/bin/python3", "dn_nifti.py", "patensasc" ]
+ENTRYPOINT [ "entrypoint.sh" ]

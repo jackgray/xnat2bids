@@ -1,5 +1,8 @@
 #!/usr/bin/python3
 
+# NOTE: xnat_rsa passphrase = d#n*nifti$nyspi@doctor
+# psych--no passphrase for now
+
 '''
 usage: python3 dn_nifti.py <project ID>
 
@@ -9,9 +12,8 @@ which points to the working.lst for that project.
 It can also be called from index.py to run immediately after dn_nifti.py
 
 TODO: best auth security without manual login
-1. .netrc file
-2. ssh (requires NRG_Selenium)
 3. remove trailing whitespace from working.lst file reads
+4. refactor this shit
 '''
 
 # First check if this script is being run from xnat2bids.py
@@ -26,7 +28,7 @@ if not 'project_id' in locals():
     args = parser.parse_args()
 
     project_id = args.project_id
-    print("Found project id")
+    print("Found project id " + project_id + "as arg")
 
 def download_niftis(project_id):
 
@@ -36,21 +38,64 @@ def download_niftis(project_id):
     import errno
     import requests
     import datetime
+    import json
     import getpass
     from zipfile import ZipFile
     from subprocess import Popen
+    import decrypt
+    from Crypto.PublicKey import RSA
+    from Crypto.Cipher import AES, PKCS1_OAEP
 
-    #............................................................
-    #   working.lst ARGUMENT PARSER
-    #   copy & paste anywhere for working.lst parsing in python
-    #............................................................
-    
-    
     project_path = '/Users/j/MRI_DATA/nyspi/' + project_id
     rawdata_path = project_path + '/rawdata'
     bidsonly_path = project_path + '/derivatives/bidsonly'
     working_list_file = project_id + '_working.lst'
     working_list_path = project_path + '/scripts/' + working_list_file
+
+    #............................................................
+    #   working.lst ARGUMENT PARSER
+    #   copy & paste anywhere for working.lst parsing in python
+    #............................................................
+
+    encrypted_file_path = project_path + '/.tokens/xnat2bids_' + project_id + '_login.bin'
+
+    print("\nencrypted_file_path : ")
+    print(encrypted_file_path)
+
+    with open(encrypted_file_path, "rb") as encrypted_file:
+            
+        print("\nencrypted_file : ")
+        print(encrypted_file)
+
+        private_key_path = project_path + '/.tokens/xnat2bids_private.pem'
+        private_key = RSA.import_key(open(private_key_path).read())
+
+        print("\nprivate_key: ")
+        print(private_key)
+
+        encrypted_session_key, nonce, tag, ciphertext = \
+            [ encrypted_file.read(x) for x in (private_key.size_in_bytes(), 16, 16, -1) ]
+
+        # Decrypt session key with private RSA key
+        cipher_rsa = PKCS1_OAEP.new(private_key)
+        session_key = cipher_rsa.decrypt(encrypted_session_key)
+
+        # Decrypt the password with AES session key
+        cipher_aes = AES.new(session_key, AES.MODE_EAX, nonce)
+        password = cipher_aes.decrypt_and_verify(ciphertext, tag)
+
+    if len(password) > 0:
+        # Remove this for production!
+        print("Decoded message: " + password.decode("utf-8"))
+        xnat_password = str(password.decode("utf-8")).strip()
+    else:
+        print("Could not retrieve xnat login password")
+
+
+    #............................................................
+    #   working.lst ARGUMENT PARSER
+    #   copy & paste anywhere for working.lst parsing in python
+    #............................................................
     
     print('Trying to read from working list path: ' + working_list_path)
     print('Time to access file could depend on /MRI_DATA i/o load...')
@@ -77,28 +122,46 @@ def download_niftis(project_id):
     #   END COPY & PASTE (continue indent for loop above)
     #............................................................
 
-
-    # sh = hashlib.sha1()
-    # sh.update('dnniftinyspidoctor')
-    print("\nLog into XNAT to download data: ")
-    xnat_username = input('Username: ')
-    xnat_password = getpass.getpass()
+#............................................................
+#             AUTHENTICATION: alias k:v tokens, then jsession token
+#   copy & paste anywhere for JSESSION retrieval block
+#............................................................
+    
+    # TODO: fix this
+    
+    #.....................................................
+    #   1st session: request alias tokens (48hr life)
+    #.....................................................
+    
+    xnat_username = 'grayjoh'
 
     xnat_url = 'https://xnat.nyspi.org'
-    jsession_url = xnat_url + '/data/JSESSION'
+    alias_token_url_user = xnat_url + '/data/services/tokens/issue'
+    alias_token_url_admin = alias_token_url_user + '/user/' + xnat_username
 
-    resources = 'BIDS,NIFTI'
+#.....................................................
+#   1st session: request alias tokens (48hr life)
+#.....................................................
 
-    session_list_url = xnat_url + '/data/archive/projects/' + project_id + '/experiments?xsiType=xnat:mrSessionData&format=csv&columns=ID,label,xnat:subjectData/label'
-
-    # Logging into XNAT/ creating session
     session = requests.Session()    # Stores all the info we need for our session
     session.auth = (xnat_username, xnat_password)
+    alias_response = session.get(alias_token_url_user)
+    alias_resp_text = alias_response.text
+    alias_resp_json = json.loads(alias_resp_text)
+    alias = alias_resp_json["alias"]
+    secret = alias_resp_json["secret"]
+    print("generated single-use alias :" + alias)
+    print("generated single-use secret :" + secret)
+
+# TODO: figure out how to close this session
+
+    #.....................................................
+    #   2nd session: use the alias tokens to request JSESSION token
+    #.....................................................
+    jsession_url = xnat_url + '/data/JSESSION'
+    session = requests.Session()    # Stores all the info we need for our session
+    session.auth = (alias, secret)
     jsession_id = session.post(jsession_url)
-    if len(jsession_id) > 2:
-        print("Successfully retrieved JSESSION ID from XNAT: " + jsession_id)
-    else:
-        print("JSESSION ID could not be retrieved.")
 
     # Put JSESSION auth ID returned by XNAT rest api inside cookies header
     # Now only the JSESSION ID is available to headers,
@@ -110,6 +173,9 @@ def download_niftis(project_id):
         }
     }
 
+    resources = 'BIDS,NIFTI'
+
+    session_list_url = xnat_url + '/data/archive/projects/' + project_id + '/experiments?xsiType=xnat:mrSessionData&format=csv&columns=ID,label,xnat:subjectData/label'
 
     #................................................
     #...........GET SESSION LIST.....................
@@ -120,6 +186,7 @@ def download_niftis(project_id):
     print('Checking for mrsessions.csv file (should be in ' + bidsonly_path + ')...')
     print('If it doesn\'t exist, we will attempt to download it.')
 
+    # Create directory for session list csv file
     if not os.path.exists(os.path.dirname(session_list_csv)):
         try:
             print("Creating directory structure for " + session_list_csv.split('/')[-1])
@@ -209,7 +276,7 @@ def download_niftis(project_id):
                         if not r.raise_for_status():
                             print("no status raised (good)")
                         print("Attempting to write file...")
-                        chunk_size = 256000000 # 256mb
+                        chunk_size = 256000000 # 256mb                                                                                                                                                                                                                                                                                                                                                                                                                                                                        
                         for chunk in r.iter_content(chunk_size=chunk_size):
                             f.write(chunk)
                             print("~~ writing " + str(chunk_size) + "kb chunks ~~~")

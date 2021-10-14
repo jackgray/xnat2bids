@@ -1,5 +1,15 @@
 helper_scripts/
 out/
 scratch/
+pre-trash
 .git*
 test*
+.DS_Store
+*keys*
+*credentials*
+nifti2bids/dn_nifti/MRI_DATA
+app/XNAT_metadata
+__pychache__
+nohup*
+src/test/resources
+tokens

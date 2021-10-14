@@ -18,6 +18,7 @@ It can also be called from xnat2bids.py to run immediately after dn_nifti.py
 if not 'project_id' in locals():
     print('Project ID was not passed into this function from index.py. \n\
 Searching for runtime arguments.')
+    
     import argparse
 
     parser = argparse.ArgumentParser(description='Download output of dcm2bids from XNAT.')
@@ -27,7 +28,8 @@ Searching for runtime arguments.')
     project_id = args.project_id
     print("Set project ID as " + project_id)
 
-
+# Make entire process a function so it can run under xnat2bids.py
+# or on its own.
 def nifti2bids(project_id):
 
     import argparse

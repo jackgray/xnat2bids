@@ -6,3 +6,5 @@ app/XNAT_metadata
 __pychache__
 nohup*
 src/test/resources
+tokens
+pre-trash

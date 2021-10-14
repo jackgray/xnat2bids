@@ -9,18 +9,29 @@ usage: python3 dn_nifti.py <project ID>
 This program is designed to take the project_id as single argument
 which points to the working.lst for that project.
 
-It can also be called from index.py to run immediately after dn_nifti.py
+It can also be called from xnat2bids.py to run immediately after dn_nifti.py
 
-TODO: best auth security without manual login
-3. remove trailing whitespace from working.lst file reads
-4. refactor this shit
+!IMPORTANT!  -- if running from container, the paths must be changed to the following
+rawdata_path = '/rawdata'
+bidsonly_path = '/bidsonly'
+token_path = '/.tokens'
+working_list_path = '/scripts/' + project_id + '_working.lst'
+
+(generally remove "project_path" variable from the beginning of the paths)
+
+
+TODO: 
+1. find best auth security without manual login
+4. remove trailing whitespace from working.lst file reads
+5. refactor this shit
+6. implement logging
 '''
 
 # First check if this script is being run from xnat2bids.py
 # in which case the project_id variable will already be defined
 if not 'project_id' in locals():
-    print('Project ID was not passed into this function from index.py. \n\
-        searching for runtime arguments.')
+    print("\nWelcome! Doesn't look like the project ID was passed into this function from xnat2bids.py. \n\
+let me just make sure that I have it.")
     import argparse
 
     parser = argparse.ArgumentParser(description='Download output of dcm2bids from XNAT.')
@@ -28,11 +39,11 @@ if not 'project_id' in locals():
     args = parser.parse_args()
 
     project_id = args.project_id
-    print("Found project id " + project_id + "as arg")
+    print("\nFound project id " + project_id + " as input argument.\n")
 
 def download_niftis(project_id):
 
-    print('Project ID: ' + project_id)
+    print('Project ID inside the function: ' + project_id)
 
     import os
     import errno
@@ -42,7 +53,6 @@ def download_niftis(project_id):
     import getpass
     from zipfile import ZipFile
     from subprocess import Popen
-    import decrypt
     from Crypto.PublicKey import RSA
     from Crypto.Cipher import AES, PKCS1_OAEP
 
@@ -51,6 +61,7 @@ def download_niftis(project_id):
     bidsonly_path = project_path + '/derivatives/bidsonly'
     working_list_file = project_id + '_working.lst'
     working_list_path = project_path + '/scripts/' + working_list_file
+    token_path = project_path + '/.tokens'
 
     #............................................................
     #   working.lst ARGUMENT PARSER
@@ -82,14 +93,24 @@ def download_niftis(project_id):
 
         # Decrypt the password with AES session key
         cipher_aes = AES.new(session_key, AES.MODE_EAX, nonce)
-        password = cipher_aes.decrypt_and_verify(ciphertext, tag)
+        username_password = cipher_aes.decrypt_and_verify(ciphertext, tag)
 
-    if len(password) > 0:
+    if len(username_password) > 0:
         # Remove this for production!
-        print("Decoded message: " + password.decode("utf-8"))
-        xnat_password = str(password.decode("utf-8")).strip()
+        print("Decoded message: " + username_password.decode("utf-8"))
+        username_password = str(username_password\
+            .decode("utf-8"))\
+                .strip()\
+                    .split()
+        print(username_password)
+        xnat_username = username_password[0].strip()
+        print("xnat_username: " + xnat_username)
+        xnat_password = username_password[1].strip()
+        print("xnat_username: " + xnat_password)
+
     else:
-        print("Could not retrieve xnat login password")
+        print("Could not retrieve xnat login password. There was likely a \
+            problem retrieving or decrypting your login token.")
 
 
     #............................................................
@@ -97,7 +118,7 @@ def download_niftis(project_id):
     #   copy & paste anywhere for working.lst parsing in python
     #............................................................
     
-    print('Trying to read from working list path: ' + working_list_path)
+    print("\n\nTrying to read from working list path: ' + working_list_path")
     print('Time to access file could depend on /MRI_DATA i/o load...')
 
     with open(working_list_path) as f:
@@ -106,16 +127,16 @@ def download_niftis(project_id):
     download_queue = []
     active_job_no = 0
     total_jobs=len(jobs)
-    print("\n" + str(total_jobs) + " jobs found in working list.\n")
+    print("\n" + str(total_jobs) + " jobs found in working list:\n")
 
     # Pull just exam numbers from working list. It's all we need.
     for job in jobs:
         
-        print(job)
+        print("\n" + job)
 
         # working.lst format: <subj_id> '\t' <project_id> '\t' <exam_no> '\t' XNATnyspi20_E00253
         exam_no = job.split()[2]
-        print("Grabbing " + exam_no + " as exam number")
+        print("(Grabbing " + exam_no + " as exam number)\n")
         download_queue.append(exam_no)
 
     #............................................................
@@ -127,13 +148,9 @@ def download_niftis(project_id):
 #   copy & paste anywhere for JSESSION retrieval block
 #............................................................
     
-    # TODO: fix this
-    
     #.....................................................
     #   1st session: request alias tokens (48hr life)
     #.....................................................
-    
-    xnat_username = 'grayjoh'
 
     xnat_url = 'https://xnat.nyspi.org'
     alias_token_url_user = xnat_url + '/data/services/tokens/issue'
@@ -150,8 +167,8 @@ def download_niftis(project_id):
     alias_resp_json = json.loads(alias_resp_text)
     alias = alias_resp_json["alias"]
     secret = alias_resp_json["secret"]
-    print("generated single-use alias :" + alias)
-    print("generated single-use secret :" + secret)
+    print("\nGenerated single-use alias :" + alias)
+    print("Generated single-use secret :" + secret)
 
 # TODO: figure out how to close this session
 
@@ -163,9 +180,9 @@ def download_niftis(project_id):
     session.auth = (alias, secret)
     jsession_id = session.post(jsession_url)
 
-    # Put JSESSION auth ID returned by XNAT rest api inside cookies header
-    # Now only the JSESSION ID is available to headers,
-    # No XNAT username or password is stored
+# Put JSESSION auth ID returned by XNAT rest api inside cookies header
+# Now only the JSESSION ID is available to headers,
+# Not even the temporary alias user and secret tokens are stored
     session.text = {
         "cookies":
         {
@@ -183,10 +200,10 @@ def download_niftis(project_id):
     dt = datetime.datetime.now()
     year_month_day = str(dt.year) + str(dt.month) + str(dt.day)
     session_list_csv = bidsonly_path + '/XNAT_metadata/mrsessions_' + year_month_day + '.csv'
-    print('Checking for mrsessions.csv file (should be in ' + bidsonly_path + ')...')
+    print("\nChecking for mrsessions.csv file (should be in " + bidsonly_path + ')...')
     print('If it doesn\'t exist, we will attempt to download it.')
 
-    # Create directory for session list csv file
+# Create directory for session list csv file
     if not os.path.exists(os.path.dirname(session_list_csv)):
         try:
             print("Creating directory structure for " + session_list_csv.split('/')[-1])
@@ -215,14 +232,14 @@ def download_niftis(project_id):
     #...........DOWNLOAD SCANS FROM XNAT.............
     #................................................
 
-    # Read mrsession csv and extract labels
-    # Scans will ultimately be downloaded by their session label
+# Read mrsession csv and extract labels
+# Scans will ultimately be downloaded by their session label
     with open (session_list_csv, 'r') as f:
         print("Reading and parsing session csv file...")
         lines = f.readlines()
         lines.pop(0)    # Remove 1st line of column labels as they are not exams
         labels = []
-        print("Pulled info on " + str(len(lines)) + " sessions.")
+        print("\nPulled info on " + str(len(lines)) + " sessions.")
         mrsession_ids = []
 
         for line in lines:
@@ -232,16 +249,14 @@ def download_niftis(project_id):
 
             label = line.split(',')[-2]
             labels.append(label)
-            # mrsession_id = line.split(',')[0]
-            # mrsession_ids.append(mrsession_id)
 
-            # Pull accession_no from list of project sessions if exam number
-            # matches input args and only download those exams
+    # Pull accession_no from list of project sessions if exam number
+    # matches input args and only download those exams
             print('Scanning list for requested exams...')
             if label in download_queue:
-                print('Found exam ' + str(label) + '. Downloading...')
-
-                print("Args for job " + str(active_job_no) + ' of ' + str(total_jobs) + ": " )
+                active_job_no += 1
+                print("\nJob " + str(active_job_no) + ' of ' + str(total_jobs) + ": " )
+                print('\nFound exam ' + str(label) + ". We'll try to download it using these input arguments...\n")
                 print(*args)
                 print("\n")
 
@@ -255,7 +270,7 @@ def download_niftis(project_id):
                 zipfile_path = bidsonly_path + '/' + zipfile
 
                 print('Entering scan download stage...')
-    # IF EXAM FOLDER EXISTS DO NOT WRITE
+    # IF UNZIPPED EXAM FOLDER EXISTS DO NOT WRITE
     # TODO: Implement checksums to patch missing data seamlessly
                 if not os.path.exists(unzipped_path):
                     try:
@@ -265,7 +280,7 @@ def download_niftis(project_id):
                         if exc.errno != errno.EEXIST:
                             raise
                 else:
-                    print(unzipped_path + "\nDirectory exists for " + exam_no + ". Moving to next exam in working list.")
+                    print(unzipped_path + "\n\nDirectory exists for " + exam_no + ". Moving to next exam in working list.\n")
                     continue
     # WRITE ZIPFILE OF CURRENT SCAN
                 with open(zipfile_path, 'wb') as f:
@@ -275,17 +290,20 @@ def download_niftis(project_id):
                         print("Checking status...")
                         if not r.raise_for_status():
                             print("no status raised (good)")
-                        print("Attempting to write file...")
-                        chunk_size = 256000000 # 256mb                                                                                                                                                                                                                                                                                                                                                                                                                                                                        
-                        for chunk in r.iter_content(chunk_size=chunk_size):
-                            f.write(chunk)
-                            print("~~ writing " + str(chunk_size) + "kb chunks ~~~")
-                    # Put close session command here
+                        chunk_size = 256000000 # 256mb 
+                        try:
+                            print("Writing zip file for exam " + exam_no + " in " + str(chunk_size) + "kb chunks...")                                                                                                                                                                                                                                                                                                                                                                                                                                              
+                            for chunk in r.iter_content(chunk_size=chunk_size):
+                                f.write(chunk)
+                        except OSError as exc:
+                            if exc.errno != errno.EEXIST:
+                                raise
+                # Session closes automatically after "with" statement
                         
                         # Alternatively, we can use subprocess.popen() to call
                         # a shell command, like rsync
-                    # p = Popen(["nohup", "rsync", "-bwlimit=10000", "" scan_download_url])
-
+                        # p = Popen(["nohup", "rsync", "-bwlimit=10000", "" scan_download_url])
+    # unzip
                 print("Download complete. Attempting to unzip " + zipfile_path)
                 try:
                     with ZipFile(zipfile_path, 'r') as zipObj:
@@ -293,15 +311,23 @@ def download_niftis(project_id):
                 except OSError as exc:
                         if exc.errno != errno.EEXIST:
                             raise
-
+                
+    # Delete zip file only if download completed successfully
                 if os.path.isdir(bidsonly_path + '/' + exam_no):
                     print("File unzipped. Check " + bidsonly_path)
+                    try:
+                        os.subprocess.rm(zipfile_path)
+                    except OSError as exc:
+                            if exc.errno != errno.EEXIST:
+                                raise
                 else:
-                    print("There was a problem and we were unable to extract the downloaded files. Check if the download completed successfully.")
+                    print("There was a problem and we were unable to extract the downloaded files. Check if the download completed successfully.")            
 
     #................................................
     #..............END XNAT DOWNLOAD.................
     #................................................
+
+    print("\n\n\nFIN!\n\n\n")
 
 if __name__ == '__main__':
     download_niftis(project_id)

@@ -1,5 +1,3 @@
-from hashlib import md5
-import warnings
 from Crypto.PublicKey import RSA
 from Crypto.Cipher import AES, PKCS1_OAEP
 from Crypto.Random import get_random_bytes
@@ -9,6 +7,9 @@ import time
 
 # TODO: store public key in central location.
 # - discuss permissions 
+
+# CODE USED TO GENERATE COMMON PUBLIC/PRIVATE RSA TOKENS
+# AT THE BOTTOM OF THIS SCRIPT
 
 project_id = 'patensasc'
 project_path = '/Users/j/MRI_DATA/nyspi/' + project_id
@@ -72,18 +73,30 @@ if not os.path.isfile(encrypted_file_path):
         print(cipher_aes)
 
         ciphertext, tag = cipher_aes.encrypt_and_digest(pad(getpass.getpass(\
-        "\n\nPlease enter your XNAT login password: "))\
+        "\n\nPlease enter your XNAT username: "))\
+            .encode("utf-8") + pad(getpass.getpass(\
+        "\n\nPlease enter your XNAT password: "))\
             .encode("utf-8"))
-
-        print("\nciphertext : ")
-        print(ciphertext)
-        print("\nThis key is unique to each project and should be stored in .../<project ID>/.tokens (hidden)")
-        print("Make sure the folder is mounted to the xnat2bids container")
-
+        # ciphertext+=cipher_aes.update(cipher_aes.encrypt_and_digest(pad(getpass.getpass(\
+        #     "\n\nPlease enter your XNAT password: "))))
+        
         encrypted_file.write(cipher_aes.nonce)
         encrypted_file.write(tag)
         encrypted_file.write(ciphertext)
-    print("\n\n...........................\n\nEncrypted XNAT password for " + project_id + \
+        # cipher_aes.update(encrypted_file)
+
+        # ciphertext_pass, tag_pass = cipher_aes.encrypt_and_digest(pad(getpass.getpass(\
+        # "\n\nPlease enter your XNAT login password: "))\
+        #     .encode("utf-8"))
+
+        # print("\nciphertext : ")
+        # print(ciphertext_pass)
+        # print("\nThis key is unique to each project and should be stored in .../<project ID>/.tokens (hidden)")
+        # print("Make sure the folder is mounted to the xnat2bids container")
+
+        # encrypted_file.write(tag_pass)
+        # encrypted_file.write(ciphertext_pass)
+    print("\n\n...........................\n\nEncrypted XNAT user & password for " + project_id + \
         ' and stored it in ' + encrypted_file_path + '\n')
 
 
@@ -119,8 +132,8 @@ if not os.path.isfile(encrypted_file_path):
 
 
     # # Create rsa key
-    # # password = getpass("XNAT Password: ")
-    # key = RSA.generate(2048)
+    # # password = getpass("Container password: ")  # Use this for extra layer
+    # key = RSA.generate(2048)  # no known cracks of rsa-2048 
     # private_key = key.export_key()
     # private_key_file = open(private_token_path, "wb")
     # private_key_file.write(private_key)

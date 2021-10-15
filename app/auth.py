@@ -57,7 +57,7 @@ if not os.path.isfile(encrypted_file_path):
 
         # Encrypt a new session key with public RSA key
         cipher_rsa = PKCS1_OAEP.new(public_key)
-
+        
         print("\ncipher_rsa: ")
         print(cipher_rsa)
 

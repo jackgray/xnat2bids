@@ -11,9 +11,9 @@ bidsonlypath_container=${project_path}/derivatives/bidsonly
 rawdata_path_container=${project_path}/rawdata 
 workinglistpath_container=${project_path}/scripts/${project_id}_working.lst
 token_path_doctor=${project_path}/.tokens
-token_path_container=/.tokens
+token_path_container=${project_path}/.tokens
 image_name=xnat2bids
-service_name=xnat2bids_${project_id_}$(date)
+service_name=xnat2bids_${project_id}
 
 # Ensure authentication requirements are met before 
 # anything else.
@@ -41,25 +41,25 @@ fi
 # how to control access to it
 
 
-# # docker pull jackgray/xnat2bids
-# docker service create\
-#     --replicas 1\
-#     --reserve-cpu 8\
-#     --reserve-memory 16g\
-#     --mode replicated\
-#     --restart-condition none\
-#     --name=${service_name}\
-#     --mount type=bind,\
-#     source=${rawdatapath_doctor},\
-#     destination=${rawdatapath_container}\
-#     --mount type=bind,\
-#     source=${bidsonlypath_doctor},\
-#     destination=${bidsonlypath_container}\
-#     --mount type=bind,\
-#     source=${workinglistpath_doctor},\
-#     destination=${workinglistpath_container}\
-#     --mount type=bind,\
-#     source=${token_path_doctor},\
-#     destination=${token_path_container}\
-#     ${image_name}\
-#     python3 xnat2bids.py ${project_id};\
+# docker pull jackgray/xnat2bids
+docker service create\
+    --replicas 1\
+    --reserve-cpu 1\
+    --reserve-memory 1g\
+    --mode replicated\
+    --restart-condition none\
+    --name=${service_name}\
+    --mount type=bind,\
+    source=${rawdatapath_doctor},\
+    destination=${rawdatapath_container}\
+    --mount type=bind,\
+    source=${bidsonlypath_doctor},\
+    destination=${bidsonlypath_container}\
+    --mount type=bind,\
+    source=${workinglistpath_doctor},\
+    destination=${workinglistpath_container}\
+    --mount type=bind,\
+    source=${token_path_doctor},\
+    destination=${token_path_container}\
+    ${image_name}\
+    python3 xnat2bids.py ${project_id};\

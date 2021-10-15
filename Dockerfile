@@ -8,12 +8,13 @@ RUN apt-get update && \
 
 FROM build AS build-venv
 COPY ./app /app
+COPY xnat2bids_private.pem /opt/keys
 WORKDIR /app
 RUN /venv/bin/pip install --disable-pip-version-check -r /app/requirements.txt
 
 FROM gcr.io/distroless/python3-debian10
 COPY --from=build-venv /venv /venv 
 COPY --from=build-venv /app /app
-COPY ./app/.tokens /.tokens
+COPY ./xnat2bids_private.pem /opt/keys
 WORKDIR /app
 ENTRYPOINT [ "entrypoint.sh" ]

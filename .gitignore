@@ -1,10 +1,12 @@
 .DS_Store
-*keys*
-*credentials*
+*key*
+*credential*
 nifti2bids/dn_nifti/MRI_DATA
 app/XNAT_metadata
 __pychache__
 nohup*
 src/test/resources
-tokens
+*token*
 pre-trash
+*.pem
+*.bin

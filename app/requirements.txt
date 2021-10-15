@@ -5,7 +5,5 @@ requests
 # json
 # subprocess
 
-Crypto.PublicKey.RSA
-Crypto.Cipher.AES
-Crypto.Cipher.PKCS1_OAEP
-Crypto.Random.get_random_bytes
+
+pycryptodome

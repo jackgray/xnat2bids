@@ -17,4 +17,4 @@ COPY --from=build-venv /venv /venv
 COPY --from=build-venv /app /app
 COPY ./xnat2bids_private.pem /opt/keys
 WORKDIR /app
-ENTRYPOINT [ "entrypoint.sh" ]
+# ENTRYPOINT [ "entrypoint.sh" ]

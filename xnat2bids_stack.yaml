@@ -1,0 +1,13 @@
+version: "3.9"
+services:
+  xnat2bids_app:
+    image: nyspiXnat2bids:latest
+    volumes:
+      - token:/Users/j/MRI_DATA/nyspi/patensasc/.tokens/xnat2bids_public.pem
+    environment:
+      XNAT2BIDS_USER_TOKEN_FILE: /Users/j/MRI_DATA/nyspi/patensasc/.tokens/xnat2bids_patensasc_login.bin
+      XNAT2BIDS_PW_RAW: password
+      XNAT2BIDS_USER_RAW: user
+    secrets:
+      - xnat2bids_public
+      - xnat2bids_user_raw

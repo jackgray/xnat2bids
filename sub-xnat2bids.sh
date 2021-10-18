@@ -3,7 +3,7 @@
 # Usage: bash sub-xnat2bids.sh <project ID>
 
 project_id=$1
-project_path=/Users/j/MRI_DATA/nyspi/${project_id}
+project_path=/MRI_DATA/nyspi/${project_id}
 bidsonlypath_doctor=${project_path}/derivatives/bidsonly 
 rawdata_path_doctor=${project_path}/rawdata 
 workinglistpath_doctor=${project_path}/scripts/${project_id}_working.lst
@@ -40,14 +40,12 @@ fi
 # TODO: determine central location of the public key and 
 # how to control access to it
 
+# Retrieve JSESSION token before launching service,
+# encrypt it, then send that token 
+python3 decrypt.py
 
 # docker pull jackgray/xnat2bids
-docker service create\
-    --replicas 1\
-    --reserve-cpu 1\
-    --reserve-memory 1g\
-    --mode replicated\
-    --restart-condition none\
+docker run \
     --name=${service_name}\
     --mount type=bind,\
     source=${rawdatapath_doctor},\

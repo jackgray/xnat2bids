@@ -8,6 +8,7 @@ set -euo pipefail
 
 # Temporarily disable strict mode and activate conda:
 set +euo pipefail
+
 # conda activate /opt/env
 
 # Re-enable strict mode:
@@ -17,3 +18,4 @@ set -euo pipefail
 exec echo "Usage: python3 dn_nifti.py <project ID>"
 exec echo "Or: python3 nifti2bids.py <project ID>"
 exec echo "Make sure your working.lst is in your scripts directory and up to date."
+exec bash

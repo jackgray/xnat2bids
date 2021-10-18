@@ -5,13 +5,16 @@
 project_id=$1
 project_path=/MRI_DATA/nyspi/${project_id}
 bidsonlypath_doctor=${project_path}/derivatives/bidsonly 
-rawdata_path_doctor=${project_path}/rawdata 
-workinglistpath_doctor=${project_path}/scripts/${project_id}_working.lst
 bidsonlypath_container=${project_path}/derivatives/bidsonly 
+rawdata_path_doctor=${project_path}/rawdata 
 rawdata_path_container=${project_path}/rawdata 
+workinglistpath_doctor=${project_path}/scripts/${project_id}_working.lst
 workinglistpath_container=${project_path}/scripts/${project_id}_working.lst
 token_path_doctor=${project_path}/.tokens
 token_path_container=${project_path}/.tokens
+# CHANGE PRIVATE PATH FOR PRODUCTION
+private_key_path_doctor=$token_path_doctor
+private_key_path_container=$token_path_container
 image_name=xnat2bids
 service_name=xnat2bids_${project_id}
 
@@ -31,7 +34,7 @@ token_file=${token_path_doctor}/xnat2bids_${project_id}_login.bin
 if test -s "$token_file"; then
     echo Located token_file ${token_file}
 else
-    python3 ./app/auth.py
+    /usr/bin/python3 ./auth-image/auth.py $project_id
 fi
 
 # TODO: do we need to worry about permissions aka
@@ -42,7 +45,7 @@ fi
 
 # Retrieve JSESSION token before launching service,
 # encrypt it, then send that token 
-python3 decrypt.py
+# python3 decrypt.py
 
 # docker pull jackgray/xnat2bids
 docker run \
@@ -59,5 +62,8 @@ docker run \
     --mount type=bind,\
     source=${token_path_doctor},\
     destination=${token_path_container}\
+    --mount type=bind,\
+    source=${private_key_path_doctor},\
+    destination=${private_key_path_container}\
     ${image_name}\
-    python3 xnat2bids.py ${project_id};\
+    python3 xnat2bids.py ${project_id};

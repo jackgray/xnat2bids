@@ -78,6 +78,7 @@ def download_niftis(project_id):
         print(encrypted_file)
 
         private_key_path = project_path + '/.tokens/xnat2bids_private.pem'
+        private_key_path = '/opt/keys/xnat2bids_private.pem'
         private_key = RSA.import_key(open(private_key_path).read())
 
         print("\nprivate_key: ")

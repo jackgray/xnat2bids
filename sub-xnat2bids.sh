@@ -2,6 +2,8 @@
 
 # Usage: bash sub-xnat2bids.sh <project ID>
 
+docker rm xnat2bids_patensasc
+
 project_id=$1
 project_path=/Users/j/MRI_DATA/nyspi/${project_id}
 bidsonlypath_doctor=${project_path}/derivatives/bidsonly 
@@ -11,10 +13,12 @@ rawdata_path_container=${project_path}/rawdata
 workinglistpath_doctor=${project_path}/scripts/${project_id}_working.lst
 workinglistpath_container=${project_path}/scripts/${project_id}_working.lst
 token_path_doctor=${project_path}/.tokens
-token_path_container=/.tokens
-# CHANGE PRIVATE PATH FOR PRODUCTION
+token_path_container=${project_path}/.tokens
+private_path_doctor=${project_path}/xnat2bids_private.pem
+private_path_container=/gobblygook/xnat2bids_private.pem
+# TODO: FIGURE OUT WHY PRIVATE FILE ISN"T FOUND
 
-image_name=jackgray/xnat2bids:latest
+image_name=xnat2bids:latest
 service_name=xnat2bids_${project_id}
 
 # echo project id?
@@ -61,13 +65,14 @@ fi
 # encrypt it, then send that token 
 # python3 decrypt.py
 
-docker pull ${image_name}
-docker run -d \
+# docker pull ${image_name}
+docker run \
 -it \
+-e project_id=${project_id} \
 --name=${service_name} \
 -v ${rawdatapath_doctor}:${rawdatapath_container} \
 -v ${bidsonlypath_doctor}:${bidsonlypath_container} \
 -v ${workinglistpath_doctor}:${workinglistpath_container} \
 -v ${token_path_doctor}:${token_path_container} \
-${image_name} \
-python3 xnat2bids.py ${project_id};
+-v ${private_path_doctor}:${private_path_container} \
+${image_name};

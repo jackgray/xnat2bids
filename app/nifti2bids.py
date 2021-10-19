@@ -1,4 +1,4 @@
-#!/usr/bin/python3
+#!/pythonlibs python3
 
 '''
 usage: python3 nifti2bids.py <project ID>
@@ -19,14 +19,18 @@ if not 'project_id' in locals():
     print('Project ID was not passed into this function from index.py. \n\
 Searching for runtime arguments.')
     
-    import argparse
+    # import argparse
+    from os import environ as env
 
-    parser = argparse.ArgumentParser(description='Download output of dcm2bids from XNAT.')
-    parser.add_argument("project_id")
-    args = parser.parse_args()
+    # parser = argparse.ArgumentParser(description='Download output of dcm2bids from XNAT.')
+    # parser.add_argument("project_id")
+    # args = parser.parse_args()
 
-    project_id = args.project_id
-    print("Set project ID as " + project_id)
+    # project_id = args.project_id
+    # print("Set project ID as " + project_id)
+
+    project_id = env['project_id']
+
 
 # Make entire process a function so it can run under xnat2bids.py
 # or on its own.
@@ -38,6 +42,7 @@ def nifti2bids(project_id):
     import glob
     # import unzip
 
+    project_id = os.environ['project_id']
     project_path = '/MRI_DATA/nyspi/' + project_id
     working_list_file = project_id + '_working.lst'
     working_list_path = project_path + '/scripts/' + working_list_file

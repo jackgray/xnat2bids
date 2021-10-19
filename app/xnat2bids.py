@@ -1,4 +1,4 @@
-#!/usr/bin/python3
+#!/pythonlibs python3
 '''
 usage: python3 index.py <project ID>
 
@@ -19,14 +19,17 @@ as an input argument.
 
 import dn_nifti
 import nifti2bids
+from os import environ as env
 
-import argparse
+# import argparse
 
-parser = argparse.ArgumentParser(description='Download output of dcm2bids from XNAT.')
-parser.add_argument("project_id")
-args = parser.parse_args()
+# parser = argparse.ArgumentParser(description='Download output of dcm2bids from XNAT.')
+# parser.add_argument("project_id")
+# args = parser.parse_args()
 
-project_id = args.project_id
+# project_id = args.project_id
+
+project_id = env['project_id']
 
 def xnat2bids(project_id):
     dn_nifti.download_niftis(project_id)

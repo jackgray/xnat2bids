@@ -1,7 +1,4 @@
-#!/usr/bin/python3
-
-# NOTE: xnat_rsa passphrase = d#n*nifti$nyspi@doctor
-# psych--no passphrase for now
+#!/pythonlibs python3
 
 '''
 usage: python3 dn_nifti.py <project ID>
@@ -34,13 +31,16 @@ if not 'project_id' in locals():
     print("\nWelcome! Doesn't look like the project ID was passed into this function from xnat2bids.py. \n\
 let me just make sure that I have it.")
     import argparse
+    from os import environ as env
+    # try:
+    #     parser = argparse.ArgumentParser(description='Download output of dcm2bids from XNAT.')
+    #     parser.add_argument("project_id")
+    #     args = parser.parse_args()
 
-    parser = argparse.ArgumentParser(description='Download output of dcm2bids from XNAT.')
-    parser.add_argument("project_id")
-    args = parser.parse_args()
-
-    project_id = args.project_id
-    print("\nFound project id " + project_id + " as input argument.\n")
+    #     project_id = args.project_id
+    #     print("\nFound project id " + project_id + " as input argument.\n")
+    # except:
+    project_id = env['project_id']
 
 def download_niftis(project_id):
 
@@ -57,6 +57,7 @@ def download_niftis(project_id):
     from Crypto.PublicKey import RSA
     from Crypto.Cipher import AES, PKCS1_OAEP
 
+    project_id = os.environ['project_id']
     project_path = '/Users/j/MRI_DATA/nyspi/' + project_id
     rawdata_path = project_path + '/rawdata'
     bidsonly_path = project_path + '/derivatives/bidsonly'
@@ -69,7 +70,10 @@ def download_niftis(project_id):
 #............................................................
 
     encrypted_file_path = token_path + '/xnat2bids_' + project_id + '_login.bin'
-
+    if os.path.isdir(encrypted_file_path):
+        print('cool')
+    else:
+        print('yep')
     print("\nencrypted_file_path : ")
     print(encrypted_file_path)
 
@@ -79,7 +83,9 @@ def download_niftis(project_id):
         print(encrypted_file)
 
         # private_key_path = project_path + '/.xnat/xnat2bids_private.pem'
-        private_key_path = '/.xnat/xnat2bids_private.pem'
+        private_key_path = "/xnat"
+        # private_key_path = "/gobblygook/xnat2bids_private.pem"
+        # os.listdir("/gobblygook")
         private_key = RSA.import_key(open(private_key_path).read())
 
         print("\nprivate_key: ")

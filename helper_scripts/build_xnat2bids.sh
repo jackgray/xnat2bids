@@ -5,5 +5,7 @@
 # First generate conda lock file for environment config to add to build
 # nevermind- conda not installed on doctor
 docker buildx build \
-    -t xnat2bids_image \
-    .
+--platform linux/amd64 \
+--push \
+-t jackgray/xnat2bids:latest \
+.

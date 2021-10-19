@@ -1,3 +1,9 @@
+#! /usr/local/python3 
+
+# USAGE: auth.py <project ID>
+# (will usually be called directly by sub-xnat2bids.sh)
+
+
 from Crypto.PublicKey import RSA
 from Crypto.Cipher import AES, PKCS1_OAEP
 from Crypto.Random import get_random_bytes
@@ -20,14 +26,21 @@ args = parser.parse_args()
 project_id = args.project_id
 
 
-# is current path script path?
-project_id = 'patensasc'
+# # is current path script path?
+# project_id = 'patensasc'
 project_path = '/MRI_DATA/nyspi/' + project_id
 
-token_folder = project_path + '/.tokens'
+# token_folder = project_path + '/.tokens'
 # private_key_path = token_folder + '/xnat2bids_private.pem'
-public_key_path = token_folder + '/xnat2bids_public.pem'
-encrypted_file_path = token_folder + '/xnat2bids_' + project_id + '_login.bin'
+# public_key_path = token_folder + '/xnat2bids_public.pem'
+
+# public key stored in auth image
+# TODO: should we go ahead and generate the alias token here and encrypt/store that instead?
+# that lasts 2 days, and is more secure to leave in a long running container environment
+# we could still keep the encrypted password stored for better automation or have this script
+# require it be typed in every two days. Provides a nice cascade of minimally necessary auth stages :)
+public_key_path = '/.xnat/xnat2bids_public.pem'
+encrypted_file_path = '/.tokens/xnat2bids_' + project_id + '_login.bin'
 
 if not os.path.isfile(public_key_path):
     print("I can't find the public rsa token for xnat2bids container.")

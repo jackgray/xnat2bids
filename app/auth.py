@@ -11,13 +11,19 @@ import time
 # CODE USED TO GENERATE COMMON PUBLIC/PRIVATE RSA TOKENS
 # AT THE BOTTOM OF THIS SCRIPT
 
+# is current path the script path?
+# TODO: (logic to avoid taking arguments)
 project_id = 'patensasc'
-project_path = '/Users/j/MRI_DATA/nyspi/' + project_id
+project_path = '/MRI_DATA/nyspi/' + project_id
 
-token_folder = project_path + '/.tokens'
-private_key_path = token_folder + '/xnat2bids_private.pem'
-public_key_path = token_folder + '/xnat2bids_public.pem'
-encrypted_file_path = token_folder + '/xnat2bids_' + project_id + '_login.bin'
+# token_folder = project_path + '/.tokens'
+# private_key_path = token_folder + '/xnat2bids_private.pem'
+
+# public key is inside image build
+public_key_path = '/.xnat' + '/xnat2bids_public.pem'
+# encrypted pw saved in bind-mounted .../<projectID>/.tokens folder
+# TODO: go ahead and generate the jsession here? or first line alias tokens? (rn just pw is encrypted & stored)
+encrypted_file_path = '/.tokens' + '/xnat2bids_' + project_id + '_login.bin'
 
 if not os.path.isfile(public_key_path):
     print("I can't find the public rsa token for xnat2bids container.")

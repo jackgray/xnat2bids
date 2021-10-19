@@ -15,7 +15,8 @@ RUN /venv/bin/pip install --disable-pip-version-check -r /app/requirements.txt
 FROM gcr.io/distroless/python3-debian10
 COPY --from=build-venv /venv /venv 
 COPY --from=build-venv /app /app
-COPY xnat2bids_private.pem /opt/keys
+COPY xnat2bids_private.pem /.xnat
 # COPY ./xnat2bids_private.pem /MRI_DATA/nyspi/patensasc/.tokens
+ENV PYTHONPATH=/venv
 WORKDIR /app
-# ENTRYPOINT [ "entrypoint.sh" ]
+ENTRYPOINT [ "xnat2bids.py", "patensasc" ]

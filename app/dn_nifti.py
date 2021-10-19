@@ -12,6 +12,7 @@ which points to the working.lst for that project.
 It can also be called from xnat2bids.py to run immediately after dn_nifti.py
 
 !IMPORTANT!  -- if running from container, the paths must be changed to the following
+psych--not yet
 rawdata_path = '/rawdata'
 bidsonly_path = '/bidsonly'
 token_path = '/.tokens'
@@ -67,7 +68,7 @@ def download_niftis(project_id):
 #         DECRYPT
 #............................................................
 
-    encrypted_file_path = project_path + '/.tokens/xnat2bids_' + project_id + '_login.bin'
+    encrypted_file_path = token_path + '/xnat2bids_' + project_id + '_login.bin'
 
     print("\nencrypted_file_path : ")
     print(encrypted_file_path)
@@ -77,8 +78,8 @@ def download_niftis(project_id):
         print("\nencrypted_file : ")
         print(encrypted_file)
 
-        private_key_path = project_path + '/.tokens/xnat2bids_private.pem'
-        private_key_path = '/opt/keys/xnat2bids_private.pem'
+        # private_key_path = project_path + '/.xnat/xnat2bids_private.pem'
+        private_key_path = '/.xnat/xnat2bids_private.pem'
         private_key = RSA.import_key(open(private_key_path).read())
 
         print("\nprivate_key: ")

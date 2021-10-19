@@ -3,7 +3,7 @@
 # Usage: bash sub-xnat2bids.sh <project ID>
 
 project_id=$1
-project_path=/MRI_DATA/nyspi/${project_id}
+project_path=/Users/j/MRI_DATA/nyspi/${project_id}
 bidsonlypath_doctor=${project_path}/derivatives/bidsonly 
 bidsonlypath_container=${project_path}/derivatives/bidsonly 
 rawdata_path_doctor=${project_path}/rawdata 
@@ -11,12 +11,20 @@ rawdata_path_container=${project_path}/rawdata
 workinglistpath_doctor=${project_path}/scripts/${project_id}_working.lst
 workinglistpath_container=${project_path}/scripts/${project_id}_working.lst
 token_path_doctor=${project_path}/.tokens
-token_path_container=${project_path}/.tokens
+token_path_container=/.tokens
 # CHANGE PRIVATE PATH FOR PRODUCTION
-private_key_path_doctor=$token_path_doctor
-private_key_path_container=$token_path_container
-image_name=xnat2bids
+
+image_name=jackgray/xnat2bids:latest
 service_name=xnat2bids_${project_id}
+
+# echo project id?
+# echo $project_id
+# echo rawdatapath?
+# echo $rawdata_path_container
+# echo bidspath?
+# echo $bidsonlypath_doctor
+# echo && echo && echo && echo && echo
+
 
 # Ensure authentication requirements are met before 
 # anything else.
@@ -34,7 +42,11 @@ token_file=${token_path_doctor}/xnat2bids_${project_id}_login.bin
 if test -s "$token_file"; then
     echo Located token_file ${token_file}
 else
-    /usr/bin/python3 ./auth-image/auth.py $project_id
+    docker run \
+    -it \
+    -v /Users/j/MRI_DATA/nyspi/$project_id/.tokens:/.tokens \
+    xnat-auth:latest \
+    python3 auth.py $project_id
 fi
 
 # TODO: do we need to worry about permissions aka
@@ -42,28 +54,20 @@ fi
 
 # TODO: determine central location of the public key and 
 # how to control access to it
+# ---> rn it's in the docker image ("jackgray/xnat-auth") 
+# TODO: security concerns there?
 
 # Retrieve JSESSION token before launching service,
 # encrypt it, then send that token 
 # python3 decrypt.py
 
-# docker pull jackgray/xnat2bids
-docker run \
-    --name=${service_name}\
-    --mount type=bind,\
-    source=${rawdatapath_doctor},\
-    destination=${rawdatapath_container}\
-    --mount type=bind,\
-    source=${bidsonlypath_doctor},\
-    destination=${bidsonlypath_container}\
-    --mount type=bind,\
-    source=${workinglistpath_doctor},\
-    destination=${workinglistpath_container}\
-    --mount type=bind,\
-    source=${token_path_doctor},\
-    destination=${token_path_container}\
-    --mount type=bind,\
-    source=${private_key_path_doctor},\
-    destination=${private_key_path_container}\
-    ${image_name}\
-    python3 xnat2bids.py ${project_id};
+docker pull ${image_name}
+docker run -d \
+-it \
+--name=${service_name} \
+-v ${rawdatapath_doctor}:${rawdatapath_container} \
+-v ${bidsonlypath_doctor}:${bidsonlypath_container} \
+-v ${workinglistpath_doctor}:${workinglistpath_container} \
+-v ${token_path_doctor}:${token_path_container} \
+${image_name} \
+python3 xnat2bids.py ${project_id};

@@ -1,19 +1,17 @@
-FROM debian:buster-slim AS build 
-RUN apt-get update && \
-    apt-get install --no-install-suggests \
-    --no-install-recommends \
-    --yes python3-venv && \
-    python3 -m venv /venv && \
-    /venv/bin/pip install --upgrade pip
+FROM python:3.8-slim-buster AS build 
 
-FROM build AS build-venv
 COPY . /app
 WORKDIR /app
-RUN /venv/bin/pip install --disable-pip-version-check -r /app/requirements.txt
+# RUN python3 -m venv /pyenv
+RUN python3 -m pip install \
+--disable-pip-version-check \
+-r requirements.txt && \
+mkdir /.xnat && \
+mv /app/xnat2bids_public.pem /.xnat
 
-FROM gcr.io/distroless/python3-debian10
-COPY --from=build-venv /venv /venv 
-COPY --from=build-venv /app /app
-# COPY ./xnat2bids_private.pem /MRI_DATA/nyspi/patensasc/.tokens
-WORKDIR /app
-# ENTRYPOINT [ "entrypoint.sh" ]
+# FROM gcr.io/distroless/python3-debian10
+# COPY --from=build /usr/local/python3 /python3
+# COPY --from=build /app /app
+# # COPY ./xnat2bids_private.pem /MRI_DATA/nyspi/patensasc/.tokens
+# WORKDIR /app
+# ENTRYPOINT [ "bash", "&&", "python3", "auth.py", ]

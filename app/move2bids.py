@@ -53,11 +53,11 @@ def move2bids(exam_no, subj_id):
 
     # Define paths
     # dn_nifti --> /derivatives/bidsonly
-    bidsfiles_src = project_path + '/derivatives/bidsonly/' + exam_no + '/'
+    bidsfiles_src = '/derivatives/bidsonly/' + exam_no + '/'
     
     # Use glob to pull paths to every file
     file_dirs = glob.glob(bidsfiles_src + 'SCANS/*/*/*')
-    rawdata_path = project_path + '/rawdata/'
+    rawdata_path = '/rawdata/'
     
     # print("\nThis script will attempt to organize the following files: \n")
     # for file_dir in file_dirs:
@@ -75,6 +75,7 @@ def move2bids(exam_no, subj_id):
         sub_path = rawdata_path + subname
         if not os.path.isdir(sub_path):
             print('Creating directory ' + sub_path)
+            os.mkdir('/rawdata')
             os.mkdir(sub_path)
         else: 
             print("\n" + sub_path + ' already exists.')

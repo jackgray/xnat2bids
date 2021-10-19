@@ -17,12 +17,12 @@
 # ENTRYPOINT [ "bash", "&&", "python3", "auth.py", ]
 
 FROM python:3.6-stretch AS build 
-COPY app/requirements.txt /
-RUN pip3 install -r /requirements.txt -t /pythonlibs
+COPY . /app
+RUN pip3 install -r /app/requirements.txt -t /pythonlibs
 
 FROM gcr.io/distroless/python3-debian10
 COPY --from=build /pythonlibs /pythonlibs 
-COPY  app /app
+COPY  --from=build /app /app
 COPY ./xnat2bids_public.pem /.xnat
 ENV PYTHONPATH=/pythonlibs
 WORKDIR /app

@@ -1,24 +1,11 @@
-#!/bin/bash
+#!/bin/env bash
 
 # Usage: bash sub-xnat2bids.sh <project ID>
-
-docker rm xnat2bids_patensasc
-
 project_id=$1
-project_path=/MRI_DATA/nyspi/${project_id}
-bidsonlypath_doctor=/Users/j/${project_path}/derivatives/bidsonly 
-bidsonlypath_container=${project_path}/derivatives/bidsonly 
-rawdata_path_doctor=/Users/j/${project_path}/rawdata 
-rawdata_path_container=${project_path}/rawdata 
-workinglistpath_doctor=/Users/j/${project_path}/scripts/${project_id}_working.lst
-workinglistpath_container=${project_path}/scripts/${project_id}_working.lst
-token_path_doctor=/Users/j/${project_path}/.tokens
-token_path_container=${project_path}/.tokens
-private_path_doctor=/Users/j/.xnat/xnat2bids_private.pem
-private_path_container=/xnat/xnat2bids_private.pem
+docker rm xnat2bids_${project_id}
+# docker pull jackgray/xnat_auth:latest
+docker pull jackgray/xnat2bids:latest
 
-image_name=jackgray/xnat2bids:latest
-service_name=xnat2bids_${project_id}
 
 # Ensure authentication requirements are met before 
 # anything else.
@@ -31,15 +18,16 @@ service_name=xnat2bids_${project_id}
 # and places this token file in the folder .../<project ID>/.tokens
 
 token_file=${token_path_doctor}/xnat2bids_${project_id}_login.bin
-# echo token file is ${token_file}
+
 # -s flag for any file that is not empty, -r for readable, -e any type
 if test -s "$token_file"; then
     echo Located token_file ${token_file}
 else
+    docker pull jackgray/xnat_auth:latest
     docker run \
     -it \
-    -v /Users/j/MRI_DATA/nyspi/$project_id/.tokens:/.tokens \
-    xnat-auth:latest \
+    -v ${project_path}.tokens:/.tokens \
+    jackgray/xnat_auth:latest \
     python3 auth.py $project_id
 fi
 
@@ -51,11 +39,29 @@ fi
 # ---> rn it's in the docker image ("jackgray/xnat-auth") 
 # TODO: security concerns there?
 
-# Retrieve JSESSION token before launching service,
-# encrypt it, then send that token 
+# Consideration: retrieve JSESSION token before launching service,
+# encrypt it, then send that token -- update: doesn't seem to be necessary
 # python3 decrypt.py
 
-# docker pull ${image_name}
+project_id=$1
+project_path=/MRI_DATA/nyspi/${project_id}
+bidsonlypath_doctor=${project_path}/derivatives/bidsonly 
+bidsonlypath_container=${project_path}/derivatives/bidsonly 
+rawdata_path_doctor=${project_path}/rawdata 
+rawdata_path_container=${project_path}/rawdata 
+workinglistpath_doctor=${project_path}/scripts/${project_id}_working.lst
+workinglistpath_container=${project_path}/scripts/${project_id}_working.lst
+token_path_doctor=${project_path}/.tokens
+token_path_container=${project_path}/.tokens
+private_path_doctor=/.xnat/xnat2bids_private.pem
+private_path_container=/xnat/xnat2bids_private.pem
+# ^ btwn the RSA import func and distroless something doesn't like .folder names 
+# (does not seem to be an issue with bloatier official python3 image above)
+
+image_name=jackgray/xnat2bids:latest
+service_name=xnat2bids_${project_id}
+
+
 docker run \
 -it \
 -e project_id=${project_id} \

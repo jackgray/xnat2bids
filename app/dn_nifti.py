@@ -19,28 +19,16 @@ working_list_path = '/scripts/' + project_id + '_working.lst'
 
 
 TODO: 
-1. find best auth security without manual login
+
 4. remove trailing whitespace from working.lst file reads
+or replace working.lst with exam_no only list file or detect single
+exam no as string
 5. refactor this shit
 6. implement logging
 '''
 
-# First check if this script is being run from xnat2bids.py
-# in which case the project_id variable will already be defined
-if not 'project_id' in locals():
-    print("\nWelcome! Doesn't look like the project ID was passed into this function from xnat2bids.py. \n\
-let me just make sure that I have it.")
-    import argparse
-    from os import environ as env
-    # try:
-    #     parser = argparse.ArgumentParser(description='Download output of dcm2bids from XNAT.')
-    #     parser.add_argument("project_id")
-    #     args = parser.parse_args()
-
-    #     project_id = args.project_id
-    #     print("\nFound project id " + project_id + " as input argument.\n")
-    # except:
-    project_id = env['project_id']
+from os import environ as env
+project_id = env['project_id']
 
 def download_niftis(project_id):
 
@@ -303,7 +291,11 @@ def download_niftis(project_id):
                         if exc.errno != errno.EEXIST:
                             raise
                 move2bids(exam_no=exam_no, subj_id=subj_id)
+
     # Delete zip file only if download completed successfully
+    # TODO: seems this logic will not work in a distroless env
+    # os module may rely on shell commands
+
                 if os.path.isdir(bidsonly_path + '/' + exam_no):
                     print("File unzipped. Check " + bidsonly_path)
                     try:

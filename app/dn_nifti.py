@@ -52,13 +52,15 @@ def download_niftis(project_id):
     import datetime
     import json
     import getpass
+    from shutil import rmtree
     from zipfile import ZipFile
     from subprocess import Popen
     from Crypto.PublicKey import RSA
     from Crypto.Cipher import AES, PKCS1_OAEP
+    from move2bids import move2bids
 
     project_id = os.environ['project_id']
-    project_path = '/Users/j/MRI_DATA/nyspi/' + project_id
+    project_path = '/MRI_DATA/nyspi/' + project_id
     rawdata_path = project_path + '/rawdata'
     bidsonly_path = project_path + '/derivatives/bidsonly'
     working_list_file = project_id + '_working.lst'
@@ -70,26 +72,14 @@ def download_niftis(project_id):
 #............................................................
 
     encrypted_file_path = token_path + '/xnat2bids_' + project_id + '_login.bin'
-    if os.path.isdir(encrypted_file_path):
-        print('cool')
-    else:
-        print('yep')
-    print("\nencrypted_file_path : ")
-    print(encrypted_file_path)
 
     with open(encrypted_file_path, "rb") as encrypted_file:
             
-        print("\nencrypted_file : ")
-        print(encrypted_file)
-
         # private_key_path = project_path + '/.xnat/xnat2bids_private.pem'
-        private_key_path = "/xnat"
+        private_key_path = "/xnat/xnat2bids_private.pem"
         # private_key_path = "/gobblygook/xnat2bids_private.pem"
-        # os.listdir("/gobblygook")
+        
         private_key = RSA.import_key(open(private_key_path).read())
-
-        print("\nprivate_key: ")
-        print(private_key)
 
         encrypted_session_key, nonce, tag, ciphertext = \
             [ encrypted_file.read(x) for x in (private_key.size_in_bytes(), 16, 16, -1) ]
@@ -104,21 +94,16 @@ def download_niftis(project_id):
 
     if len(username_password) > 0:
         # Remove this for production!
-        print("Decoded message: " + username_password.decode("utf-8"))
         username_password = str(username_password\
             .decode("utf-8"))\
                 .strip()\
                     .split()
-        print(username_password)
         xnat_username = username_password[0].strip()
-        print("xnat_username: " + xnat_username)
         xnat_password = username_password[1].strip()
-        print("xnat_username: " + xnat_password)
 
     else:
         print("Could not retrieve xnat login password. There was likely a \
             problem retrieving or decrypting your login token.")
-
 
     #............................................................
     #   working.lst ARGUMENT PARSER
@@ -140,9 +125,11 @@ def download_niftis(project_id):
     for job in jobs:
         
         print("\n" + job)
-
+# TODO: Some LIFO FIFO weirdness happening with the queue now for like, no reason whatsoever
+# Queue is not accurate
         # working.lst format: <subj_id> '\t' <project_id> '\t' <exam_no> '\t' XNATnyspi20_E00253
         exam_no = job.split()[2]
+        subj_id = job.split()[0]
         print("(Grabbing " + exam_no + " as exam number)\n")
         download_queue.append(exam_no)
 
@@ -154,6 +141,7 @@ def download_niftis(project_id):
 #   AUTHENTICATION: alias k:v tokens, then jsession token
 #............................................................
 
+# TODO: if login error, go back and run xnat-auth
     xnat_url = 'https://xnat.nyspi.org'
     alias_token_url_user = xnat_url + '/data/services/tokens/issue'
     alias_token_url_admin = alias_token_url_user + '/user/' + xnat_username
@@ -169,8 +157,8 @@ def download_niftis(project_id):
     alias_resp_json = json.loads(alias_resp_text)
     alias = alias_resp_json["alias"]
     secret = alias_resp_json["secret"]
-    print("\nGenerated single-use alias :" + alias)
-    print("Generated single-use secret :" + secret)
+    print("\nGenerated single-use alias.")
+    print("Generated single-use secret.")
 
 # TODO: figure out how to close this session
 
@@ -292,6 +280,7 @@ def download_niftis(project_id):
                         print("Checking status...")
                         if not r.raise_for_status():
                             print("no status raised (good)")
+# TODO: good chunk size??
                         chunk_size = 256000000 # 256mb 
                         try:
                             print("Writing zip file for exam " + exam_no + " in " + str(chunk_size) + "kb chunks...")                                                                                                                                                                                                                                                                                                                                                                                                                                              
@@ -313,12 +302,12 @@ def download_niftis(project_id):
                 except OSError as exc:
                         if exc.errno != errno.EEXIST:
                             raise
-                
+                move2bids(exam_no=exam_no, subj_id=subj_id)
     # Delete zip file only if download completed successfully
                 if os.path.isdir(bidsonly_path + '/' + exam_no):
                     print("File unzipped. Check " + bidsonly_path)
                     try:
-                        os.subprocess.rm(zipfile_path)
+                        rmtree(zipfile_path)
                     except OSError as exc:
                             if exc.errno != errno.EEXIST:
                                 raise

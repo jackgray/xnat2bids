@@ -5,30 +5,20 @@
 docker rm xnat2bids_patensasc
 
 project_id=$1
-project_path=/Users/j/MRI_DATA/nyspi/${project_id}
-bidsonlypath_doctor=${project_path}/derivatives/bidsonly 
+project_path=/MRI_DATA/nyspi/${project_id}
+bidsonlypath_doctor=/Users/j/${project_path}/derivatives/bidsonly 
 bidsonlypath_container=${project_path}/derivatives/bidsonly 
-rawdata_path_doctor=${project_path}/rawdata 
+rawdata_path_doctor=/Users/j/${project_path}/rawdata 
 rawdata_path_container=${project_path}/rawdata 
-workinglistpath_doctor=${project_path}/scripts/${project_id}_working.lst
+workinglistpath_doctor=/Users/j/${project_path}/scripts/${project_id}_working.lst
 workinglistpath_container=${project_path}/scripts/${project_id}_working.lst
-token_path_doctor=${project_path}/.tokens
+token_path_doctor=/Users/j/${project_path}/.tokens
 token_path_container=${project_path}/.tokens
-private_path_doctor=${project_path}/xnat2bids_private.pem
-private_path_container=/gobblygook/xnat2bids_private.pem
-# TODO: FIGURE OUT WHY PRIVATE FILE ISN"T FOUND
+private_path_doctor=/Users/j/.xnat/xnat2bids_private.pem
+private_path_container=/xnat/xnat2bids_private.pem
 
-image_name=xnat2bids:latest
+image_name=jackgray/xnat2bids:latest
 service_name=xnat2bids_${project_id}
-
-# echo project id?
-# echo $project_id
-# echo rawdatapath?
-# echo $rawdata_path_container
-# echo bidspath?
-# echo $bidsonlypath_doctor
-# echo && echo && echo && echo && echo
-
 
 # Ensure authentication requirements are met before 
 # anything else.

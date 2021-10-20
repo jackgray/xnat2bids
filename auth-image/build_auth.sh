@@ -7,5 +7,5 @@
 docker buildx build \
 --platform linux/amd64 \
 --push \
--t jackgray/xnat_auth:latest \
+-t jackgray/xnat_auth:amd64 \
 .  

@@ -32,8 +32,6 @@ project_id = env['project_id']
 
 def download_niftis(project_id):
 
-    print('Project ID inside the function: ' + project_id)
-
     import os
     import errno
     import requests
@@ -48,24 +46,29 @@ def download_niftis(project_id):
     from move2bids import move2bids
 
     project_id = os.environ['project_id']
+    # project_path = '/Users/j/MRI_DATA/nyspi/' + project_id
+    # rawdata_path = project_path + '/rawdata'
+    # bidsonly_path = project_path + '/derivatives/bidsonly'
+    # working_list_file = project_id + '_working.lst'
+    # working_list_path = project_path + '/scripts/' + working_list_file
+    # token_path = project_path + '/.tokens'
+
     project_path = '/MRI_DATA/nyspi/' + project_id
-    rawdata_path = project_path + '/rawdata'
-    bidsonly_path = project_path + '/derivatives/bidsonly'
+    rawdata_path = '/rawdata'
+    bidsonly_path = '/derivatives/bidsonly'
     working_list_file = project_id + '_working.lst'
-    working_list_path = project_path + '/scripts/' + working_list_file
-    token_path = project_path + '/.tokens'
+    working_list_path = '/scripts/' + working_list_file
+    token_path = '/tokens'
+    encrypted_file_path = token_path + '/xnat2bids_' + project_id + '_login.bin'
+
 
 #............................................................
 #         DECRYPT
 #............................................................
 
-    encrypted_file_path = token_path + '/xnat2bids_' + project_id + '_login.bin'
-
     with open(encrypted_file_path, "rb") as encrypted_file:
             
-        # private_key_path = project_path + '/.xnat/xnat2bids_private.pem'
         private_key_path = "/xnat/xnat2bids_private.pem"
-        # private_key_path = "/gobblygook/xnat2bids_private.pem"
         
         private_key = RSA.import_key(open(private_key_path).read())
 
@@ -93,11 +96,10 @@ def download_niftis(project_id):
         print("Could not retrieve xnat login password. There was likely a \
             problem retrieving or decrypting your login token.")
 
-    #............................................................
-    #   working.lst ARGUMENT PARSER
-    #   copy & paste anywhere for working.lst parsing in python
-    #............................................................
-    
+#............................................................
+#   working.lst ARGUMENT PARSER
+#............................................................
+
     print("\n\nTrying to read from working list path: ' + working_list_path")
     print('Time to access file could depend on /MRI_DATA i/o load...')
 
@@ -113,12 +115,12 @@ def download_niftis(project_id):
     for job in jobs:
         
         print("\n" + job)
-# TODO: Some LIFO FIFO weirdness happening with the queue now for like, no reason whatsoever
+# TODO: Some LIFO FIFO weirdness happening with the queue now(?) for like, no reason whatsoever
 # Queue is not accurate
         # working.lst format: <subj_id> '\t' <project_id> '\t' <exam_no> '\t' XNATnyspi20_E00253
         exam_no = job.split()[2]
         subj_id = job.split()[0]
-        print("(Grabbing " + exam_no + " as exam number)\n")
+        # print("(Grabbing " + exam_no + " as exam number)\n")
         download_queue.append(exam_no)
 
     #............................................................
@@ -132,7 +134,7 @@ def download_niftis(project_id):
 # TODO: if login error, go back and run xnat-auth
     xnat_url = 'https://xnat.nyspi.org'
     alias_token_url_user = xnat_url + '/data/services/tokens/issue'
-    alias_token_url_admin = alias_token_url_user + '/user/' + xnat_username
+    # alias_token_url_admin = alias_token_url_user + '/user/' + xnat_username
 
 #.....................................................
 #   1st session: request alias tokens (48hr life)
@@ -246,7 +248,7 @@ def download_niftis(project_id):
                 unzipped_path = bidsonly_path + '/' + label
                 zipfile = label + '.zip'
                 zipfile_path = bidsonly_path + '/' + zipfile
-
+                
                 print('Entering scan download stage...')
     # IF UNZIPPED EXAM FOLDER EXISTS DO NOT WRITE
     # TODO: Implement checksums to patch missing data seamlessly
@@ -259,7 +261,7 @@ def download_niftis(project_id):
                             raise
                 else:
                     print(unzipped_path + "\n\nDirectory exists for " + exam_no + ". Moving to next exam in working list.\n")
-                    continue
+                    move2bids(exam_no,subj_id)
     # WRITE ZIPFILE OF CURRENT SCAN
                 with open(zipfile_path, 'wb') as f:
                     print("Opening file to write response contents to...")
@@ -290,7 +292,7 @@ def download_niftis(project_id):
                 except OSError as exc:
                         if exc.errno != errno.EEXIST:
                             raise
-                move2bids(exam_no=exam_no, subj_id=subj_id)
+                move2bids(exam_no, subj_id)
 
     # Delete zip file only if download completed successfully
     # TODO: seems this logic will not work in a distroless env

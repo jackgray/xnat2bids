@@ -25,7 +25,7 @@ print(project_id)
 
 # # is current path script path?
 # project_id = 'patensasc'
-project_path = '/MRI_DATA/nyspi/' + project_id
+project_path = '/Users/j/MRI_DATA/nyspi/' + project_id
 
 # token_folder = project_path + '/.tokens'
 # private_key_path = token_folder + '/xnat2bids_private.pem'
@@ -36,7 +36,7 @@ project_path = '/MRI_DATA/nyspi/' + project_id
 # that lasts 2 days, and is more secure to leave in a long running container environment
 # we could still keep the encrypted password stored for better automation or have this script
 # require it be typed in every two days. Provides a nice cascade of minimally necessary auth stages :)
-public_key_path = '/xnat/xnat2bids_public.pem'
+public_key_path = "/app/xnat2bids_public.pem"
 encrypted_file_path = '/tokens/xnat2bids_' + project_id + '_login.bin'
 
 # if not os.path.isfile(public_key_path):

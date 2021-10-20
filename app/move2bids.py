@@ -1,39 +1,15 @@
 #!/pythonlibs python3
 
-'''
-usage: python3 nifti2bids.py <project ID>
-
-This program is designed to take the project_id as single argument
-which points to the working.lst for that project.
-
-It can also be called from xnat2bids.py to run immediately after dn_nifti.py
-'''
-
-
 # bids src: /MRI_DATA/nyspi/<project_id>/derivativs/bidsonly/<exam_no>/scans/<series_no>/<BIDS>|<NIFTI>/<file>.json|.nii 
 # bids dst: /MRI_DATA/nyspi/<project_id>/rawdata/sub-*/ses-*/anat|fmap|func/*.json|*.nii.gz
 
 ## TODO: what to do with scans.tsv & dataset_description.json
 
-if not 'project_id' in locals():
-    print('Project ID was not passed into this function from index.py. \n\
-Searching for runtime arguments.')
-    
-    # import argparse
-    from os import environ as env
 
-    # parser = argparse.ArgumentParser(description='Download output of dcm2bids from XNAT.')
-    # parser.add_argument("project_id")
-    # args = parser.parse_args()
-
-    # project_id = args.project_id
-    # print("Set project ID as " + project_id)
-
-    project_id = env['project_id']
+from os import environ as env
+project_id = env['project_id']
 
 
-# Make entire process a function so it can run under xnat2bids.py
-# or on its own.
 def move2bids(exam_no, subj_id):
 
     import argparse

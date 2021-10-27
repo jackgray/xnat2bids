@@ -3,23 +3,13 @@
 '''
 usage: python3 dn_nifti.py <project ID>
 
-This program is designed to take the project_id as single argument
-which points to the working.lst for that project.
+This program no longer takes arguments in the traditional way. Instead,
+they are passed as environment variables in the docker image and defined
+using python's environ library.
 
-It can also be called from xnat2bids.py to run immediately after dn_nifti.py
-
-!IMPORTANT!  -- if running from container, the paths must be changed to the following
-psych--not yet
-rawdata_path = '/rawdata'
-bidsonly_path = '/bidsonly'
-token_path = '/.tokens'
-working_list_path = '/scripts/' + project_id + '_working.lst'
-
-(generally remove "project_path" variable from the beginning of the paths)
-
+To run this script locally, your full project path must be added to path variables
 
 TODO: 
-
 4. remove trailing whitespace from working.lst file reads
 or replace working.lst with exam_no only list file or detect single
 exam no as string
@@ -58,11 +48,9 @@ def download_niftis(project_id):
     token_path = '/tokens'
     encrypted_file_path = token_path + '/xnat2bids_' + project_id + '_login.bin'
 
-
-#............................................................
-#         DECRYPT
-#............................................................
-
+    #............................................................
+    #         DECRYPT
+    #............................................................
     with open(encrypted_file_path, "rb") as encrypted_file:
             
         private_key_path = "/xnat/xnat2bids_private.pem"
@@ -95,19 +83,16 @@ def download_niftis(project_id):
         print("Could not retrieve xnat login password. There was likely a \
             problem retrieving or decrypting your login token.")
 
-#............................................................
-#   working.lst ARGUMENT PARSER
-#............................................................
+    #............................................................
+    #   working.lst ARGUMENT PARSER
+    #............................................................
 
     if run_one_shot==False:
         print("\n\nTrying to read from working list path: ' + working_list_path")
         print('Time to access file could depend on /MRI_DATA i/o load...')
 
-    # Pull just exam numbers from working list. It's all we need.   
-    # TODO: Some LIFO FIFO weirdness happening with the queue now(?) for like, no reason whatsoever
-    # Queue is not accurate
-    # working.lst format: <subj_id> '\t' <project_id> '\t' <exam_no> '\t' XNATnyspi20_E00253
-        
+        # Pull just exam numbers from working list. It's all we need.   
+        # working.lst format: <subj_id> '\t' <project_id> '\t' <exam_no> '\t' XNATnyspi20_E00253
         with open(working_list_path) as f:
             jobs = f.readlines()
 
@@ -126,24 +111,18 @@ def download_niftis(project_id):
 
     else:
         print("There was a problem deciding whether this script should run using working list or user exam no. input.")
-       
-    #............................................................
-    #   END COPY & PASTE (continue indent for loop above)
-    #............................................................
 
-#............................................................
-#   AUTHENTICATION: alias k:v tokens, then jsession token
-#............................................................
-
-# TODO: if login error, go back and run xnat-auth
+    #............................................................
+    #   AUTHENTICATION: alias k:v tokens, then jsession token
+    #............................................................
+    # TODO: if login error, go back and run xnat-auth
     xnat_url = 'https://xnat.nyspi.org'
     alias_token_url_user = xnat_url + '/data/services/tokens/issue'
     # alias_token_url_admin = alias_token_url_user + '/user/' + xnat_username
 
-#.....................................................
-#   1st session: request alias tokens (48hr life)
-#.....................................................
-
+    #.....................................................
+    #   1st session: request alias tokens (48hr life)
+    #.....................................................
     session = requests.Session()    # Stores all the info we need for our session
     session.auth = (xnat_username, xnat_password)
     alias_response = session.get(alias_token_url_user)
@@ -154,32 +133,30 @@ def download_niftis(project_id):
     print("\nGenerated single-use alias.")
     print("Generated single-use secret.")
 
-# TODO: figure out how to close this session
+    # TODO: convert logic to use "with" to automatically close session
 
-#.....................................................
-#   2nd session: use the alias tokens to request JSESSION token
-#.....................................................
+    #.....................................................
+    #   2nd session: use the alias tokens to request JSESSION token
+    #.....................................................
     jsession_url = xnat_url + '/data/JSESSION'
     session = requests.Session()    # Stores all the info we need for our session
     session.auth = (alias, secret)
     jsession_id = session.post(jsession_url)
 
-# Put JSESSION auth ID returned by XNAT rest api inside cookies header
-# Now only the JSESSION ID is available to headers,
-# Not even the temporary alias user and secret tokens are stored
+    # Put JSESSION auth ID returned by XNAT rest api inside cookies header
+    # Now only the JSESSION ID is available to headers,
+    # Not even the temporary alias user and secret tokens are stored
     session.text = {
         "cookies":
         {
             "JSESSIONID": jsession_id.text
         }
     }
-
     resources = 'BIDS,NIFTI'
-
     session_list_url = xnat_url + '/data/archive/projects/' + project_id + '/experiments?xsiType=xnat:mrSessionData&format=csv&columns=ID,label,xnat:subjectData/label'
 
     #................................................
-    #...........GET SESSION LIST.....................
+    #.......... GET SESSION LIST FROM XNAT ..........
     #................................................
     dt = datetime.datetime.now()
     year_month_day = str(dt.year) + str(dt.month) + str(dt.day)
@@ -187,7 +164,7 @@ def download_niftis(project_id):
     print("\nChecking for mrsessions.csv file (should be in " + bidsonly_path + ')...')
     print('If it doesn\'t exist, we will attempt to download it.')
 
-# Create directory for session list csv file
+    # Create directory for session list csv file
     if not os.path.exists(os.path.dirname(session_list_csv)):
         try:
             print("Creating directory structure for " + session_list_csv.split('/')[-1])
@@ -202,22 +179,16 @@ def download_niftis(project_id):
             print("Checking status...")
             if not r.raise_for_status():
                 print("no status returned")
-            print("Writing file (this could take some time)...")
+            print("Writing file (this could take some time depending on doctor i/o load)...")
             # download in chunks to save buffer memory on doctor
             for chunk in r.iter_content(chunk_size=128):
                 f.write(chunk)
-                # print("~~ writing chunks ~~~")
-    #................................................
-    #...........END GET SESSION LIST.................
-    #................................................
-
-
+    
     #................................................
     #...........DOWNLOAD SCANS FROM XNAT.............
     #................................................
-
-# Read mrsession csv and extract labels
-# Scans will ultimately be downloaded by their session label
+    # Read mrsession csv and extract labels
+    # Scans will ultimately be downloaded by their session label
     with open (session_list_csv, 'r') as f:
         print("Reading and parsing session csv file...")
         lines = f.readlines()
@@ -227,15 +198,13 @@ def download_niftis(project_id):
         mrsession_ids = []
 
         for line in lines:
-            
             args = job.split()
             arg_no = 0
-
             label = line.split(',')[-2]
             labels.append(label)
 
-    # Pull accession_no from list of project sessions if exam number
-    # matches input args and only download those exams
+            # Pull accession_no from list of project sessions if exam number
+            # matches input args and only download those exams
             print('Scanning list for requested exams...')
             if label in download_queue:
                 active_job_no += 1
@@ -269,7 +238,7 @@ def download_niftis(project_id):
                             raise
                 else:
                     print(unzipped_path + "\n\nDirectory exists for " + exam_no + ". \nAttempting to organize files into /rawdata per bids guidance.")
-                    # move2bids(exam_no)
+                    move2bids(exam_no)
                 # WRITE ZIPFILE OF CURRENT SCAN
                 with open(zipfile_path, 'wb') as f:
                     print("Opening file to write response contents to...")
@@ -293,7 +262,7 @@ def download_niftis(project_id):
                         # a shell command, like rsync
                         # p = Popen(["nohup", "rsync", "-bwlimit=10000", "" scan_download_url])
                 
-                # unzip
+                # Unzip
                 print("Download complete. Attempting to unzip " + zipfile_path)
                 with ZipFile(zipfile_path, 'r') as zipObj:
                     zipObj.extractall(bidsonly_path)
@@ -309,12 +278,8 @@ def download_niftis(project_id):
                 else:
                     print("There was a problem and we were unable to extract the downloaded files. Check if the download completed successfully.")            
                 
-                if os.path.exists(zipfile_path)
+                if os.path.exists(zipfile_path):
                     print("There was a problem deleting the zip file " + zipfile_path + ". This is a permissions issue we are working on. Bear with us!")
-
-    #................................................
-    #..............END XNAT DOWNLOAD.................
-    #................................................
 
     print("\n\n\nFIN!\n\n\n")
 

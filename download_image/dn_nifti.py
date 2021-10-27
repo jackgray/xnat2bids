@@ -46,15 +46,12 @@ def download_niftis(project_id):
     from move2bids import move2bids
 
     project_id = os.environ['project_id']
-    # project_path = '/Users/j/MRI_DATA/nyspi/' + project_id
-    # rawdata_path = project_path + '/rawdata'
-    # bidsonly_path = project_path + '/derivatives/bidsonly'
-    # working_list_file = project_id + '_working.lst'
-    # working_list_path = project_path + '/scripts/' + working_list_file
-    # token_path = project_path + '/.tokens'
+    single_exam_no = os.environ['single_exam_no']
+    run_one_shot = False
+    if single_exam_no != 'null':
+        run_one_shot = True
 
     project_path = '/MRI_DATA/nyspi/' + project_id
-    rawdata_path = '/rawdata'
     bidsonly_path = '/derivatives/bidsonly'
     working_list_file = project_id + '_working.lst'
     working_list_path = '/scripts/' + working_list_file
@@ -83,6 +80,8 @@ def download_niftis(project_id):
         cipher_aes = AES.new(session_key, AES.MODE_EAX, nonce)
         username_password = cipher_aes.decrypt_and_verify(ciphertext, tag)
 
+    # Check if auth token was successfully decrypted and
+    # split username and password into separate variables
     if len(username_password) > 0:
         # Remove this for production!
         username_password = str(username_password\
@@ -100,29 +99,34 @@ def download_niftis(project_id):
 #   working.lst ARGUMENT PARSER
 #............................................................
 
-    print("\n\nTrying to read from working list path: ' + working_list_path")
-    print('Time to access file could depend on /MRI_DATA i/o load...')
+    if run_one_shot==False:
+        print("\n\nTrying to read from working list path: ' + working_list_path")
+        print('Time to access file could depend on /MRI_DATA i/o load...')
 
-    with open(working_list_path) as f:
-        jobs = f.readlines()
-
-    download_queue = []
-    active_job_no = 0
-    total_jobs=len(jobs)
-    print("\n" + str(total_jobs) + " jobs found in working list:\n")
-
-    # Pull just exam numbers from working list. It's all we need.
-    for job in jobs:
+    # Pull just exam numbers from working list. It's all we need.   
+    # TODO: Some LIFO FIFO weirdness happening with the queue now(?) for like, no reason whatsoever
+    # Queue is not accurate
+    # working.lst format: <subj_id> '\t' <project_id> '\t' <exam_no> '\t' XNATnyspi20_E00253
         
-        print("\n" + job)
-# TODO: Some LIFO FIFO weirdness happening with the queue now(?) for like, no reason whatsoever
-# Queue is not accurate
-        # working.lst format: <subj_id> '\t' <project_id> '\t' <exam_no> '\t' XNATnyspi20_E00253
-        exam_no = job.split()[2]
-        subj_id = job.split()[0]
-        # print("(Grabbing " + exam_no + " as exam number)\n")
-        download_queue.append(exam_no)
+        with open(working_list_path) as f:
+            jobs = f.readlines()
 
+        for job in jobs:
+            exam_no = job.split().strip()[2]
+            download_queue = []
+            active_job_no = 0
+            total_jobs=len(jobs)
+            print("\n" + str(total_jobs) + " jobs found in working list:\n")
+            print("(Grabbing " + exam_no + " as exam number)\n")
+            download_queue.append(exam_no)
+
+    elif run_one_shot==True:
+        download_queue = single_exam_no
+        print("Detected single exam mode. Downloading " + download_queue + " only.")
+
+    else:
+        print("There was a problem deciding whether this script should run using working list or user exam no. input.")
+       
     #............................................................
     #   END COPY & PASTE (continue indent for loop above)
     #............................................................
@@ -249,9 +253,13 @@ def download_niftis(project_id):
                 zipfile = label + '.zip'
                 zipfile_path = bidsonly_path + '/' + zipfile
                 
+
+                # run move2bids to see if there are any uncompressed files that need moving
+                move2bids(label)
+
                 print('Entering scan download stage...')
-    # IF UNZIPPED EXAM FOLDER EXISTS DO NOT WRITE
-    # TODO: Implement checksums to patch missing data seamlessly
+                # IF UNZIPPED EXAM FOLDER EXISTS DO NOT WRITE
+                # TODO: Implement checksums to patch missing data seamlessly
                 if not os.path.exists(unzipped_path):
                     try:
                         print("Creating directory structure for " + zipfile)
@@ -260,9 +268,9 @@ def download_niftis(project_id):
                         if exc.errno != errno.EEXIST:
                             raise
                 else:
-                    print(unzipped_path + "\n\nDirectory exists for " + exam_no + ". Moving to next exam in working list.\n")
-                    move2bids(exam_no,subj_id)
-    # WRITE ZIPFILE OF CURRENT SCAN
+                    print(unzipped_path + "\n\nDirectory exists for " + exam_no + ". \nAttempting to organize files into /rawdata per bids guidance.")
+                    # move2bids(exam_no)
+                # WRITE ZIPFILE OF CURRENT SCAN
                 with open(zipfile_path, 'wb') as f:
                     print("Opening file to write response contents to...")
                     with session.get(scan_download_url, stream=True) as r:
@@ -270,8 +278,8 @@ def download_niftis(project_id):
                         print("Checking status...")
                         if not r.raise_for_status():
                             print("no status raised (good)")
-# TODO: good chunk size??
-                        chunk_size = 256000000 # 256mb 
+                        # TODO: good chunk size??
+                        chunk_size = 8192   # 256mb 
                         try:
                             print("Writing zip file for exam " + exam_no + " in " + str(chunk_size) + "kb chunks...")                                                                                                                                                                                                                                                                                                                                                                                                                                              
                             for chunk in r.iter_content(chunk_size=chunk_size):
@@ -284,29 +292,25 @@ def download_niftis(project_id):
                         # Alternatively, we can use subprocess.popen() to call
                         # a shell command, like rsync
                         # p = Popen(["nohup", "rsync", "-bwlimit=10000", "" scan_download_url])
-    # unzip
+                
+                # unzip
                 print("Download complete. Attempting to unzip " + zipfile_path)
-                try:
-                    with ZipFile(zipfile_path, 'r') as zipObj:
-                        zipObj.extractall(bidsonly_path)
-                except OSError as exc:
-                        if exc.errno != errno.EEXIST:
-                            raise
-                move2bids(exam_no, subj_id)
+                with ZipFile(zipfile_path, 'r') as zipObj:
+                    zipObj.extractall(bidsonly_path)
+            
+                print("Attempting to organize files into /rawdata per bids guidance.")
+                move2bids(exam_no)
 
-    # Delete zip file only if download completed successfully
-    # TODO: seems this logic will not work in a distroless env
-    # os module may rely on shell commands
-
+                # Delete zip file only if download completed successfully
                 if os.path.isdir(bidsonly_path + '/' + exam_no):
                     print("File unzipped. Check " + bidsonly_path)
-                    try:
-                        rmtree(zipfile_path)
-                    except OSError as exc:
-                            if exc.errno != errno.EEXIST:
-                                raise
+                    print("Attempting to remove zip")
+                    rmtree(zipfile_path)
                 else:
                     print("There was a problem and we were unable to extract the downloaded files. Check if the download completed successfully.")            
+                
+                if os.path.exists(zipfile_path)
+                    print("There was a problem deleting the zip file " + zipfile_path + ". This is a permissions issue we are working on. Bear with us!")
 
     #................................................
     #..............END XNAT DOWNLOAD.................

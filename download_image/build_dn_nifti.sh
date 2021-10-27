@@ -7,5 +7,5 @@
 docker buildx build \
 --platform linux/amd64 \
 --push \
--t jackgray/xnat2bids:amd64 \
+-t jackgray/xnat2bids:amd64latest \
 .

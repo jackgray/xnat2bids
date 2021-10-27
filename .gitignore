@@ -10,3 +10,4 @@ src/test/resources
 pre-trash
 *.pem
 *.bin
+*group*

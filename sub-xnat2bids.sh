@@ -2,17 +2,18 @@
 
 # Usage: bash sub-xnat2bids.sh <project ID>
 project_id=$1
-project_path=/Users/j/MRI_DATA/nyspi/${project_id}
+single_exam_no=${2:-null}
+project_path=/MRI_DATA/nyspi/${project_id}
 
 token_path_doctor=${project_path}/.tokens
 
-auth_image=jackgray/xnat_auth:arm64
+auth_image=jackgray/xnat_auth:amd64
 auth_service_name=xnat_auth_${project_id}
 
-xnat2bids_image=jackgray/xnat2bids:arm64
+xnat2bids_image=jackgray/xnat2bids:amd64
 xnat2bids_service_name=xnat2bids_${project_id}
-docker container rm ${auth_service_name}
-docker container rm ${xnat2bids_service_name}
+docker service rm ${auth_service_name}
+docker service rm ${xnat2bids_service_name}
 docker pull ${xnat2bids_image}
 
 # Ensure authentication requirements are met before 
@@ -33,8 +34,8 @@ if test -s "$token_file"; then
 else
     auth_service_name=xnat_auth_${project_id}
     echo Token ${token_file} not found--trying to run auth container.
-    docker pull jackgray/xnat_auth:arm64
-    touch token_file
+    docker pull ${auth_image}
+    # touch token_file
     docker run \
     -it \
     -e project_id=${project_id} \
@@ -43,17 +44,16 @@ else
      ${auth_image};
 fi
 
-# TODO: do we need to worry about permissions aka
+# TODO: consider--do we need to worry about permissions aka
 # a rogue user falsely creating auths for a different project?
 
 # TODO: determine central location of the public key and 
 # how to control access to it
 # ---> rn it's in the docker image ("jackgray/xnat-auth") 
-# TODO: security concerns there?
+# TODO: consider--security concerns there?
 
 # Consideration: retrieve JSESSION token before launching service,
 # encrypt it, then send that token -- update: doesn't seem to be necessary
-# python3 decrypt.py
 
 bidsonlypath_doctor=${project_path}/derivatives/bidsonly 
 bidsonlypath_container=/derivatives/bidsonly 
@@ -63,17 +63,21 @@ workinglistpath_doctor=${project_path}/scripts/${project_id}_working.lst
 workinglistpath_container=/scripts/${project_id}_working.lst
 token_path_doctor=${project_path}/.tokens
 token_path_container=/tokens
-private_path_doctor=/Users/j/.xnat/xnat2bids_private.pem
+private_path_doctor=/MRI_DATA/.xnat/xnat2bids_private.pem
 private_path_container=/xnat/xnat2bids_private.pem
 # ^ btwn the RSA import func and distroless something doesn't like .folder names 
 # (does not seem to be an issue with bloatier official python3 image above)
 
-docker run \
--it \
+docker service create \
+--replicas 1 \
+--reserve-memory 4g \
+--reserve-cpu 4 \
+--mode replicated \
 -e project_id=${project_id} \
---name=${service_name} \
---mount type=bind,source=${rawdata_path_doctor},destination=${rawdata_path_container},readonly=false \
---mount type=bind,source=${bidsonlypath_doctor},destination=${bidsonlypath_container},readonly=false \
+-e single_exam_no=${single_exam_no}
+--name=${xnat2bids_service_name} \
+--mount type=bind,source=${rawdata_path_doctor},destination=${rawdata_path_container} \
+--mount type=bind,source=${bidsonlypath_doctor},destination=${bidsonlypath_container} \
 --mount type=bind,source=${workinglistpath_doctor},destination=${workinglistpath_container},readonly=true \
 --mount type=bind,source=${token_path_doctor},destination=${token_path_container},readonly=true \
 --mount type=bind,source=${private_path_doctor},destination=${private_path_container},readonly=true \

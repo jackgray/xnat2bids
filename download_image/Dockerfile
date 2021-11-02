@@ -1,15 +1,11 @@
-FROM debian:buster-slim AS build 
-RUN apt-get update && \
-    apt-get install --no-install-suggests --no-install-recommends --yes python3-venv gcc libpython3-dev && \
-    python3 -m venv /venv && \
-    /venv/bin/pip install --upgrade pip
+FROM python:3.6-stretch AS build 
+COPY requirements.txt /
+RUN pip3 install -r /requirements.txt -t /pythonlibs
 
-FROM build AS build-venv
-COPY requirements.txt /requirements.txt
-RUN /venv/bin/pip install --disable-pip-version-check -r /requirements.txt
-
-FROM gcr.io/distroless/python3
-COPY --from=build-venv /venv /venv 
+FROM gcr.io/distroless/python3-debian10
+COPY --from=build /pythonlibs /pythonlibs 
 COPY  . /app
+# COPY ./xnat2bids_private.pem /MRI_DATA/nyspi/patensasc/.tokens
+ENV PYTHONPATH=/pythonlibs
 WORKDIR /app
-CMD ["/venv/bin/python3", "dn_nifti.py"]
+CMD ["dn_nifti.py"]

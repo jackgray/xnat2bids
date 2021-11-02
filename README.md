@@ -5,7 +5,7 @@ initiate docker swarm service locally by running:
 for using working.lst file
 
 it can also be run on a single exam by adding an optional argument of the exam number like this:
-`bash sub-xnat2bids.sh <project ID> <single exam no.>`
+`bash sub-xnat2bids.sh <project ID> <exam no.>`
 
 You will be promted to enter your xnat login credentials if no token is found in your project directory.
 

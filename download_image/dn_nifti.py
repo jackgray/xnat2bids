@@ -17,7 +17,7 @@ exam no as string
 6. implement logging
 '''
 
-import os
+import os, stat
 import errno
 import requests
 import datetime
@@ -31,17 +31,14 @@ from Crypto.Cipher import AES, PKCS1_OAEP
 
 # Pass arguments as env vars from service launch script
 project_id = os.environ['project_id']
-single_exam_no = os.environ['single_exam_no']
+exam = str(os.environ['single_exam_no'])
 working_uid = int(os.environ['working_uid'])
 working_gid = int(os.environ['working_gid'])
-run_one_shot = False
-if single_exam_no != 'undefined':
-    run_one_shot = True
 
 project_path = '/MRI_DATA/nyspi/' + project_id
 bidsonly_path = '/bidsonly'
-working_list_file = project_id + '_working.lst'
-working_list_path = '/scripts/' + working_list_file
+exam_path = bidsonly_path + '/' + exam
+zipfile_path = exam_path + '.zip'
 token_path = '/tokens'
 encrypted_file_path = token_path + '/xnat2bids_' + project_id + '_login.bin'
 
@@ -49,22 +46,18 @@ encrypted_file_path = token_path + '/xnat2bids_' + project_id + '_login.bin'
 #         DECRYPT
 #............................................................
 with open(encrypted_file_path, "rb") as encrypted_file:
-        
+    # Where to find the private key  
     private_key_path = "/xnat/xnat2bids_private.pem"
-    
+    # Import and format the private key
     private_key = RSA.import_key(open(private_key_path).read())
-
     encrypted_session_key, nonce, tag, ciphertext = \
         [ encrypted_file.read(x) for x in (private_key.size_in_bytes(), 16, 16, -1) ]
-
     # Decrypt session key with private RSA key
     cipher_rsa = PKCS1_OAEP.new(private_key)
     session_key = cipher_rsa.decrypt(encrypted_session_key)
-
     # Decrypt the password with AES session key
     cipher_aes = AES.new(session_key, AES.MODE_EAX, nonce)
     username_password = cipher_aes.decrypt_and_verify(ciphertext, tag)
-
 # Check if auth token was successfully decrypted and
 # split username and password into separate variables
 if len(username_password) > 0:
@@ -75,55 +68,8 @@ if len(username_password) > 0:
                 .split()
     xnat_username = username_password[0].strip()
     xnat_password = username_password[1].strip()
-
 else:
     print("Could not retrieve xnat login password. There was likely a problem retrieving or decrypting your login token.")
-
-#............................................................
-#   working.lst ARGUMENT PARSER
-#............................................................
-
-if run_one_shot:
-    download_queue = single_exam_no
-    print("Detected single exam mode. Downloading " + download_queue + " only.")
-    jobs = [single_exam_no]
-    for job in jobs:
-        arglist = job
-    
-        exam_no = job
-    download_queue = set()
-    active_job_no = 0
-    total_jobs=len(jobs)
-    print("\n" + str(total_jobs) + " jobs found in working list:\n")
-    print("(Grabbing " + exam_no + " as exam number)\n")
-    download_queue.add(exam_no)
-
-else:
-    print("\n\nTrying to read from working list path: ' + working_list_path")
-    print('Time to access file could depend on /MRI_DATA i/o load...')
-
-    # Pull just exam numbers from working list. It's all we need.   
-    # working.lst format: <subj_id> '\t' <project_id> '\t' <exam_no> '\t' XNATnyspi20_E00253
-    with open(working_list_path) as f:
-        jobs = [f.readlines()]
-
-    for job in jobs:
-        arglist = job.split()
-        for arg in arglist:
-            print("arglist: " + arg)
-
-        if len(arglist) == 1:
-            exam_no = job.strip()
-        elif len(arglist) > 1:
-            exam_no = job.split()[2].strip()
-        else:
-            print("length of arglist is: " + len(arglist))
-        download_queue = set()
-        active_job_no = 0
-        total_jobs=len(jobs)
-        print("\n" + str(total_jobs) + " jobs found in working list:\n")
-        print("(Grabbing " + exam_no + " as exam number)\n")
-        download_queue.add(exam_no)
     
 #............................................................
 #   AUTHENTICATION: alias k:v tokens, then jsession token
@@ -210,42 +156,25 @@ labels = []
 print("\nPulled info on " + str(len(lines)) + " sessions.")
 mrsession_ids = []
 
-print("\n\n\nDOWNLOAD QUEUE")
-print(download_queue)
-print("\n\n\n")
 # label: what the xnat csv calls an exam number -- label=exam_no
 for line in lines:
-    # args = job.split()
-    arg_no = 0
     label = line.split(',')[-2]
-    # 
-
-    # Pull accession_no from list of project sessions if exam number
-    # matches input args and only download those exams
-    # print('Scanning list for requested exams...')
-    if label in download_queue:
-
-        active_job_no += 1
-        print("\nJob " + str(active_job_no) + ' of ' + str(total_jobs) + ": " )
+    # Compare exam input arg to xnat manifest
+    # If there's a match, pull it's mr accession no. from it neighboring column
+    if label == exam:
         print('\nFound accession no. for exam ' + str(label) + " on XNAT. Checking that the data doesn't already exist. If not, we'll try to download it using these input arguments...\n")
-        # print(*args)
-        print("\n")
-
-        bidsonly_exam_path = bidsonly_path + '/' + label
-    
+        
         mrsession_id = line.split(',')[0]
-        print("Adding " + mrsession_id + " to download queue.")
+        print("Using MR Session ID: " + mrsession_id + " to download exam " + exam + " from XNAT.")
         mrsession_ids.append(mrsession_id)
         
         scan_download_url = str(xnat_url + '/data/experiments/' + mrsession_id + '/scans/ALL/resources/' + resources + '/files?format=zip&structure=legacy')
-        unzipped_path = bidsonly_path + '/' + label
         zipfile = label + '.zip'
         zipfile_path = bidsonly_path + '/' + zipfile
 
-        print('Entering scan download stage...')
-        # IF UNZIPPED EXAM FOLDER EXISTS DO NOT WRITE
+        # IF UNZIPPED EXAM FOLDER EXISTS DO CREA
         # TODO: Implement checksums to patch missing data seamlessly
-        if not os.path.exists(unzipped_path):
+        if not os.path.exists(exam_path):
             try:
                 print("Creating directory structure for " + zipfile)
                 os.makedirs(os.path.dirname(zipfile_path))
@@ -254,7 +183,8 @@ for line in lines:
                     raise
                 print("Error occured creating path for " + zipfile_path)
         else:
-            print(unzipped_path + "\n\nDirectory exists for " + exam_no + ". \nAttempting to organize files into /rawdata per bids guidance.")
+            print(exam_path + "\n\nDirectory exists for " + exam + ". \nAttempting to organize files into /rawdata per bids guidance.")
+        
         # WRITE ZIPFILE 
         with open(zipfile_path, 'wb') as f:
             print("Opening file to write response contents to...")
@@ -266,7 +196,7 @@ for line in lines:
                 # TODO: good chunk size??
                 chunk_size = 8192   # 256mb 
                 try:
-                    print("Writing zip file for exam " + exam_no + " in " + str(chunk_size) + "kb chunks...")                                                                                                                                                                                                                                                                                                                                                                                                                                              
+                    print("Writing zip file for exam " + exam + " in " + str(chunk_size) + "kb chunks...")                                                                                                                                                                                                                                                                                                                                                                                                                                              
                     for chunk in r.iter_content(chunk_size=chunk_size):
                         f.write(chunk)
                     print("Download complete. Fixing permissions on zipfile: " + zipfile_path)
@@ -275,51 +205,6 @@ for line in lines:
                         raise
                     print("Error occured writing zip file.")
         os.chown(zipfile_path, working_uid, working_gid)
-
-        continue
-
-
-
-
-        # Session closes automatically after "with" statement
-                
-                # Alternatively, we can use subprocess.popen() to call
-                # a shell command, like rsync
-                # p = Popen(["nohup", "rsync", "-bwlimit=10000", "" scan_download_url])
-        
-        # # Unzip
-        # try:
-        #     with ZipFile(zipfile_path, 'r') as zipObj:
-        #         print("Attempting to unzip...")
-        #         zipObj.extractall(bidsonly_path)
-        #     print("Extraction complete. Fixing permissions for zipfile...")
-        #     os.chown(zipfile_path, working_uid, working_gid) 
-        # except: 
-        #     print("Encountered a problem while unzipping.")
-
-                                            
-        # # Delete zip file only if download completed successfully
-        # if os.path.isdir(bidsonly_path + '/' + exam_no):
-        #     print("File unzipped. Check " + bidsonly_path)
-        #     print("Attempting to remove zip")
-        #     host_zip_path = project_path + zipfile_path
-        #     try:
-        #         print("Fixing permissions for zipfile on host.")
-        #         os.chown(host_zip_path, working_uid, working_gid)
-        #     except:
-        #         print("Error occurred while changing permissions on the host zipfile.")
-        #     try:
-        #         rmtree(host_zip_path)
-        #     except OSError as exc:
-        #         if exc.errno != errno.EEXIST:
-        #             raise
-        #         print("Could not remove host zip path.")
-        # else:
-        #     print("There was a problem and we were unable to extract the downloaded files. Check if the download completed successfully.")            
-        
-        # # Check if zip is still there for some reason (remove later)
-        # if os.path.exists(zipfile_path):
-        #     print("There was a problem deleting the zip file " + zipfile_path + ". This is a permissions issue we are working on. Bear with us!")
-
+        os.chmod(zipfile_path, stat.S_IRWXG)
 
 print("\n\n\nFIN!\n\n\n")

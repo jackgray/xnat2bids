@@ -86,7 +86,17 @@ else:
 if run_one_shot:
     download_queue = single_exam_no
     print("Detected single exam mode. Downloading " + download_queue + " only.")
+    jobs = [single_exam_no]
+    for job in jobs:
+        arglist = job
     
+        exam_no = job
+    download_queue = set()
+    active_job_no = 0
+    total_jobs=len(jobs)
+    print("\n" + str(total_jobs) + " jobs found in working list:\n")
+    print("(Grabbing " + exam_no + " as exam number)\n")
+    download_queue.add(exam_no)
 
 else:
     print("\n\nTrying to read from working list path: ' + working_list_path")
@@ -95,7 +105,7 @@ else:
     # Pull just exam numbers from working list. It's all we need.   
     # working.lst format: <subj_id> '\t' <project_id> '\t' <exam_no> '\t' XNATnyspi20_E00253
     with open(working_list_path) as f:
-        jobs = f.readlines()
+        jobs = [f.readlines()]
 
     for job in jobs:
         arglist = job.split()
@@ -104,14 +114,16 @@ else:
 
         if len(arglist) == 1:
             exam_no = job.strip()
-        else:
+        elif len(arglist) > 1:
             exam_no = job.split()[2].strip()
-        download_queue = []
+        else:
+            print("length of arglist is: " + len(arglist))
+        download_queue = set()
         active_job_no = 0
         total_jobs=len(jobs)
         print("\n" + str(total_jobs) + " jobs found in working list:\n")
         print("(Grabbing " + exam_no + " as exam number)\n")
-        download_queue.append(exam_no)
+        download_queue.add(exam_no)
     
 #............................................................
 #   AUTHENTICATION: alias k:v tokens, then jsession token
@@ -198,21 +210,25 @@ labels = []
 print("\nPulled info on " + str(len(lines)) + " sessions.")
 mrsession_ids = []
 
-# label: what the xnat csv calles an exam number -- label=exam_no
+print("\n\n\nDOWNLOAD QUEUE")
+print(download_queue)
+print("\n\n\n")
+# label: what the xnat csv calls an exam number -- label=exam_no
 for line in lines:
-    args = job.split()
+    # args = job.split()
     arg_no = 0
     label = line.split(',')[-2]
     # 
 
     # Pull accession_no from list of project sessions if exam number
     # matches input args and only download those exams
-    print('Scanning list for requested exams...')
-    if label in set(download_queue):
+    # print('Scanning list for requested exams...')
+    if label in download_queue:
+
         active_job_no += 1
         print("\nJob " + str(active_job_no) + ' of ' + str(total_jobs) + ": " )
         print('\nFound accession no. for exam ' + str(label) + " on XNAT. Checking that the data doesn't already exist. If not, we'll try to download it using these input arguments...\n")
-        print(*args)
+        # print(*args)
         print("\n")
 
         bidsonly_exam_path = bidsonly_path + '/' + label

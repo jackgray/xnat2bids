@@ -10,11 +10,6 @@ from glob import glob
 from os import environ as env
 from zipfile import ZipFile
 
-# project_id = env['project_id']
-# try:
-#     exam_no = env['exam_no']
-# except:
-#     print('no exam number provided. Looking for any and all data in /bidsonly...')
 working_uid = int(env['working_uid'])
 working_gid = int(env['working_gid'])
 exam = str(env['single_exam_no'])
@@ -30,6 +25,14 @@ zipfile_path = exam_path + '.zip'
 
 bidsonly_items = glob(bidsonly_path + '/*')
 
+# SET PERMISSIONS
+def set_permissions(path):
+    os.chown(path, working_uid, working_gid)
+    os.chmod(path, stat.S_IRUSR | stat.S_IRGRP | stat.S_IRWXG | stat.S_IRWXU )
+
+for i in bidsonly_items:
+    set_permissions(i)
+
 rawdata_path = '/rawdata'
 rawdata_items = glob(rawdata_path + '/*')
 # Collect filenames for contents of zipfile
@@ -37,31 +40,16 @@ with ZipFile(zipfile_path, 'r') as zip:
     zipped_files = zip.namelist()      
 # Use thoes filenames in a loop to extract them file by file
 for file in zipped_files:
+    src_path = bidsonly_path + '/' + file
     print("Unzipping " + file + '...')
     try:
         with ZipFile(zipfile_path, 'r') as zip:
             zip.extract(file, bidsonly_path)
     except:
         print("Error extracting " + file)
-        continue
-# Correct permissions for downloaded zipfile
-os.chown(exam_path, working_uid, working_gid)
-os.chmod(exam_path, stat.S_IRWXG)
-os.chown(zipfile_path, working_uid, working_gid)
-os.chmod(zipfile_path, stat.S_IRWXG)
-try:
-    print("Removing .zip file...")
-    os.remove(zipfile_path)
-    print("Removed zip file.")
-except:
-    print("unable to remove zipfile " + zipfile_path)
-print("Done.")
 
-# Extract paths to every file in exam path as a list
-files2move = glob(exam_path + '/SCANS/*/*/*')
+    set_permissions(src_path)
 
-# Extract context from filename
-for file in files2move:
     filename = file.split('/')[-1]
     print('file: ' + str(filename))
 
@@ -73,7 +61,8 @@ for file in files2move:
     if not os.path.isdir(sub_path):
         print('Creating directory ' + str(sub_path))
         os.mkdir(sub_path)
-        os.chown(sub_path, working_uid, working_gid)
+        set_permissions(sub_path)
+
 
     # Session dir
     sesname = filename.split('_')[1]
@@ -81,7 +70,8 @@ for file in files2move:
     if not os.path.isdir(ses_path):
         print('Creating directory ' + ses_path)
         os.mkdir(ses_path)
-        os.chown(ses_path, working_uid, working_gid)
+        set_permissions(ses_path)
+
     
     # Sort sequence type into /anat, /func, /fmap
     # make folders if they don't exist
@@ -89,20 +79,18 @@ for file in files2move:
     if not os.path.isdir(anat_path):
         print('Creating directory ' + anat_path)
         os.mkdir(anat_path)
-        os.chown(anat_path, working_uid, working_gid)
-        os.chmod(anat_path, stat.S_IRWXG)
+        set_permissions(anat_path)
     fmap_path = ses_path + '/fmap'
     if not os.path.isdir(fmap_path):
         print('Creating directory ' + fmap_path)
         os.mkdir(fmap_path)
-        os.chown(fmap_path, working_uid, working_gid)
-        os.chmod(anat_path, stat.S_IRWXG)
+        set_permissions(fmap_path)
     func_path = ses_path + '/func'
     if not os.path.isdir(func_path):
         print('Creating directory ' + func_path)
         os.mkdir(func_path)
-        os.chown(func_path, working_uid, working_gid)
-        os.chmod(anat_path, stat.S_IRWXG)
+        set_permissions(func_path)
+
 
     sequence_name = filename.split('_')[2]  # i.e. 'run-01'
     print("sequence name: " + sequence_name)
@@ -131,18 +119,62 @@ for file in files2move:
         if not os.path.isdir(sort_path):
             print('Creating directory ' + sort_path + ' to catch else cases.')
             os.mkdir(sort_path)
-            os.chmod(sort_path, stat.S_IRWXG)
+            set_permissions(sort_path)
+
         target_path = sort_path
     # Move the file 
     print("\nSending: " + filename + "\nto: " + target_path)
     try:
-        os.chown(file, working_uid, working_gid)
-        shutil.move(file, target_path)
+        set_permissions(src_path)
+        shutil.move(src_path, target_path)
+        filepath = target_path + '/' + filename
+        set_permissions(filepath)
         print("\Yay! sent: " + filename + "\nto: " + target_path)
 
     except:
         print("Error moving file. Maybe it's already there?")
 
-    os.chown(target_path, working_uid, working_gid)
-    os.chmod(anat_path, stat.S_IRWXG)
-    os.remove(exam_path)
+# Delete the zip file
+set_permissions(zipfile_path)
+try:
+    print("Removing .zip file...")
+    os.remove(zipfile_path)
+    print("Removed zip file.")
+except:
+    print("unable to remove zipfile " + zipfile_path)
+print("Done.")
+
+
+
+# This folder should now be empty (sanity check)
+files_remaining = glob(exam_path + '/SCANS/*/*/*')
+print("This array should be empty. Whatever is here was not moved out of /bidsonly")
+print(files_remaining)
+
+
+# Delete old directory in /bidsonly
+set_permissions(exam_path)
+
+def remove_empty_folders(path_abs):
+    walk = list(os.walk(path_abs))
+    for path, _, _ in walk[::-1]:
+        if len(os.listdir(path)) == 0:
+            set_permissions(path)
+            os.remove(path)
+
+try:
+    remove_empty_folders(exam_path)
+except:
+    print("Can't remove empty folders or figure out why.. It's not hard, I know...")
+
+try:
+    os.rmdir(exam_path)
+    print("Woot!! os.rmdir worked")
+except:
+    print("Tried again using os.rmdir() but failed miserably.")
+
+try:
+    shutil.rmtree(exam_path, ignore_errors=False, onerror=None)
+    print("Whaaaat. shutil.rmtree() worked! sweet!")
+except:
+    print("Tried again using shutil.rmtree() and failed.")

@@ -115,7 +115,7 @@ resources = 'BIDS,NIFTI'
 session_list_url = xnat_url + '/data/archive/projects/' + project_id + '/experiments?xsiType=xnat:mrSessionData&format=csv&columns=ID,label,xnat:subjectData/label'
 
 #................................................
-#.......... GET SESSION LIST FROM XNAT ..........
+#....... GET SESSION MANIFEST FROM XNAT .........
 #................................................
 dt = datetime.datetime.now()
 year_month_day = str(dt.year) + str(dt.month) + str(dt.day)
@@ -174,16 +174,13 @@ for line in lines:
 
         # IF UNZIPPED EXAM FOLDER EXISTS DO CREA
         # TODO: Implement checksums to patch missing data seamlessly
-        if not os.path.exists(exam_path):
-            try:
-                print("Creating directory structure for " + zipfile)
-                os.makedirs(os.path.dirname(zipfile_path))
-            except OSError as exc:
-                if exc.errno != errno.EEXIST:
-                    raise
-                print("Error occured creating path for " + zipfile_path)
-        else:
-            print(exam_path + "\n\nDirectory exists for " + exam + ". \nAttempting to organize files into /rawdata per bids guidance.")
+        # if not os.path.exists(zipfile_path):
+            
+        #     print("Creating directory structure for " + zipfile)
+        #     zip = zipfile.ZipFile(zipfile_path, 'w', zipfile.ZIP_DEFLATED)
+                
+        # else:
+        #     print(exam_path + "\n\nDirectory exists for " + exam + ". \nAttempting to organize files into /rawdata per bids guidance.")
         
         # WRITE ZIPFILE 
         with open(zipfile_path, 'wb') as f:

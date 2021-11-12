@@ -1,0 +1,691 @@
+
+
+
+2019-12-16 13:26:25.250198
+
+
+{'dataType': 'func', 'modatlityLabel': 'bold', 'customLabels': 'task-rs', 'criteria': {'SeriesDescription': 'FUNC_RS_2_MUX6'}, 'sidecarChanges': {'TaskName': 'rs'}}
+
+{'dataType': 'fmap', 'modatlityLabel': 'epi', 'customLabels': 'dir-b0-mv', 'criteria': {'SeriesDescription': 'MAP_B0_2mm_108'}}
+
+{'dataType': 'fmap', 'modatlityLabel': 'epi', 'customLabels': 'dir-topup-mv', 'criteria': {'SeriesDescription': 'FUNC_TOPUP_RPF_FOV192'}}
+
+{'dataType': 'fmap', 'modatlityLabel': 'epi', 'customLabels': 'dir--fpe', 'criteria': {'SeriesDescription': 'FUNC__TOPUP_FPE_SE-EPI'}}
+
+{'dataType': 'fmap', 'modatlityLabel': 'epi', 'customLabels': 'dir-b0-mv', 'criteria': {'SeriesDescription': 'MAP_B0_S68_2.0mm'}}
+
+{'dataType': 'func', 'modatlityLabel': 'bold', 'customLabels': 'task-2mm', 'criteria': {'SeriesDescription': 'FUNC_MUX6_2mm'}, 'sidecarChanges': {'TaskName': '2mm'}}
+
+{'dataType': 'func', 'modatlityLabel': 'bold', 'customLabels': 'task-resting', 'criteria': {'SeriesDescription': 'FUNC_MUX6_Resting_S11_TE25'}, 'sidecarChanges': {'TaskName': 'resting'}}
+
+{'dataType': 'func', 'modatlityLabel': 'bold', 'customLabels': 'task-attnfreq', 'criteria': {'SeriesDescription': 'FUNC_AttnFreq_1_MUX6'}, 'sidecarChanges': {'TaskName': 'attnfreq'}}
+
+{'dataType': 'func', 'modatlityLabel': 'bold', 'customLabels': 'task-rs', 'criteria': {'SeriesDescription': 'FUNC_RS_3_MUX6'}, 'sidecarChanges': {'TaskName': 'rs'}}
+
+{'dataType': 'fmap', 'modatlityLabel': 'epi', 'customLabels': 'dir-topup-fpe', 'criteria': {'SeriesDescription': 'FUNC_TOPUP_FPE'}}
+
+{'dataType': 'func', 'modatlityLabel': 'bold', 'customLabels': 'task-gbu', 'criteria': {'SeriesDescription': 'FUNC_MUX6_GBU_FOV192'}, 'sidecarChanges': {'TaskName': 'gbu'}}
+
+{'dataType': 'func', 'modatlityLabel': 'bold', 'customLabels': 'task-rs', 'criteria': {'SeriesDescription': 'FUNC_RS_4_MUX6'}, 'sidecarChanges': {'TaskName': 'rs'}}
+
+{'dataType': 'anat', 'modatlityLabel': 'T2w', 'criteria': {'SeriesDescription': 'STRUC_T2CUBE_SAG3D_.8mm'}}
+
+{'dataType': 'func', 'modatlityLabel': 'bold', 'customLabels': 'task-rsvp', 'criteria': {'SeriesDescription': 'FUNC_MUX6_RSVP_pRF_S11_TE25'}, 'sidecarChanges': {'TaskName': 'rsvp'}}
+
+{'dataType': 'func', 'modatlityLabel': 'bold', 'customLabels': 'task-magnot', 'criteria': {'SeriesDescription': 'FUNC_MAGNOT_3_MUX6'}, 'sidecarChanges': {'TaskName': 'magnot'}}
+
+{'dataType': 'func', 'modatlityLabel': 'bold', 'customLabels': 'task-magnot', 'criteria': {'SeriesDescription': 'FUNC_MAGNOT_4_MUX6'}, 'sidecarChanges': {'TaskName': 'magnot'}}
+
+{'dataType': 'func', 'modatlityLabel': 'bold', 'customLabels': 'task-v992', 'criteria': {'SeriesDescription': 'FUNC_MUX6_V992'}, 'sidecarChanges': {'TaskName': 'v992'}}
+
+{'dataType': 'func', 'modatlityLabel': 'bold', 'customLabels': 'task-sfsweep', 'criteria': {'SeriesDescription': 'FUNC_MUX6_SFSWEEP_S10_TE30'}, 'sidecarChanges': {'TaskName': 'sfsweep'}}
+
+{'dataType': 'func', 'modatlityLabel': 'bold', 'customLabels': 'task-resting', 'criteria': {'SeriesDescription': 'FUNC_MUX6_Resting'}, 'sidecarChanges': {'TaskName': 'resting'}}
+
+{'dataType': 'anat', 'modatlityLabel': 'T1w', 'criteria': {'SeriesDescription': 'STRUC_BRAVO_SAG3D_ARC_.8mm'}}
+
+{'dataType': 'func', 'modatlityLabel': 'bold', 'customLabels': 'task-rs', 'criteria': {'SeriesDescription': 'FUNC_RS_1_MUX6'}, 'sidecarChanges': {'TaskName': 'rs'}}
+
+{'dataType': 'func', 'modatlityLabel': 'bold', 'customLabels': 'task-jhflicker', 'criteria': {'SeriesDescription': 'FUNC_JHFlicker_2_MUX6'}, 'sidecarChanges': {'TaskName': 'jhflicker'}}
+
+{'dataType': 'func', 'modatlityLabel': 'bold', 'customLabels': 'task-rsvpprf', 'criteria': {'SeriesDescription': 'FUNC_rsvppRF_5_MUX6'}, 'sidecarChanges': {'TaskName': 'rsvpprf'}}
+
+{'dataType': 'func', 'modatlityLabel': 'bold', 'customLabels': 'task-rsvpprf', 'criteria': {'SeriesDescription': 'FUNC_rsvppRF_3_MUX6'}, 'sidecarChanges': {'TaskName': 'rsvpprf'}}
+
+{'dataType': 'func', 'modatlityLabel': 'bold', 'customLabels': 'task-rsvpprf', 'criteria': {'SeriesDescription': 'FUNC_rsvppRF_2_MUX6'}, 'sidecarChanges': {'TaskName': 'rsvpprf'}}
+
+{'dataType': 'func', 'modatlityLabel': 'bold', 'customLabels': 'task-rsvpprf', 'criteria': {'SeriesDescription': 'FUNC_rsvppRF_7_MUX6'}, 'sidecarChanges': {'TaskName': 'rsvpprf'}}
+
+{'dataType': 'func', 'modatlityLabel': 'bold', 'customLabels': 'task-magnot', 'criteria': {'SeriesDescription': 'FUNC_MAGNOT_1_MUX6'}, 'sidecarChanges': {'TaskName': 'magnot'}}
+
+{'dataType': 'func', 'modatlityLabel': 'bold', 'customLabels': 'task-gbu', 'criteria': {'SeriesDescription': 'FUNC_MUX6_GBU_S11_TE25'}, 'sidecarChanges': {'TaskName': 'gbu'}}
+
+{'dataType': 'fmap', 'modatlityLabel': 'epi', 'customLabels': 'dir-topup-fpe', 'criteria': {'SeriesDescription': 'FUNC_TOPUP_FPE_2mm'}}
+
+{'dataType': 'fmap', 'modatlityLabel': 'epi', 'customLabels': 'dir--rpe', 'criteria': {'SeriesDescription': 'FUNC__TOPUP_RPE_SE-EPI'}}
+
+{'dataType': 'func', 'modatlityLabel': 'bold', 'customLabels': 'task-rsvpprf', 'criteria': {'SeriesDescription': 'FUNC_rsvppRF_6_MUX6'}, 'sidecarChanges': {'TaskName': 'rsvpprf'}}
+
+{'dataType': 'func', 'modatlityLabel': 'bold', 'customLabels': 'task-rsvpprf', 'criteria': {'SeriesDescription': 'FUNC_rsvppRF_1_MUX6'}, 'sidecarChanges': {'TaskName': 'rsvpprf'}}
+
+{'dataType': 'func', 'modatlityLabel': 'bold', 'customLabels': 'task-gbu', 'criteria': {'SeriesDescription': 'FUNC_GBU_MUX6'}, 'sidecarChanges': {'TaskName': 'gbu'}}
+
+{'dataType': 'func', 'modatlityLabel': 'bold', 'customLabels': 'task-rsvpprf', 'criteria': {'SeriesDescription': 'FUNC_rsvppRF_8_MUX6'}, 'sidecarChanges': {'TaskName': 'rsvpprf'}}
+
+{'dataType': 'func', 'modatlityLabel': 'bold', 'customLabels': 'task-gbu', 'criteria': {'SeriesDescription': 'FUNC_MUX6_GBU'}, 'sidecarChanges': {'TaskName': 'gbu'}}
+
+{'dataType': 'fmap', 'modatlityLabel': 'epi', 'customLabels': 'dir-topup-rpe', 'criteria': {'SeriesDescription': 'FUNC_TOPUP_RPE_2mm'}}
+
+{'dataType': 'func', 'modatlityLabel': 'bold', 'customLabels': 'task-magnot', 'criteria': {'SeriesDescription': 'FUNC_MAGNOT_2_MUX6'}, 'sidecarChanges': {'TaskName': 'magnot'}}
+
+{'dataType': 'func', 'modatlityLabel': 'bold', 'customLabels': 'task-attnfreq', 'criteria': {'SeriesDescription': 'FUNC_AttnFreq_2_MUX6'}, 'sidecarChanges': {'TaskName': 'attnfreq'}}
+
+{'dataType': 'func', 'modatlityLabel': 'bold', 'customLabels': 'task-sovig', 'criteria': {'SeriesDescription': 'FUNC_MUX6_SOVIG_S10_TE30'}, 'sidecarChanges': {'TaskName': 'sovig'}}
+
+{'dataType': 'fmap', 'modatlityLabel': 'epi', 'customLabels': 'dir-b0-mv', 'criteria': {'SeriesDescription': 'MAP_B0_2mm'}}
+
+{'dataType': 'func', 'modatlityLabel': 'bold', 'customLabels': 'task-v367', 'criteria': {'SeriesDescription': 'FUNC_MUX6_V367'}, 'sidecarChanges': {'TaskName': 'v367'}}
+
+{'dataType': 'fmap', 'modatlityLabel': 'epi', 'customLabels': 'dir-topup-rpe', 'criteria': {'SeriesDescription': 'FUNC_TOPUP_RPE'}}
+
+{'dataType': 'anat', 'modatlityLabel': 'T1w', 'criteria': {'SeriesDescription': 'STRUC_BRAVO_SAG3D_.8mm'}}
+
+{'dataType': 'anat', 'modatlityLabel': 'T2w', 'criteria': {'SeriesDescription': 'STRUC_T2CUBE_SAG3D_ARC_.8mm'}}
+
+{'dataType': 'func', 'modatlityLabel': 'bold', 'customLabels': 'task-mtloc', 'criteria': {'SeriesDescription': 'FUNC_MTLoc_1_MUX6'}, 'sidecarChanges': {'TaskName': 'mtloc'}}
+
+{'dataType': 'func', 'modatlityLabel': 'bold', 'customLabels': 'task-magnot', 'criteria': {'SeriesDescription': 'FUNC_MUX6_MAGNOT'}, 'sidecarChanges': {'TaskName': 'magnot'}}
+
+{'dataType': 'func', 'modatlityLabel': 'bold', 'customLabels': 'task-mtloc', 'criteria': {'SeriesDescription': 'FUNC_MTLoc_2_MUX6'}, 'sidecarChanges': {'TaskName': 'mtloc'}}
+
+{'dataType': 'func', 'modatlityLabel': 'bold', 'customLabels': 'task-rsvpprf', 'criteria': {'SeriesDescription': 'FUNC_rsvppRF_4_MUX6'}, 'sidecarChanges': {'TaskName': 'rsvpprf'}}
+
+{'dataType': 'func', 'modatlityLabel': 'bold', 'customLabels': 'task-jhflicker', 'criteria': {'SeriesDescription': 'FUNC_JHFlicker_1_MUX6'}, 'sidecarChanges': {'TaskName': 'jhflicker'}}
+
+{'dataType': 'fmap', 'modatlityLabel': 'epi', 'customLabels': 'dir-topup-fpe', 'criteria': {'SeriesDescription': 'FUNC_TOPUP_FPE_FOV192'}}
+
+
+2019-12-16 13:40:37.809960
+
+
+{'dataType': 'fmap', 'modatlityLabel': 'epi', 'customLabels': 'dir-topup-rpe', 'criteria': {'SeriesDescription': 'FUNC_TOPUP_RPE_SE-EPI'}}
+
+{'dataType': 'fmap', 'modatlityLabel': 'epi', 'customLabels': 'dir-sst-fpe', 'criteria': {'SeriesDescription': 'FM_sst_FPE'}}
+
+{'dataType': 'fmap', 'modatlityLabel': 'epi', 'customLabels': 'dir-resting-rpe', 'criteria': {'SeriesDescription': 'FM_resting_RPE'}}
+
+{'dataType': 'fmap', 'modatlityLabel': 'epi', 'customLabels': 'dir-topup-fpe', 'criteria': {'SeriesDescription': 'FUNC_TOPUP_FPE_SE-EPI'}}
+
+{'dataType': 'func', 'modatlityLabel': 'bold', 'customLabels': 'task-msit', 'criteria': {'SeriesDescription': 'func_msit'}, 'sidecarChanges': {'TaskName': 'msit'}}
+
+{'dataType': 'anat', 'modatlityLabel': 'T2w', 'criteria': {'SeriesDescription': 't2cube_208sl'}}
+
+{'dataType': 'anat', 'modatlityLabel': 'T1w', 'criteria': {'SeriesDescription': 'STRUC_T1MPRAGE_noPROMO'}}
+
+{'dataType': 'fmap', 'modatlityLabel': 'epi', 'customLabels': 'dir-sst-rpe', 'criteria': {'SeriesDescription': 'FM_sst_RPE'}}
+
+{'dataType': 'fmap', 'modatlityLabel': 'tensor', 'customLabels': 'dir-dtihb-mv', 'criteria': {'SeriesDescription': 'FM_DTIHB'}}
+
+{'dataType': 'fmap', 'modatlityLabel': 'epi', 'customLabels': 'dir-msit-fpe', 'criteria': {'SeriesDescription': 'FM_msit_FPE'}}
+
+{'dataType': 'anat', 'modatlityLabel': 'T1w', 'criteria': {'SeriesDescription': 't1overlay_60sl'}}
+
+{'dataType': 'fmap', 'modatlityLabel': 'epi', 'customLabels': 'dir-resting-fpe', 'criteria': {'SeriesDescription': 'FM_resting_FPE'}}
+
+{'dataType': 'fmap', 'modatlityLabel': 'epi', 'customLabels': 'dir-sst-mv', 'criteria': {'SeriesDescription': 'FM_sst'}}
+
+{'dataType': 'dti', 'modatlityLabel': 'tensor', 'criteria': {'SeriesDescription': 'DTI_102MultiHB'}}
+
+{'dataType': 'func', 'modatlityLabel': 'bold', 'customLabels': 'task-gng', 'criteria': {'SeriesDescription': 'FUNC_MUX6_GNG'}, 'sidecarChanges': {'TaskName': 'gng'}}
+
+{'dataType': 'func', 'modatlityLabel': 'bold', 'customLabels': 'task-fmri', 'criteria': {'SeriesDescription': 'MB_fMRI_QA'}, 'sidecarChanges': {'TaskName': 'fmri'}}
+
+{'dataType': 'anat', 'modatlityLabel': 'T1w', 'criteria': {'SeriesDescription': 't1spgr_208sl'}}
+
+{'dataType': 'func', 'modatlityLabel': 'bold', 'customLabels': 'task-resting', 'criteria': {'SeriesDescription': 'func_resting'}, 'sidecarChanges': {'TaskName': 'resting'}}
+
+{'dataType': 'anat', 'modatlityLabel': 'T2w', 'criteria': {'SeriesDescription': 'STRUC_T2CUBE_PROMO'}}
+
+{'dataType': 'fmap', 'modatlityLabel': 'epi', 'customLabels': 'dir-msit-rpe', 'criteria': {'SeriesDescription': 'FM_msit_RPE'}}
+
+{'dataType': 'func', 'modatlityLabel': 'bold', 'customLabels': 'task-sst', 'criteria': {'SeriesDescription': 'FUNC_MUX6_SST'}, 'sidecarChanges': {'TaskName': 'sst'}}
+
+{'dataType': 'func', 'modatlityLabel': 'bold', 'customLabels': 'task-msit', 'criteria': {'SeriesDescription': 'FUNC_MUX6_MSIT'}, 'sidecarChanges': {'TaskName': 'msit'}}
+
+{'dataType': 'fmap', 'modatlityLabel': 'epi', 'customLabels': 'dir-resting-mv', 'criteria': {'SeriesDescription': 'FM_resting'}}
+
+{'dataType': 'fmap', 'modatlityLabel': 'epi', 'customLabels': 'dir-msit-mv', 'criteria': {'SeriesDescription': 'FM_msit'}}
+
+{'dataType': 'func', 'modatlityLabel': 'bold', 'customLabels': 'task-sst', 'criteria': {'SeriesDescription': 'func_sst'}, 'sidecarChanges': {'TaskName': 'sst'}}
+
+
+2019-12-16 14:45:28.955222
+
+
+
+
+
+2019-12-16 14:46:17.086957
+
+
+
+
+
+2019-12-16 14:47:02.191641
+
+
+{'dataType': 'func', 'modatlityLabel': 'bold', 'customLabels': 'task-rsvp', 'criteria': {'SeriesDescription': 'FUNC_MUX6_RSVP_pRF_S11_TE25'}, 'sidecarChanges': {'TaskName': 'rsvp'}}
+
+{'dataType': 'anat', 'modatlityLabel': 'T1w', 'criteria': {'SeriesDescription': 'STRUC_BRAVO_SAG3D_.8mm'}}
+
+{'dataType': 'fmap', 'modatlityLabel': 'epi', 'customLabels': 'dir-b0-mv', 'criteria': {'SeriesDescription': 'MAP_B0_S68_2.0mm'}}
+
+{'dataType': 'anat', 'modatlityLabel': 'T2w', 'criteria': {'SeriesDescription': 'STRUC_T2CUBE_SAG3D_.8mm'}}
+
+{'dataType': 'func', 'modatlityLabel': 'bold', 'customLabels': 'task-gbu', 'criteria': {'SeriesDescription': 'FUNC_MUX6_GBU'}, 'sidecarChanges': {'TaskName': 'gbu'}}
+
+{'dataType': 'func', 'modatlityLabel': 'bold', 'customLabels': 'task-magnot', 'criteria': {'SeriesDescription': 'FUNC_MAGNOT_1_MUX6'}, 'sidecarChanges': {'TaskName': 'magnot'}}
+
+{'dataType': 'fmap', 'modatlityLabel': 'epi', 'customLabels': 'dir-topup-mv', 'criteria': {'SeriesDescription': 'FUNC_TOPUP_RPF_FOV192'}}
+
+{'dataType': 'func', 'modatlityLabel': 'bold', 'customLabels': 'task-mtloc', 'criteria': {'SeriesDescription': 'FUNC_MTLoc_2_MUX6'}, 'sidecarChanges': {'TaskName': 'mtloc'}}
+
+{'dataType': 'func', 'modatlityLabel': 'bold', 'customLabels': 'task-rsvpprf', 'criteria': {'SeriesDescription': 'FUNC_rsvppRF_3_MUX6'}, 'sidecarChanges': {'TaskName': 'rsvpprf'}}
+
+{'dataType': 'func', 'modatlityLabel': 'bold', 'customLabels': 'task-sovig', 'criteria': {'SeriesDescription': 'FUNC_MUX6_SOVIG_S10_TE30'}, 'sidecarChanges': {'TaskName': 'sovig'}}
+
+{'dataType': 'fmap', 'modatlityLabel': 'epi', 'customLabels': 'dir--rpe', 'criteria': {'SeriesDescription': 'FUNC__TOPUP_RPE_SE-EPI'}}
+
+{'dataType': 'func', 'modatlityLabel': 'bold', 'customLabels': 'task-jhflicker', 'criteria': {'SeriesDescription': 'FUNC_JHFlicker_2_MUX6'}, 'sidecarChanges': {'TaskName': 'jhflicker'}}
+
+{'dataType': 'func', 'modatlityLabel': 'bold', 'customLabels': 'task-gbu', 'criteria': {'SeriesDescription': 'FUNC_MUX6_GBU_S11_TE25'}, 'sidecarChanges': {'TaskName': 'gbu'}}
+
+{'dataType': 'func', 'modatlityLabel': 'bold', 'customLabels': 'task-2mm', 'criteria': {'SeriesDescription': 'FUNC_MUX6_2mm'}, 'sidecarChanges': {'TaskName': '2mm'}}
+
+{'dataType': 'func', 'modatlityLabel': 'bold', 'customLabels': 'task-magnot', 'criteria': {'SeriesDescription': 'FUNC_MAGNOT_2_MUX6'}, 'sidecarChanges': {'TaskName': 'magnot'}}
+
+{'dataType': 'anat', 'modatlityLabel': 'T1w', 'criteria': {'SeriesDescription': 'STRUC_BRAVO_SAG3D_ARC_.8mm'}}
+
+{'dataType': 'anat', 'modatlityLabel': 'T2w', 'criteria': {'SeriesDescription': 'STRUC_T2CUBE_PROMO'}}
+
+{'dataType': 'func', 'modatlityLabel': 'bold', 'customLabels': 'task-rsvpprf', 'criteria': {'SeriesDescription': 'FUNC_rsvppRF_8_MUX6'}, 'sidecarChanges': {'TaskName': 'rsvpprf'}}
+
+{'dataType': 'fmap', 'modatlityLabel': 'epi', 'customLabels': 'dir--fpe', 'criteria': {'SeriesDescription': 'FUNC__TOPUP_FPE_SE-EPI'}}
+
+{'dataType': 'fmap', 'modatlityLabel': 'epi', 'customLabels': 'dir-topup-rpe', 'criteria': {'SeriesDescription': 'FUNC_TOPUP_RPE_2mm'}}
+
+{'dataType': 'anat', 'modatlityLabel': 'T2w', 'criteria': {'SeriesDescription': 'STRUC_T2CUBE_SAG3D_ARC_.8mm'}}
+
+{'dataType': 'func', 'modatlityLabel': 'bold', 'customLabels': 'task-resting', 'criteria': {'SeriesDescription': 'FUNC_MUX6_Resting'}, 'sidecarChanges': {'TaskName': 'resting'}}
+
+{'dataType': 'func', 'modatlityLabel': 'bold', 'customLabels': 'task-rsvpprf', 'criteria': {'SeriesDescription': 'FUNC_rsvppRF_4_MUX6'}, 'sidecarChanges': {'TaskName': 'rsvpprf'}}
+
+{'dataType': 'func', 'modatlityLabel': 'bold', 'customLabels': 'task-magnot', 'criteria': {'SeriesDescription': 'FUNC_MAGNOT_3_MUX6'}, 'sidecarChanges': {'TaskName': 'magnot'}}
+
+{'dataType': 'func', 'modatlityLabel': 'bold', 'customLabels': 'task-rsvpprf', 'criteria': {'SeriesDescription': 'FUNC_rsvppRF_2_MUX6'}, 'sidecarChanges': {'TaskName': 'rsvpprf'}}
+
+{'dataType': 'fmap', 'modatlityLabel': 'epi', 'customLabels': 'dir-b0-mv', 'criteria': {'SeriesDescription': 'MAP_B0_2mm_108'}}
+
+{'dataType': 'func', 'modatlityLabel': 'bold', 'customLabels': 'task-rs', 'criteria': {'SeriesDescription': 'FUNC_RS_2_MUX6'}, 'sidecarChanges': {'TaskName': 'rs'}}
+
+{'dataType': 'func', 'modatlityLabel': 'bold', 'customLabels': 'task-gbu', 'criteria': {'SeriesDescription': 'FUNC_MUX6_GBU_FOV192'}, 'sidecarChanges': {'TaskName': 'gbu'}}
+
+{'dataType': 'func', 'modatlityLabel': 'bold', 'customLabels': 'task-jhflicker', 'criteria': {'SeriesDescription': 'FUNC_JHFlicker_1_MUX6'}, 'sidecarChanges': {'TaskName': 'jhflicker'}}
+
+{'dataType': 'fmap', 'modatlityLabel': 'epi', 'customLabels': 'dir-topup-fpe', 'criteria': {'SeriesDescription': 'FUNC_TOPUP_FPE_FOV192'}}
+
+{'dataType': 'func', 'modatlityLabel': 'bold', 'customLabels': 'task-resting', 'criteria': {'SeriesDescription': 'FUNC_MUX6_Resting_S11_TE25'}, 'sidecarChanges': {'TaskName': 'resting'}}
+
+{'dataType': 'func', 'modatlityLabel': 'bold', 'customLabels': 'task-attnfreq', 'criteria': {'SeriesDescription': 'FUNC_AttnFreq_2_MUX6'}, 'sidecarChanges': {'TaskName': 'attnfreq'}}
+
+{'dataType': 'anat', 'modatlityLabel': 'T1w', 'criteria': {'SeriesDescription': 'STRUC_T1MPRAGE_noPROMO'}}
+
+{'dataType': 'func', 'modatlityLabel': 'bold', 'customLabels': 'task-magnot', 'criteria': {'SeriesDescription': 'FUNC_MAGNOT_4_MUX6'}, 'sidecarChanges': {'TaskName': 'magnot'}}
+
+{'dataType': 'func', 'modatlityLabel': 'bold', 'customLabels': 'task-v367', 'criteria': {'SeriesDescription': 'FUNC_MUX6_V367'}, 'sidecarChanges': {'TaskName': 'v367'}}
+
+{'dataType': 'fmap', 'modatlityLabel': 'epi', 'customLabels': 'dir-topup-rpe', 'criteria': {'SeriesDescription': 'FUNC_TOPUP_RPE'}}
+
+{'dataType': 'func', 'modatlityLabel': 'bold', 'customLabels': 'task-rsvpprf', 'criteria': {'SeriesDescription': 'FUNC_rsvppRF_7_MUX6'}, 'sidecarChanges': {'TaskName': 'rsvpprf'}}
+
+{'dataType': 'func', 'modatlityLabel': 'bold', 'customLabels': 'task-gbu', 'criteria': {'SeriesDescription': 'FUNC_GBU_MUX6'}, 'sidecarChanges': {'TaskName': 'gbu'}}
+
+{'dataType': 'func', 'modatlityLabel': 'bold', 'customLabels': 'task-rs', 'criteria': {'SeriesDescription': 'FUNC_RS_4_MUX6'}, 'sidecarChanges': {'TaskName': 'rs'}}
+
+{'dataType': 'func', 'modatlityLabel': 'bold', 'customLabels': 'task-mtloc', 'criteria': {'SeriesDescription': 'FUNC_MTLoc_1_MUX6'}, 'sidecarChanges': {'TaskName': 'mtloc'}}
+
+{'dataType': 'fmap', 'modatlityLabel': 'epi', 'customLabels': 'dir-topup-fpe', 'criteria': {'SeriesDescription': 'FUNC_TOPUP_FPE_2mm'}}
+
+{'dataType': 'fmap', 'modatlityLabel': 'epi', 'customLabels': 'dir-b0-mv', 'criteria': {'SeriesDescription': 'MAP_B0_2mm'}}
+
+{'dataType': 'func', 'modatlityLabel': 'bold', 'customLabels': 'task-sfsweep', 'criteria': {'SeriesDescription': 'FUNC_MUX6_SFSWEEP_S10_TE30'}, 'sidecarChanges': {'TaskName': 'sfsweep'}}
+
+{'dataType': 'func', 'modatlityLabel': 'bold', 'customLabels': 'task-rs', 'criteria': {'SeriesDescription': 'FUNC_RS_3_MUX6'}, 'sidecarChanges': {'TaskName': 'rs'}}
+
+{'dataType': 'func', 'modatlityLabel': 'bold', 'customLabels': 'task-rs', 'criteria': {'SeriesDescription': 'FUNC_RS_1_MUX6'}, 'sidecarChanges': {'TaskName': 'rs'}}
+
+{'dataType': 'func', 'modatlityLabel': 'bold', 'customLabels': 'task-rsvpprf', 'criteria': {'SeriesDescription': 'FUNC_rsvppRF_6_MUX6'}, 'sidecarChanges': {'TaskName': 'rsvpprf'}}
+
+{'dataType': 'func', 'modatlityLabel': 'bold', 'customLabels': 'task-rsvpprf', 'criteria': {'SeriesDescription': 'FUNC_rsvppRF_1_MUX6'}, 'sidecarChanges': {'TaskName': 'rsvpprf'}}
+
+{'dataType': 'func', 'modatlityLabel': 'bold', 'customLabels': 'task-attnfreq', 'criteria': {'SeriesDescription': 'FUNC_AttnFreq_1_MUX6'}, 'sidecarChanges': {'TaskName': 'attnfreq'}}
+
+{'dataType': 'func', 'modatlityLabel': 'bold', 'customLabels': 'task-v992', 'criteria': {'SeriesDescription': 'FUNC_MUX6_V992'}, 'sidecarChanges': {'TaskName': 'v992'}}
+
+{'dataType': 'func', 'modatlityLabel': 'bold', 'customLabels': 'task-rsvpprf', 'criteria': {'SeriesDescription': 'FUNC_rsvppRF_5_MUX6'}, 'sidecarChanges': {'TaskName': 'rsvpprf'}}
+
+{'dataType': 'fmap', 'modatlityLabel': 'epi', 'customLabels': 'dir-topup-fpe', 'criteria': {'SeriesDescription': 'FUNC_TOPUP_FPE'}}
+
+{'dataType': 'func', 'modatlityLabel': 'bold', 'customLabels': 'task-magnot', 'criteria': {'SeriesDescription': 'FUNC_MUX6_MAGNOT'}, 'sidecarChanges': {'TaskName': 'magnot'}}
+
+
+2019-12-16 14:49:12.362834
+
+
+
+
+
+2019-12-16 14:55:45.078952
+
+
+
+
+
+2019-12-16 14:58:29.388998
+
+
+
+
+
+2019-12-16 14:59:09.900112
+
+
+
+
+
+2019-12-16 14:59:47.543587
+
+
+
+
+
+2019-12-16 15:03:24.247854
+
+
+{'dataType': 'func', 'modatlityLabel': 'bold', 'customLabels': 'task-2mm', 'criteria': {'SeriesDescription': 'FUNC_MUX6_2mm'}, 'sidecarChanges': {'TaskName': '2mm'}}
+
+{'dataType': 'func', 'modatlityLabel': 'bold', 'customLabels': 'task-magnot', 'criteria': {'SeriesDescription': 'FUNC_MAGNOT_1_MUX6'}, 'sidecarChanges': {'TaskName': 'magnot'}}
+
+{'dataType': 'func', 'modatlityLabel': 'bold', 'customLabels': 'task-rs', 'criteria': {'SeriesDescription': 'FUNC_RS_1_MUX6'}, 'sidecarChanges': {'TaskName': 'rs'}}
+
+{'dataType': 'func', 'modatlityLabel': 'bold', 'customLabels': 'task-magnot', 'criteria': {'SeriesDescription': 'FUNC_MAGNOT_3_MUX6'}, 'sidecarChanges': {'TaskName': 'magnot'}}
+
+{'dataType': 'func', 'modatlityLabel': 'bold', 'customLabels': 'task-sfsweep', 'criteria': {'SeriesDescription': 'FUNC_MUX6_SFSWEEP_S10_TE30'}, 'sidecarChanges': {'TaskName': 'sfsweep'}}
+
+{'dataType': 'fmap', 'modatlityLabel': 'epi', 'customLabels': 'dir-topup-fpe', 'criteria': {'SeriesDescription': 'FUNC_TOPUP_FPE_2mm'}}
+
+{'dataType': 'anat', 'modatlityLabel': 'T1w', 'criteria': {'SeriesDescription': 'STRUC_T1MPRAGE_noPROMO'}}
+
+{'dataType': 'func', 'modatlityLabel': 'bold', 'customLabels': 'task-attnfreq', 'criteria': {'SeriesDescription': 'FUNC_AttnFreq_1_MUX6'}, 'sidecarChanges': {'TaskName': 'attnfreq'}}
+
+{'dataType': 'fmap', 'modatlityLabel': 'epi', 'customLabels': 'dir--rpe', 'criteria': {'SeriesDescription': 'FUNC__TOPUP_RPE_SE-EPI'}}
+
+{'dataType': 'func', 'modatlityLabel': 'bold', 'customLabels': 'task-rs', 'criteria': {'SeriesDescription': 'FUNC_RS_3_MUX6'}, 'sidecarChanges': {'TaskName': 'rs'}}
+
+{'dataType': 'func', 'modatlityLabel': 'bold', 'customLabels': 'task-gbu', 'criteria': {'SeriesDescription': 'FUNC_MUX6_GBU_FOV192'}, 'sidecarChanges': {'TaskName': 'gbu'}}
+
+{'dataType': 'func', 'modatlityLabel': 'bold', 'customLabels': 'task-rsvpprf', 'criteria': {'SeriesDescription': 'FUNC_rsvppRF_8_MUX6'}, 'sidecarChanges': {'TaskName': 'rsvpprf'}}
+
+{'dataType': 'fmap', 'modatlityLabel': 'epi', 'customLabels': 'dir-topup-fpe', 'criteria': {'SeriesDescription': 'FUNC_TOPUP_FPE'}}
+
+{'dataType': 'fmap', 'modatlityLabel': 'epi', 'customLabels': 'dir-topup-mv', 'criteria': {'SeriesDescription': 'FUNC_TOPUP_RPF_FOV192'}}
+
+{'dataType': 'func', 'modatlityLabel': 'bold', 'customLabels': 'task-rsvpprf', 'criteria': {'SeriesDescription': 'FUNC_rsvppRF_4_MUX6'}, 'sidecarChanges': {'TaskName': 'rsvpprf'}}
+
+{'dataType': 'anat', 'modatlityLabel': 'T1w', 'criteria': {'SeriesDescription': 'STRUC_BRAVO_SAG3D_.8mm'}}
+
+{'dataType': 'func', 'modatlityLabel': 'bold', 'customLabels': 'task-gbu', 'criteria': {'SeriesDescription': 'FUNC_MUX6_GBU'}, 'sidecarChanges': {'TaskName': 'gbu'}}
+
+{'dataType': 'func', 'modatlityLabel': 'bold', 'customLabels': 'task-rsvpprf', 'criteria': {'SeriesDescription': 'FUNC_rsvppRF_7_MUX6'}, 'sidecarChanges': {'TaskName': 'rsvpprf'}}
+
+{'dataType': 'fmap', 'modatlityLabel': 'epi', 'customLabels': 'dir-b0-mv', 'criteria': {'SeriesDescription': 'MAP_B0_2mm_108'}}
+
+{'dataType': 'fmap', 'modatlityLabel': 'epi', 'customLabels': 'dir-b0-mv', 'criteria': {'SeriesDescription': 'MAP_B0_S68_2.0mm'}}
+
+{'dataType': 'func', 'modatlityLabel': 'bold', 'customLabels': 'task-attnfreq', 'criteria': {'SeriesDescription': 'FUNC_AttnFreq_2_MUX6'}, 'sidecarChanges': {'TaskName': 'attnfreq'}}
+
+{'dataType': 'func', 'modatlityLabel': 'bold', 'customLabels': 'task-jhflicker', 'criteria': {'SeriesDescription': 'FUNC_JHFlicker_2_MUX6'}, 'sidecarChanges': {'TaskName': 'jhflicker'}}
+
+{'dataType': 'func', 'modatlityLabel': 'bold', 'customLabels': 'task-mtloc', 'criteria': {'SeriesDescription': 'FUNC_MTLoc_2_MUX6'}, 'sidecarChanges': {'TaskName': 'mtloc'}}
+
+{'dataType': 'fmap', 'modatlityLabel': 'epi', 'customLabels': 'dir-topup-fpe', 'criteria': {'SeriesDescription': 'FUNC_TOPUP_FPE_FOV192'}}
+
+{'dataType': 'func', 'modatlityLabel': 'bold', 'customLabels': 'task-gbu', 'criteria': {'SeriesDescription': 'FUNC_GBU_MUX6'}, 'sidecarChanges': {'TaskName': 'gbu'}}
+
+{'dataType': 'func', 'modatlityLabel': 'bold', 'customLabels': 'task-v992', 'criteria': {'SeriesDescription': 'FUNC_MUX6_V992'}, 'sidecarChanges': {'TaskName': 'v992'}}
+
+{'dataType': 'anat', 'modatlityLabel': 'T2w', 'criteria': {'SeriesDescription': 'STRUC_T2CUBE_PROMO'}}
+
+{'dataType': 'func', 'modatlityLabel': 'bold', 'customLabels': 'task-rs', 'criteria': {'SeriesDescription': 'FUNC_RS_2_MUX6'}, 'sidecarChanges': {'TaskName': 'rs'}}
+
+{'dataType': 'func', 'modatlityLabel': 'bold', 'customLabels': 'task-magnot', 'criteria': {'SeriesDescription': 'FUNC_MUX6_MAGNOT'}, 'sidecarChanges': {'TaskName': 'magnot'}}
+
+{'dataType': 'fmap', 'modatlityLabel': 'epi', 'customLabels': 'dir-topup-rpe', 'criteria': {'SeriesDescription': 'FUNC_TOPUP_RPE_2mm'}}
+
+{'dataType': 'fmap', 'modatlityLabel': 'epi', 'customLabels': 'dir--fpe', 'criteria': {'SeriesDescription': 'FUNC__TOPUP_FPE_SE-EPI'}}
+
+{'dataType': 'func', 'modatlityLabel': 'bold', 'customLabels': 'task-rsvpprf', 'criteria': {'SeriesDescription': 'FUNC_rsvppRF_3_MUX6'}, 'sidecarChanges': {'TaskName': 'rsvpprf'}}
+
+{'dataType': 'func', 'modatlityLabel': 'bold', 'customLabels': 'task-resting', 'criteria': {'SeriesDescription': 'FUNC_MUX6_Resting'}, 'sidecarChanges': {'TaskName': 'resting'}}
+
+{'dataType': 'func', 'modatlityLabel': 'bold', 'customLabels': 'task-rsvp', 'criteria': {'SeriesDescription': 'FUNC_MUX6_RSVP_pRF_S11_TE25'}, 'sidecarChanges': {'TaskName': 'rsvp'}}
+
+{'dataType': 'func', 'modatlityLabel': 'bold', 'customLabels': 'task-rs', 'criteria': {'SeriesDescription': 'FUNC_RS_4_MUX6'}, 'sidecarChanges': {'TaskName': 'rs'}}
+
+{'dataType': 'func', 'modatlityLabel': 'bold', 'customLabels': 'task-rsvpprf', 'criteria': {'SeriesDescription': 'FUNC_rsvppRF_5_MUX6'}, 'sidecarChanges': {'TaskName': 'rsvpprf'}}
+
+{'dataType': 'func', 'modatlityLabel': 'bold', 'customLabels': 'task-sovig', 'criteria': {'SeriesDescription': 'FUNC_MUX6_SOVIG_S10_TE30'}, 'sidecarChanges': {'TaskName': 'sovig'}}
+
+{'dataType': 'func', 'modatlityLabel': 'bold', 'customLabels': 'task-magnot', 'criteria': {'SeriesDescription': 'FUNC_MAGNOT_2_MUX6'}, 'sidecarChanges': {'TaskName': 'magnot'}}
+
+{'dataType': 'func', 'modatlityLabel': 'bold', 'customLabels': 'task-gbu', 'criteria': {'SeriesDescription': 'FUNC_MUX6_GBU_S11_TE25'}, 'sidecarChanges': {'TaskName': 'gbu'}}
+
+{'dataType': 'func', 'modatlityLabel': 'bold', 'customLabels': 'task-rsvpprf', 'criteria': {'SeriesDescription': 'FUNC_rsvppRF_6_MUX6'}, 'sidecarChanges': {'TaskName': 'rsvpprf'}}
+
+{'dataType': 'fmap', 'modatlityLabel': 'epi', 'customLabels': 'dir-topup-rpe', 'criteria': {'SeriesDescription': 'FUNC_TOPUP_RPE'}}
+
+{'dataType': 'fmap', 'modatlityLabel': 'epi', 'customLabels': 'dir-b0-mv', 'criteria': {'SeriesDescription': 'MAP_B0_2mm'}}
+
+{'dataType': 'func', 'modatlityLabel': 'bold', 'customLabels': 'task-mtloc', 'criteria': {'SeriesDescription': 'FUNC_MTLoc_1_MUX6'}, 'sidecarChanges': {'TaskName': 'mtloc'}}
+
+{'dataType': 'func', 'modatlityLabel': 'bold', 'customLabels': 'task-v367', 'criteria': {'SeriesDescription': 'FUNC_MUX6_V367'}, 'sidecarChanges': {'TaskName': 'v367'}}
+
+{'dataType': 'anat', 'modatlityLabel': 'T1w', 'criteria': {'SeriesDescription': 'STRUC_BRAVO_SAG3D_ARC_.8mm'}}
+
+{'dataType': 'func', 'modatlityLabel': 'bold', 'customLabels': 'task-rsvpprf', 'criteria': {'SeriesDescription': 'FUNC_rsvppRF_1_MUX6'}, 'sidecarChanges': {'TaskName': 'rsvpprf'}}
+
+{'dataType': 'anat', 'modatlityLabel': 'T2w', 'criteria': {'SeriesDescription': 'STRUC_T2CUBE_SAG3D_ARC_.8mm'}}
+
+{'dataType': 'func', 'modatlityLabel': 'bold', 'customLabels': 'task-rsvpprf', 'criteria': {'SeriesDescription': 'FUNC_rsvppRF_2_MUX6'}, 'sidecarChanges': {'TaskName': 'rsvpprf'}}
+
+{'dataType': 'anat', 'modatlityLabel': 'T2w', 'criteria': {'SeriesDescription': 'STRUC_T2CUBE_SAG3D_.8mm'}}
+
+{'dataType': 'func', 'modatlityLabel': 'bold', 'customLabels': 'task-jhflicker', 'criteria': {'SeriesDescription': 'FUNC_JHFlicker_1_MUX6'}, 'sidecarChanges': {'TaskName': 'jhflicker'}}
+
+{'dataType': 'func', 'modatlityLabel': 'bold', 'customLabels': 'task-magnot', 'criteria': {'SeriesDescription': 'FUNC_MAGNOT_4_MUX6'}, 'sidecarChanges': {'TaskName': 'magnot'}}
+
+{'dataType': 'func', 'modatlityLabel': 'bold', 'customLabels': 'task-resting', 'criteria': {'SeriesDescription': 'FUNC_MUX6_Resting_S11_TE25'}, 'sidecarChanges': {'TaskName': 'resting'}}
+
+
+2019-12-16 15:10:59.592422
+
+
+{'dataType': 'func', 'modatlityLabel': 'bold', 'customLabels': 'task-magnot', 'criteria': {'SeriesDescription': 'FUNC_MUX6_MAGNOT'}, 'sidecarChanges': {'TaskName': 'magnot'}}
+
+{'dataType': 'func', 'modatlityLabel': 'bold', 'customLabels': 'task-rsvp', 'criteria': {'SeriesDescription': 'FUNC_MUX6_RSVP_pRF_S11_TE25'}, 'sidecarChanges': {'TaskName': 'rsvp'}}
+
+{'dataType': 'fmap', 'modatlityLabel': 'epi', 'customLabels': 'dir-topup-mv', 'criteria': {'SeriesDescription': 'FUNC_TOPUP_RPF_FOV192'}}
+
+{'dataType': 'fmap', 'modatlityLabel': 'epi', 'customLabels': 'dir-b0-mv', 'criteria': {'SeriesDescription': 'MAP_B0_S68_2.0mm'}}
+
+{'dataType': 'func', 'modatlityLabel': 'bold', 'customLabels': 'task-gbu', 'criteria': {'SeriesDescription': 'FUNC_MUX6_GBU_S11_TE25'}, 'sidecarChanges': {'TaskName': 'gbu'}}
+
+{'dataType': 'func', 'modatlityLabel': 'bold', 'customLabels': 'task-rsvpprf', 'criteria': {'SeriesDescription': 'FUNC_rsvppRF_6_MUX6'}, 'sidecarChanges': {'TaskName': 'rsvpprf'}}
+
+{'dataType': 'func', 'modatlityLabel': 'bold', 'customLabels': 'task-rsvpprf', 'criteria': {'SeriesDescription': 'FUNC_rsvppRF_4_MUX6'}, 'sidecarChanges': {'TaskName': 'rsvpprf'}}
+
+{'dataType': 'func', 'modatlityLabel': 'bold', 'customLabels': 'task-resting', 'criteria': {'SeriesDescription': 'FUNC_MUX6_Resting_S11_TE25'}, 'sidecarChanges': {'TaskName': 'resting'}}
+
+{'dataType': 'fmap', 'modatlityLabel': 'epi', 'customLabels': 'dir-b0-mv', 'criteria': {'SeriesDescription': 'MAP_B0_2mm'}}
+
+{'dataType': 'func', 'modatlityLabel': 'bold', 'customLabels': 'task-sfsweep', 'criteria': {'SeriesDescription': 'FUNC_MUX6_SFSWEEP_S10_TE30'}, 'sidecarChanges': {'TaskName': 'sfsweep'}}
+
+{'dataType': 'fmap', 'modatlityLabel': 'epi', 'customLabels': 'dir-topup-fpe', 'criteria': {'SeriesDescription': 'FUNC_TOPUP_FPE_2mm'}}
+
+{'dataType': 'anat', 'modatlityLabel': 'T2w', 'criteria': {'SeriesDescription': 'STRUC_T2CUBE_SAG3D_ARC_.8mm'}}
+
+{'dataType': 'func', 'modatlityLabel': 'bold', 'customLabels': 'task-rs', 'criteria': {'SeriesDescription': 'FUNC_RS_4_MUX6'}, 'sidecarChanges': {'TaskName': 'rs'}}
+
+{'dataType': 'func', 'modatlityLabel': 'bold', 'customLabels': 'task-magnot', 'criteria': {'SeriesDescription': 'FUNC_MAGNOT_3_MUX6'}, 'sidecarChanges': {'TaskName': 'magnot'}}
+
+{'dataType': 'func', 'modatlityLabel': 'bold', 'customLabels': 'task-magnot', 'criteria': {'SeriesDescription': 'FUNC_MAGNOT_4_MUX6'}, 'sidecarChanges': {'TaskName': 'magnot'}}
+
+{'dataType': 'func', 'modatlityLabel': 'bold', 'customLabels': 'task-rsvpprf', 'criteria': {'SeriesDescription': 'FUNC_rsvppRF_2_MUX6'}, 'sidecarChanges': {'TaskName': 'rsvpprf'}}
+
+{'dataType': 'func', 'modatlityLabel': 'bold', 'customLabels': 'task-attnfreq', 'criteria': {'SeriesDescription': 'FUNC_AttnFreq_2_MUX6'}, 'sidecarChanges': {'TaskName': 'attnfreq'}}
+
+{'dataType': 'fmap', 'modatlityLabel': 'epi', 'customLabels': 'dir--fpe', 'criteria': {'SeriesDescription': 'FUNC__TOPUP_FPE_SE-EPI'}}
+
+{'dataType': 'func', 'modatlityLabel': 'bold', 'customLabels': 'task-rsvpprf', 'criteria': {'SeriesDescription': 'FUNC_rsvppRF_7_MUX6'}, 'sidecarChanges': {'TaskName': 'rsvpprf'}}
+
+{'dataType': 'func', 'modatlityLabel': 'bold', 'customLabels': 'task-rsvpprf', 'criteria': {'SeriesDescription': 'FUNC_rsvppRF_3_MUX6'}, 'sidecarChanges': {'TaskName': 'rsvpprf'}}
+
+{'dataType': 'func', 'modatlityLabel': 'bold', 'customLabels': 'task-gbu', 'criteria': {'SeriesDescription': 'FUNC_GBU_MUX6'}, 'sidecarChanges': {'TaskName': 'gbu'}}
+
+{'dataType': 'anat', 'modatlityLabel': 'T1w', 'criteria': {'SeriesDescription': 'STRUC_BRAVO_SAG3D_.8mm'}}
+
+{'dataType': 'func', 'modatlityLabel': 'bold', 'customLabels': 'task-2mm', 'criteria': {'SeriesDescription': 'FUNC_MUX6_2mm'}, 'sidecarChanges': {'TaskName': '2mm'}}
+
+{'dataType': 'func', 'modatlityLabel': 'bold', 'customLabels': 'task-resting', 'criteria': {'SeriesDescription': 'FUNC_MUX6_Resting'}, 'sidecarChanges': {'TaskName': 'resting'}}
+
+{'dataType': 'fmap', 'modatlityLabel': 'epi', 'customLabels': 'dir-topup-fpe', 'criteria': {'SeriesDescription': 'FUNC_TOPUP_FPE_FOV192'}}
+
+{'dataType': 'func', 'modatlityLabel': 'bold', 'customLabels': 'task-jhflicker', 'criteria': {'SeriesDescription': 'FUNC_JHFlicker_1_MUX6'}, 'sidecarChanges': {'TaskName': 'jhflicker'}}
+
+{'dataType': 'func', 'modatlityLabel': 'bold', 'customLabels': 'task-gbu', 'criteria': {'SeriesDescription': 'FUNC_MUX6_GBU'}, 'sidecarChanges': {'TaskName': 'gbu'}}
+
+{'dataType': 'func', 'modatlityLabel': 'bold', 'customLabels': 'task-sovig', 'criteria': {'SeriesDescription': 'FUNC_MUX6_SOVIG_S10_TE30'}, 'sidecarChanges': {'TaskName': 'sovig'}}
+
+{'dataType': 'func', 'modatlityLabel': 'bold', 'customLabels': 'task-attnfreq', 'criteria': {'SeriesDescription': 'FUNC_AttnFreq_1_MUX6'}, 'sidecarChanges': {'TaskName': 'attnfreq'}}
+
+{'dataType': 'func', 'modatlityLabel': 'bold', 'customLabels': 'task-rs', 'criteria': {'SeriesDescription': 'FUNC_RS_2_MUX6'}, 'sidecarChanges': {'TaskName': 'rs'}}
+
+{'dataType': 'func', 'modatlityLabel': 'bold', 'customLabels': 'task-rs', 'criteria': {'SeriesDescription': 'FUNC_RS_3_MUX6'}, 'sidecarChanges': {'TaskName': 'rs'}}
+
+{'dataType': 'anat', 'modatlityLabel': 'T2w', 'criteria': {'SeriesDescription': 'STRUC_T2CUBE_SAG3D_.8mm'}}
+
+{'dataType': 'func', 'modatlityLabel': 'bold', 'customLabels': 'task-jhflicker', 'criteria': {'SeriesDescription': 'FUNC_JHFlicker_2_MUX6'}, 'sidecarChanges': {'TaskName': 'jhflicker'}}
+
+{'dataType': 'fmap', 'modatlityLabel': 'epi', 'customLabels': 'dir--rpe', 'criteria': {'SeriesDescription': 'FUNC__TOPUP_RPE_SE-EPI'}}
+
+{'dataType': 'fmap', 'modatlityLabel': 'epi', 'customLabels': 'dir-b0-mv', 'criteria': {'SeriesDescription': 'MAP_B0_2mm_108'}}
+
+{'dataType': 'func', 'modatlityLabel': 'bold', 'customLabels': 'task-rs', 'criteria': {'SeriesDescription': 'FUNC_RS_1_MUX6'}, 'sidecarChanges': {'TaskName': 'rs'}}
+
+{'dataType': 'fmap', 'modatlityLabel': 'epi', 'customLabels': 'dir-topup-rpe', 'criteria': {'SeriesDescription': 'FUNC_TOPUP_RPE_2mm'}}
+
+{'dataType': 'func', 'modatlityLabel': 'bold', 'customLabels': 'task-v992', 'criteria': {'SeriesDescription': 'FUNC_MUX6_V992'}, 'sidecarChanges': {'TaskName': 'v992'}}
+
+{'dataType': 'func', 'modatlityLabel': 'bold', 'customLabels': 'task-gbu', 'criteria': {'SeriesDescription': 'FUNC_MUX6_GBU_FOV192'}, 'sidecarChanges': {'TaskName': 'gbu'}}
+
+{'dataType': 'fmap', 'modatlityLabel': 'epi', 'customLabels': 'dir-topup-fpe', 'criteria': {'SeriesDescription': 'FUNC_TOPUP_FPE'}}
+
+{'dataType': 'func', 'modatlityLabel': 'bold', 'customLabels': 'task-rsvpprf', 'criteria': {'SeriesDescription': 'FUNC_rsvppRF_1_MUX6'}, 'sidecarChanges': {'TaskName': 'rsvpprf'}}
+
+{'dataType': 'anat', 'modatlityLabel': 'T1w', 'criteria': {'SeriesDescription': 'STRUC_BRAVO_SAG3D_ARC_.8mm'}}
+
+{'dataType': 'anat', 'modatlityLabel': 'T2w', 'criteria': {'SeriesDescription': 'STRUC_T2CUBE_PROMO'}}
+
+{'dataType': 'func', 'modatlityLabel': 'bold', 'customLabels': 'task-rsvpprf', 'criteria': {'SeriesDescription': 'FUNC_rsvppRF_8_MUX6'}, 'sidecarChanges': {'TaskName': 'rsvpprf'}}
+
+{'dataType': 'anat', 'modatlityLabel': 'T1w', 'criteria': {'SeriesDescription': 'STRUC_T1MPRAGE_noPROMO'}}
+
+{'dataType': 'func', 'modatlityLabel': 'bold', 'customLabels': 'task-rsvpprf', 'criteria': {'SeriesDescription': 'FUNC_rsvppRF_5_MUX6'}, 'sidecarChanges': {'TaskName': 'rsvpprf'}}
+
+{'dataType': 'func', 'modatlityLabel': 'bold', 'customLabels': 'task-magnot', 'criteria': {'SeriesDescription': 'FUNC_MAGNOT_2_MUX6'}, 'sidecarChanges': {'TaskName': 'magnot'}}
+
+{'dataType': 'fmap', 'modatlityLabel': 'epi', 'customLabels': 'dir-topup-rpe', 'criteria': {'SeriesDescription': 'FUNC_TOPUP_RPE'}}
+
+{'dataType': 'func', 'modatlityLabel': 'bold', 'customLabels': 'task-magnot', 'criteria': {'SeriesDescription': 'FUNC_MAGNOT_1_MUX6'}, 'sidecarChanges': {'TaskName': 'magnot'}}
+
+{'dataType': 'func', 'modatlityLabel': 'bold', 'customLabels': 'task-v367', 'criteria': {'SeriesDescription': 'FUNC_MUX6_V367'}, 'sidecarChanges': {'TaskName': 'v367'}}
+
+{'dataType': 'func', 'modatlityLabel': 'bold', 'customLabels': 'task-mtloc', 'criteria': {'SeriesDescription': 'FUNC_MTLoc_1_MUX6'}, 'sidecarChanges': {'TaskName': 'mtloc'}}
+
+{'dataType': 'func', 'modatlityLabel': 'bold', 'customLabels': 'task-mtloc', 'criteria': {'SeriesDescription': 'FUNC_MTLoc_2_MUX6'}, 'sidecarChanges': {'TaskName': 'mtloc'}}
+
+
+2019-12-16 15:13:39.216118
+
+
+
+
+
+2019-12-16 15:14:05.604189
+
+
+{'dataType': 'func', 'modatlityLabel': 'bold', 'customLabels': 'task-msit', 'criteria': {'SeriesDescription': 'func_msit'}, 'sidecarChanges': {'TaskName': 'msit'}}
+
+{'dataType': 'func', 'modatlityLabel': 'bold', 'customLabels': 'task-sst', 'criteria': {'SeriesDescription': 'FUNC_MUX6_SST'}, 'sidecarChanges': {'TaskName': 'sst'}}
+
+{'dataType': 'fmap', 'modatlityLabel': 'epi', 'customLabels': 'dir-sst-fpe', 'criteria': {'SeriesDescription': 'FM_sst_FPE'}}
+
+{'dataType': 'func', 'modatlityLabel': 'bold', 'customLabels': 'task-gng', 'criteria': {'SeriesDescription': 'FUNC_MUX6_GNG'}, 'sidecarChanges': {'TaskName': 'gng'}}
+
+{'dataType': 'func', 'modatlityLabel': 'bold', 'customLabels': 'task-msit', 'criteria': {'SeriesDescription': 'FUNC_MUX6_MSIT'}, 'sidecarChanges': {'TaskName': 'msit'}}
+
+{'dataType': 'fmap', 'modatlityLabel': 'epi', 'customLabels': 'dir-resting-mv', 'criteria': {'SeriesDescription': 'FM_resting'}}
+
+{'dataType': 'fmap', 'modatlityLabel': 'epi', 'customLabels': 'dir-msit-rpe', 'criteria': {'SeriesDescription': 'FM_msit_RPE'}}
+
+{'dataType': 'func', 'modatlityLabel': 'bold', 'customLabels': 'task-resting', 'criteria': {'SeriesDescription': 'func_resting'}, 'sidecarChanges': {'TaskName': 'resting'}}
+
+{'dataType': 'func', 'modatlityLabel': 'bold', 'customLabels': 'task-fmri', 'criteria': {'SeriesDescription': 'MB_fMRI_QA'}, 'sidecarChanges': {'TaskName': 'fmri'}}
+
+{'dataType': 'dti', 'modatlityLabel': 'tensor', 'criteria': {'SeriesDescription': 'DTI_102MultiHB'}}
+
+{'dataType': 'fmap', 'modatlityLabel': 'tensor', 'customLabels': 'dir-dtihb-mv', 'criteria': {'SeriesDescription': 'FM_DTIHB'}}
+
+{'dataType': 'func', 'modatlityLabel': 'bold', 'customLabels': 'task-sst', 'criteria': {'SeriesDescription': 'func_sst'}, 'sidecarChanges': {'TaskName': 'sst'}}
+
+{'dataType': 'anat', 'modatlityLabel': 'T1w', 'criteria': {'SeriesDescription': 't1spgr_208sl'}}
+
+{'dataType': 'fmap', 'modatlityLabel': 'epi', 'customLabels': 'dir-resting-fpe', 'criteria': {'SeriesDescription': 'FM_resting_FPE'}}
+
+{'dataType': 'anat', 'modatlityLabel': 'T2w', 'criteria': {'SeriesDescription': 'STRUC_T2CUBE_PROMO'}}
+
+{'dataType': 'fmap', 'modatlityLabel': 'epi', 'customLabels': 'dir-sst-rpe', 'criteria': {'SeriesDescription': 'FM_sst_RPE'}}
+
+{'dataType': 'anat', 'modatlityLabel': 'T1w', 'criteria': {'SeriesDescription': 't1overlay_60sl'}}
+
+{'dataType': 'anat', 'modatlityLabel': 'T2w', 'criteria': {'SeriesDescription': 't2cube_208sl'}}
+
+{'dataType': 'fmap', 'modatlityLabel': 'epi', 'customLabels': 'dir-sst-mv', 'criteria': {'SeriesDescription': 'FM_sst'}}
+
+{'dataType': 'fmap', 'modatlityLabel': 'epi', 'customLabels': 'dir-topup-fpe', 'criteria': {'SeriesDescription': 'FUNC_TOPUP_FPE_SE-EPI'}}
+
+{'dataType': 'fmap', 'modatlityLabel': 'epi', 'customLabels': 'dir-msit-fpe', 'criteria': {'SeriesDescription': 'FM_msit_FPE'}}
+
+{'dataType': 'fmap', 'modatlityLabel': 'epi', 'customLabels': 'dir-msit-mv', 'criteria': {'SeriesDescription': 'FM_msit'}}
+
+{'dataType': 'fmap', 'modatlityLabel': 'epi', 'customLabels': 'dir-resting-rpe', 'criteria': {'SeriesDescription': 'FM_resting_RPE'}}
+
+{'dataType': 'anat', 'modatlityLabel': 'T1w', 'criteria': {'SeriesDescription': 'STRUC_T1MPRAGE_noPROMO'}}
+
+
+2019-12-16 15:22:02.620790
+
+
+{'dataType': 'func', 'modatlityLabel': 'bold', 'customLabels': 'task-magnot', 'criteria': {'SeriesDescription': 'FUNC_MUX6_MAGNOT'}, 'sidecarChanges': {'TaskName': 'magnot'}}
+
+{'dataType': 'fmap', 'modatlityLabel': 'epi', 'customLabels': 'dir-topup-mv', 'criteria': {'SeriesDescription': 'FUNC_TOPUP_RPF_FOV192'}}
+
+{'dataType': 'func', 'modatlityLabel': 'bold', 'customLabels': 'task-magnot', 'criteria': {'SeriesDescription': 'FUNC_MAGNOT_3_MUX6'}, 'sidecarChanges': {'TaskName': 'magnot'}}
+
+{'dataType': 'func', 'modatlityLabel': 'bold', 'customLabels': 'task-magnot', 'criteria': {'SeriesDescription': 'FUNC_MAGNOT_4_MUX6'}, 'sidecarChanges': {'TaskName': 'magnot'}}
+
+{'dataType': 'func', 'modatlityLabel': 'bold', 'customLabels': 'task-attnfreq', 'criteria': {'SeriesDescription': 'FUNC_AttnFreq_2_MUX6'}, 'sidecarChanges': {'TaskName': 'attnfreq'}}
+
+{'dataType': 'func', 'modatlityLabel': 'bold', 'customLabels': 'task-rsvp', 'criteria': {'SeriesDescription': 'FUNC_MUX6_RSVP_pRF_S11_TE25'}, 'sidecarChanges': {'TaskName': 'rsvp'}}
+
+{'dataType': 'func', 'modatlityLabel': 'bold', 'customLabels': 'task-rsvpprf', 'criteria': {'SeriesDescription': 'FUNC_rsvppRF_8_MUX6'}, 'sidecarChanges': {'TaskName': 'rsvpprf'}}
+
+{'dataType': 'func', 'modatlityLabel': 'bold', 'customLabels': 'task-rs', 'criteria': {'SeriesDescription': 'FUNC_RS_3_MUX6'}, 'sidecarChanges': {'TaskName': 'rs'}}
+
+{'dataType': 'func', 'modatlityLabel': 'bold', 'customLabels': 'task-rsvpprf', 'criteria': {'SeriesDescription': 'FUNC_rsvppRF_5_MUX6'}, 'sidecarChanges': {'TaskName': 'rsvpprf'}}
+
+{'dataType': 'func', 'modatlityLabel': 'bold', 'customLabels': 'task-magnot', 'criteria': {'SeriesDescription': 'FUNC_MAGNOT_1_MUX6'}, 'sidecarChanges': {'TaskName': 'magnot'}}
+
+{'dataType': 'func', 'modatlityLabel': 'bold', 'customLabels': 'task-rs', 'criteria': {'SeriesDescription': 'FUNC_RS_2_MUX6'}, 'sidecarChanges': {'TaskName': 'rs'}}
+
+{'dataType': 'fmap', 'modatlityLabel': 'epi', 'customLabels': 'dir-b0-mv', 'criteria': {'SeriesDescription': 'MAP_B0_2mm'}}
+
+{'dataType': 'func', 'modatlityLabel': 'bold', 'customLabels': 'task-rsvpprf', 'criteria': {'SeriesDescription': 'FUNC_rsvppRF_3_MUX6'}, 'sidecarChanges': {'TaskName': 'rsvpprf'}}
+
+{'dataType': 'func', 'modatlityLabel': 'bold', 'customLabels': 'task-2mm', 'criteria': {'SeriesDescription': 'FUNC_MUX6_2mm'}, 'sidecarChanges': {'TaskName': '2mm'}}
+
+{'dataType': 'func', 'modatlityLabel': 'bold', 'customLabels': 'task-attnfreq', 'criteria': {'SeriesDescription': 'FUNC_AttnFreq_1_MUX6'}, 'sidecarChanges': {'TaskName': 'attnfreq'}}
+
+{'dataType': 'func', 'modatlityLabel': 'bold', 'customLabels': 'task-sovig', 'criteria': {'SeriesDescription': 'FUNC_MUX6_SOVIG_S10_TE30'}, 'sidecarChanges': {'TaskName': 'sovig'}}
+
+{'dataType': 'func', 'modatlityLabel': 'bold', 'customLabels': 'task-resting', 'criteria': {'SeriesDescription': 'FUNC_MUX6_Resting_S11_TE25'}, 'sidecarChanges': {'TaskName': 'resting'}}
+
+{'dataType': 'fmap', 'modatlityLabel': 'epi', 'customLabels': 'dir-topup-rpe', 'criteria': {'SeriesDescription': 'FUNC_TOPUP_RPE'}}
+
+{'dataType': 'func', 'modatlityLabel': 'bold', 'customLabels': 'task-gbu', 'criteria': {'SeriesDescription': 'FUNC_MUX6_GBU_FOV192'}, 'sidecarChanges': {'TaskName': 'gbu'}}
+
+{'dataType': 'fmap', 'modatlityLabel': 'epi', 'customLabels': 'dir--rpe', 'criteria': {'SeriesDescription': 'FUNC__TOPUP_RPE_SE-EPI'}}
+
+{'dataType': 'fmap', 'modatlityLabel': 'epi', 'customLabels': 'dir--fpe', 'criteria': {'SeriesDescription': 'FUNC__TOPUP_FPE_SE-EPI'}}
+
+{'dataType': 'anat', 'modatlityLabel': 'T2w', 'criteria': {'SeriesDescription': 'STRUC_T2CUBE_PROMO'}}
+
+{'dataType': 'func', 'modatlityLabel': 'bold', 'customLabels': 'task-rsvpprf', 'criteria': {'SeriesDescription': 'FUNC_rsvppRF_1_MUX6'}, 'sidecarChanges': {'TaskName': 'rsvpprf'}}
+
+{'dataType': 'anat', 'modatlityLabel': 'T1w', 'criteria': {'SeriesDescription': 'STRUC_T1MPRAGE_noPROMO'}}
+
+{'dataType': 'func', 'modatlityLabel': 'bold', 'customLabels': 'task-gbu', 'criteria': {'SeriesDescription': 'FUNC_GBU_MUX6'}, 'sidecarChanges': {'TaskName': 'gbu'}}
+
+{'dataType': 'func', 'modatlityLabel': 'bold', 'customLabels': 'task-v992', 'criteria': {'SeriesDescription': 'FUNC_MUX6_V992'}, 'sidecarChanges': {'TaskName': 'v992'}}
+
+{'dataType': 'fmap', 'modatlityLabel': 'epi', 'customLabels': 'dir-b0-mv', 'criteria': {'SeriesDescription': 'MAP_B0_S68_2.0mm'}}
+
+{'dataType': 'func', 'modatlityLabel': 'bold', 'customLabels': 'task-resting', 'criteria': {'SeriesDescription': 'FUNC_MUX6_Resting'}, 'sidecarChanges': {'TaskName': 'resting'}}
+
+{'dataType': 'func', 'modatlityLabel': 'bold', 'customLabels': 'task-sfsweep', 'criteria': {'SeriesDescription': 'FUNC_MUX6_SFSWEEP_S10_TE30'}, 'sidecarChanges': {'TaskName': 'sfsweep'}}
+
+{'dataType': 'func', 'modatlityLabel': 'bold', 'customLabels': 'task-v367', 'criteria': {'SeriesDescription': 'FUNC_MUX6_V367'}, 'sidecarChanges': {'TaskName': 'v367'}}
+
+{'dataType': 'func', 'modatlityLabel': 'bold', 'customLabels': 'task-rs', 'criteria': {'SeriesDescription': 'FUNC_RS_4_MUX6'}, 'sidecarChanges': {'TaskName': 'rs'}}
+
+{'dataType': 'func', 'modatlityLabel': 'bold', 'customLabels': 'task-mtloc', 'criteria': {'SeriesDescription': 'FUNC_MTLoc_1_MUX6'}, 'sidecarChanges': {'TaskName': 'mtloc'}}
+
+{'dataType': 'func', 'modatlityLabel': 'bold', 'customLabels': 'task-gbu', 'criteria': {'SeriesDescription': 'FUNC_MUX6_GBU_S11_TE25'}, 'sidecarChanges': {'TaskName': 'gbu'}}
+
+{'dataType': 'anat', 'modatlityLabel': 'T2w', 'criteria': {'SeriesDescription': 'STRUC_T2CUBE_SAG3D_.8mm'}}
+
+{'dataType': 'fmap', 'modatlityLabel': 'epi', 'customLabels': 'dir-topup-fpe', 'criteria': {'SeriesDescription': 'FUNC_TOPUP_FPE_FOV192'}}
+
+{'dataType': 'func', 'modatlityLabel': 'bold', 'customLabels': 'task-rsvpprf', 'criteria': {'SeriesDescription': 'FUNC_rsvppRF_2_MUX6'}, 'sidecarChanges': {'TaskName': 'rsvpprf'}}
+
+{'dataType': 'func', 'modatlityLabel': 'bold', 'customLabels': 'task-rsvpprf', 'criteria': {'SeriesDescription': 'FUNC_rsvppRF_7_MUX6'}, 'sidecarChanges': {'TaskName': 'rsvpprf'}}
+
+{'dataType': 'fmap', 'modatlityLabel': 'epi', 'customLabels': 'dir-topup-fpe', 'criteria': {'SeriesDescription': 'FUNC_TOPUP_FPE_2mm'}}
+
+{'dataType': 'anat', 'modatlityLabel': 'T2w', 'criteria': {'SeriesDescription': 'STRUC_T2CUBE_SAG3D_ARC_.8mm'}}
+
+{'dataType': 'fmap', 'modatlityLabel': 'epi', 'customLabels': 'dir-topup-rpe', 'criteria': {'SeriesDescription': 'FUNC_TOPUP_RPE_2mm'}}
+
+{'dataType': 'func', 'modatlityLabel': 'bold', 'customLabels': 'task-jhflicker', 'criteria': {'SeriesDescription': 'FUNC_JHFlicker_2_MUX6'}, 'sidecarChanges': {'TaskName': 'jhflicker'}}
+
+{'dataType': 'func', 'modatlityLabel': 'bold', 'customLabels': 'task-magnot', 'criteria': {'SeriesDescription': 'FUNC_MAGNOT_2_MUX6'}, 'sidecarChanges': {'TaskName': 'magnot'}}
+
+{'dataType': 'func', 'modatlityLabel': 'bold', 'customLabels': 'task-rs', 'criteria': {'SeriesDescription': 'FUNC_RS_1_MUX6'}, 'sidecarChanges': {'TaskName': 'rs'}}
+
+{'dataType': 'func', 'modatlityLabel': 'bold', 'customLabels': 'task-rsvpprf', 'criteria': {'SeriesDescription': 'FUNC_rsvppRF_4_MUX6'}, 'sidecarChanges': {'TaskName': 'rsvpprf'}}
+
+{'dataType': 'func', 'modatlityLabel': 'bold', 'customLabels': 'task-mtloc', 'criteria': {'SeriesDescription': 'FUNC_MTLoc_2_MUX6'}, 'sidecarChanges': {'TaskName': 'mtloc'}}
+
+{'dataType': 'anat', 'modatlityLabel': 'T1w', 'criteria': {'SeriesDescription': 'STRUC_BRAVO_SAG3D_ARC_.8mm'}}
+
+{'dataType': 'fmap', 'modatlityLabel': 'epi', 'customLabels': 'dir-b0-mv', 'criteria': {'SeriesDescription': 'MAP_B0_2mm_108'}}
+
+{'dataType': 'func', 'modatlityLabel': 'bold', 'customLabels': 'task-gbu', 'criteria': {'SeriesDescription': 'FUNC_MUX6_GBU'}, 'sidecarChanges': {'TaskName': 'gbu'}}
+
+{'dataType': 'func', 'modatlityLabel': 'bold', 'customLabels': 'task-jhflicker', 'criteria': {'SeriesDescription': 'FUNC_JHFlicker_1_MUX6'}, 'sidecarChanges': {'TaskName': 'jhflicker'}}
+
+{'dataType': 'anat', 'modatlityLabel': 'T1w', 'criteria': {'SeriesDescription': 'STRUC_BRAVO_SAG3D_.8mm'}}
+
+{'dataType': 'func', 'modatlityLabel': 'bold', 'customLabels': 'task-rsvpprf', 'criteria': {'SeriesDescription': 'FUNC_rsvppRF_6_MUX6'}, 'sidecarChanges': {'TaskName': 'rsvpprf'}}
+
+{'dataType': 'fmap', 'modatlityLabel': 'epi', 'customLabels': 'dir-topup-fpe', 'criteria': {'SeriesDescription': 'FUNC_TOPUP_FPE'}}

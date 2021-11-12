@@ -1,0 +1,537 @@
+
+
+
+2019-12-16 13:26:25.249871
+
+
+{'series_description': 'FUNC_RS_2_MUX6', 'bidsname': 'task-rs_bold'}
+
+{'series_description': 'FUNC_MUX6_2mm', 'bidsname': 'task-2mm_bold'}
+
+{'series_description': 'FUNC_MUX6_Resting_S11_TE25', 'bidsname': 'task-resting_bold'}
+
+{'series_description': 'FUNC_AttnFreq_1_MUX6', 'bidsname': 'task-attnfreq_bold'}
+
+{'series_description': 'FUNC_RS_3_MUX6', 'bidsname': 'task-rs_bold'}
+
+{'series_description': 'FUNC_MUX6_GBU_FOV192', 'bidsname': 'task-gbu_bold'}
+
+{'series_description': 'FUNC_RS_4_MUX6', 'bidsname': 'task-rs_bold'}
+
+{'series_description': 'STRUC_T2CUBE_SAG3D_.8mm', 'bidsname': 'T2w'}
+
+{'series_description': 'FUNC_MUX6_RSVP_pRF_S11_TE25', 'bidsname': 'task-rsvp_bold'}
+
+{'series_description': 'FUNC_MAGNOT_3_MUX6', 'bidsname': 'task-magnot_bold'}
+
+{'series_description': 'FUNC_MAGNOT_4_MUX6', 'bidsname': 'task-magnot_bold'}
+
+{'series_description': 'FUNC_MUX6_V992', 'bidsname': 'task-v992_bold'}
+
+{'series_description': 'FUNC_MUX6_SFSWEEP_S10_TE30', 'bidsname': 'task-sfsweep_bold'}
+
+{'series_description': 'FUNC_MUX6_Resting', 'bidsname': 'task-resting_bold'}
+
+{'series_description': 'STRUC_BRAVO_SAG3D_ARC_.8mm', 'bidsname': 'T1w'}
+
+{'series_description': 'FUNC_RS_1_MUX6', 'bidsname': 'task-rs_bold'}
+
+{'series_description': 'FUNC_JHFlicker_2_MUX6', 'bidsname': 'task-jhflicker_bold'}
+
+{'series_description': 'FUNC_rsvppRF_5_MUX6', 'bidsname': 'task-rsvpprf_bold'}
+
+{'series_description': 'FUNC_rsvppRF_3_MUX6', 'bidsname': 'task-rsvpprf_bold'}
+
+{'series_description': 'FUNC_rsvppRF_2_MUX6', 'bidsname': 'task-rsvpprf_bold'}
+
+{'series_description': 'FUNC_rsvppRF_7_MUX6', 'bidsname': 'task-rsvpprf_bold'}
+
+{'series_description': 'FUNC_MAGNOT_1_MUX6', 'bidsname': 'task-magnot_bold'}
+
+{'series_description': 'FUNC_MUX6_GBU_S11_TE25', 'bidsname': 'task-gbu_bold'}
+
+{'series_description': 'FUNC_rsvppRF_6_MUX6', 'bidsname': 'task-rsvpprf_bold'}
+
+{'series_description': 'FUNC_rsvppRF_1_MUX6', 'bidsname': 'task-rsvpprf_bold'}
+
+{'series_description': 'FUNC_GBU_MUX6', 'bidsname': 'task-gbu_bold'}
+
+{'series_description': 'FUNC_rsvppRF_8_MUX6', 'bidsname': 'task-rsvpprf_bold'}
+
+{'series_description': 'FUNC_MUX6_GBU', 'bidsname': 'task-gbu_bold'}
+
+{'series_description': 'FUNC_MAGNOT_2_MUX6', 'bidsname': 'task-magnot_bold'}
+
+{'series_description': 'FUNC_AttnFreq_2_MUX6', 'bidsname': 'task-attnfreq_bold'}
+
+{'series_description': 'FUNC_MUX6_SOVIG_S10_TE30', 'bidsname': 'task-sovig_bold'}
+
+{'series_description': 'FUNC_MUX6_V367', 'bidsname': 'task-v367_bold'}
+
+{'series_description': 'STRUC_BRAVO_SAG3D_.8mm', 'bidsname': 'T1w'}
+
+{'series_description': 'STRUC_T2CUBE_SAG3D_ARC_.8mm', 'bidsname': 'T2w'}
+
+{'series_description': 'FUNC_MTLoc_1_MUX6', 'bidsname': 'task-mtloc_bold'}
+
+{'series_description': 'FUNC_MUX6_MAGNOT', 'bidsname': 'task-magnot_bold'}
+
+{'series_description': 'FUNC_MTLoc_2_MUX6', 'bidsname': 'task-mtloc_bold'}
+
+{'series_description': 'FUNC_rsvppRF_4_MUX6', 'bidsname': 'task-rsvpprf_bold'}
+
+{'series_description': 'FUNC_JHFlicker_1_MUX6', 'bidsname': 'task-jhflicker_bold'}
+
+
+2019-12-16 13:40:37.809794
+
+
+{'series_description': 'func_msit', 'bidsname': 'task-msit_bold'}
+
+{'series_description': 't2cube_208sl', 'bidsname': 'T2w'}
+
+{'series_description': 'STRUC_T1MPRAGE_noPROMO', 'bidsname': 'T1w'}
+
+{'series_description': 'FM_DTIHB', 'bidsname': 'dti'}
+
+{'series_description': 't1overlay_60sl', 'bidsname': 'T1w'}
+
+{'series_description': 'DTI_102MultiHB', 'bidsname': 'dti'}
+
+{'series_description': 'FUNC_MUX6_GNG', 'bidsname': 'task-gng_bold'}
+
+{'series_description': 'MB_fMRI_QA', 'bidsname': 'task-fmri_bold'}
+
+{'series_description': 't1spgr_208sl', 'bidsname': 'T1w'}
+
+{'series_description': 'func_resting', 'bidsname': 'task-resting_bold'}
+
+{'series_description': 'STRUC_T2CUBE_PROMO', 'bidsname': 'T2w'}
+
+{'series_description': 'FUNC_MUX6_SST', 'bidsname': 'task-sst_bold'}
+
+{'series_description': 'FUNC_MUX6_MSIT', 'bidsname': 'task-msit_bold'}
+
+{'series_description': 'func_sst', 'bidsname': 'task-sst_bold'}
+
+
+2019-12-16 14:45:28.955060
+
+
+
+
+
+2019-12-16 14:46:17.086810
+
+
+
+
+
+2019-12-16 14:47:02.191368
+
+
+{'series_description': 'FUNC_MUX6_RSVP_pRF_S11_TE25', 'bidsname': 'task-rsvp_bold'}
+
+{'series_description': 'STRUC_BRAVO_SAG3D_.8mm', 'bidsname': 'T1w'}
+
+{'series_description': 'STRUC_T2CUBE_SAG3D_.8mm', 'bidsname': 'T2w'}
+
+{'series_description': 'FUNC_MUX6_GBU', 'bidsname': 'task-gbu_bold'}
+
+{'series_description': 'FUNC_MAGNOT_1_MUX6', 'bidsname': 'task-magnot_bold'}
+
+{'series_description': 'FUNC_MTLoc_2_MUX6', 'bidsname': 'task-mtloc_bold'}
+
+{'series_description': 'FUNC_rsvppRF_3_MUX6', 'bidsname': 'task-rsvpprf_bold'}
+
+{'series_description': 'FUNC_MUX6_SOVIG_S10_TE30', 'bidsname': 'task-sovig_bold'}
+
+{'series_description': 'FUNC_JHFlicker_2_MUX6', 'bidsname': 'task-jhflicker_bold'}
+
+{'series_description': 'FUNC_MUX6_GBU_S11_TE25', 'bidsname': 'task-gbu_bold'}
+
+{'series_description': 'FUNC_MUX6_2mm', 'bidsname': 'task-2mm_bold'}
+
+{'series_description': 'FUNC_MAGNOT_2_MUX6', 'bidsname': 'task-magnot_bold'}
+
+{'series_description': 'STRUC_BRAVO_SAG3D_ARC_.8mm', 'bidsname': 'T1w'}
+
+{'series_description': 'STRUC_T2CUBE_PROMO', 'bidsname': 'T2w'}
+
+{'series_description': 'FUNC_rsvppRF_8_MUX6', 'bidsname': 'task-rsvpprf_bold'}
+
+{'series_description': 'STRUC_T2CUBE_SAG3D_ARC_.8mm', 'bidsname': 'T2w'}
+
+{'series_description': 'FUNC_MUX6_Resting', 'bidsname': 'task-resting_bold'}
+
+{'series_description': 'FUNC_rsvppRF_4_MUX6', 'bidsname': 'task-rsvpprf_bold'}
+
+{'series_description': 'FUNC_MAGNOT_3_MUX6', 'bidsname': 'task-magnot_bold'}
+
+{'series_description': 'FUNC_rsvppRF_2_MUX6', 'bidsname': 'task-rsvpprf_bold'}
+
+{'series_description': 'FUNC_RS_2_MUX6', 'bidsname': 'task-rs_bold'}
+
+{'series_description': 'FUNC_MUX6_GBU_FOV192', 'bidsname': 'task-gbu_bold'}
+
+{'series_description': 'FUNC_JHFlicker_1_MUX6', 'bidsname': 'task-jhflicker_bold'}
+
+{'series_description': 'FUNC_MUX6_Resting_S11_TE25', 'bidsname': 'task-resting_bold'}
+
+{'series_description': 'FUNC_AttnFreq_2_MUX6', 'bidsname': 'task-attnfreq_bold'}
+
+{'series_description': 'STRUC_T1MPRAGE_noPROMO', 'bidsname': 'T1w'}
+
+{'series_description': 'FUNC_MAGNOT_4_MUX6', 'bidsname': 'task-magnot_bold'}
+
+{'series_description': 'FUNC_MUX6_V367', 'bidsname': 'task-v367_bold'}
+
+{'series_description': 'FUNC_rsvppRF_7_MUX6', 'bidsname': 'task-rsvpprf_bold'}
+
+{'series_description': 'FUNC_GBU_MUX6', 'bidsname': 'task-gbu_bold'}
+
+{'series_description': 'FUNC_RS_4_MUX6', 'bidsname': 'task-rs_bold'}
+
+{'series_description': 'FUNC_MTLoc_1_MUX6', 'bidsname': 'task-mtloc_bold'}
+
+{'series_description': 'FUNC_MUX6_SFSWEEP_S10_TE30', 'bidsname': 'task-sfsweep_bold'}
+
+{'series_description': 'FUNC_RS_3_MUX6', 'bidsname': 'task-rs_bold'}
+
+{'series_description': 'FUNC_RS_1_MUX6', 'bidsname': 'task-rs_bold'}
+
+{'series_description': 'FUNC_rsvppRF_6_MUX6', 'bidsname': 'task-rsvpprf_bold'}
+
+{'series_description': 'FUNC_rsvppRF_1_MUX6', 'bidsname': 'task-rsvpprf_bold'}
+
+{'series_description': 'FUNC_AttnFreq_1_MUX6', 'bidsname': 'task-attnfreq_bold'}
+
+{'series_description': 'FUNC_MUX6_V992', 'bidsname': 'task-v992_bold'}
+
+{'series_description': 'FUNC_rsvppRF_5_MUX6', 'bidsname': 'task-rsvpprf_bold'}
+
+{'series_description': 'FUNC_MUX6_MAGNOT', 'bidsname': 'task-magnot_bold'}
+
+
+2019-12-16 14:49:12.362674
+
+
+
+
+
+2019-12-16 14:55:45.078799
+
+
+
+
+
+2019-12-16 14:58:29.388840
+
+
+
+
+
+2019-12-16 14:59:09.899871
+
+
+
+
+
+2019-12-16 14:59:47.543411
+
+
+
+
+
+2019-12-16 15:03:24.247521
+
+
+{'series_description': 'FUNC_MUX6_2mm', 'bidsname': 'task-2mm_bold'}
+
+{'series_description': 'FUNC_MAGNOT_1_MUX6', 'bidsname': 'task-magnot_bold'}
+
+{'series_description': 'FUNC_RS_1_MUX6', 'bidsname': 'task-rs_bold'}
+
+{'series_description': 'FUNC_MAGNOT_3_MUX6', 'bidsname': 'task-magnot_bold'}
+
+{'series_description': 'FUNC_MUX6_SFSWEEP_S10_TE30', 'bidsname': 'task-sfsweep_bold'}
+
+{'series_description': 'STRUC_T1MPRAGE_noPROMO', 'bidsname': 'T1w'}
+
+{'series_description': 'FUNC_AttnFreq_1_MUX6', 'bidsname': 'task-attnfreq_bold'}
+
+{'series_description': 'FUNC_RS_3_MUX6', 'bidsname': 'task-rs_bold'}
+
+{'series_description': 'FUNC_MUX6_GBU_FOV192', 'bidsname': 'task-gbu_bold'}
+
+{'series_description': 'FUNC_rsvppRF_8_MUX6', 'bidsname': 'task-rsvpprf_bold'}
+
+{'series_description': 'FUNC_rsvppRF_4_MUX6', 'bidsname': 'task-rsvpprf_bold'}
+
+{'series_description': 'STRUC_BRAVO_SAG3D_.8mm', 'bidsname': 'T1w'}
+
+{'series_description': 'FUNC_MUX6_GBU', 'bidsname': 'task-gbu_bold'}
+
+{'series_description': 'FUNC_rsvppRF_7_MUX6', 'bidsname': 'task-rsvpprf_bold'}
+
+{'series_description': 'FUNC_AttnFreq_2_MUX6', 'bidsname': 'task-attnfreq_bold'}
+
+{'series_description': 'FUNC_JHFlicker_2_MUX6', 'bidsname': 'task-jhflicker_bold'}
+
+{'series_description': 'FUNC_MTLoc_2_MUX6', 'bidsname': 'task-mtloc_bold'}
+
+{'series_description': 'FUNC_GBU_MUX6', 'bidsname': 'task-gbu_bold'}
+
+{'series_description': 'FUNC_MUX6_V992', 'bidsname': 'task-v992_bold'}
+
+{'series_description': 'STRUC_T2CUBE_PROMO', 'bidsname': 'T2w'}
+
+{'series_description': 'FUNC_RS_2_MUX6', 'bidsname': 'task-rs_bold'}
+
+{'series_description': 'FUNC_MUX6_MAGNOT', 'bidsname': 'task-magnot_bold'}
+
+{'series_description': 'FUNC_rsvppRF_3_MUX6', 'bidsname': 'task-rsvpprf_bold'}
+
+{'series_description': 'FUNC_MUX6_Resting', 'bidsname': 'task-resting_bold'}
+
+{'series_description': 'FUNC_MUX6_RSVP_pRF_S11_TE25', 'bidsname': 'task-rsvp_bold'}
+
+{'series_description': 'FUNC_RS_4_MUX6', 'bidsname': 'task-rs_bold'}
+
+{'series_description': 'FUNC_rsvppRF_5_MUX6', 'bidsname': 'task-rsvpprf_bold'}
+
+{'series_description': 'FUNC_MUX6_SOVIG_S10_TE30', 'bidsname': 'task-sovig_bold'}
+
+{'series_description': 'FUNC_MAGNOT_2_MUX6', 'bidsname': 'task-magnot_bold'}
+
+{'series_description': 'FUNC_MUX6_GBU_S11_TE25', 'bidsname': 'task-gbu_bold'}
+
+{'series_description': 'FUNC_rsvppRF_6_MUX6', 'bidsname': 'task-rsvpprf_bold'}
+
+{'series_description': 'FUNC_MTLoc_1_MUX6', 'bidsname': 'task-mtloc_bold'}
+
+{'series_description': 'FUNC_MUX6_V367', 'bidsname': 'task-v367_bold'}
+
+{'series_description': 'STRUC_BRAVO_SAG3D_ARC_.8mm', 'bidsname': 'T1w'}
+
+{'series_description': 'FUNC_rsvppRF_1_MUX6', 'bidsname': 'task-rsvpprf_bold'}
+
+{'series_description': 'STRUC_T2CUBE_SAG3D_ARC_.8mm', 'bidsname': 'T2w'}
+
+{'series_description': 'FUNC_rsvppRF_2_MUX6', 'bidsname': 'task-rsvpprf_bold'}
+
+{'series_description': 'STRUC_T2CUBE_SAG3D_.8mm', 'bidsname': 'T2w'}
+
+{'series_description': 'FUNC_JHFlicker_1_MUX6', 'bidsname': 'task-jhflicker_bold'}
+
+{'series_description': 'FUNC_MAGNOT_4_MUX6', 'bidsname': 'task-magnot_bold'}
+
+{'series_description': 'FUNC_MUX6_Resting_S11_TE25', 'bidsname': 'task-resting_bold'}
+
+
+2019-12-16 15:10:59.592161
+
+
+{'series_description': 'FUNC_MUX6_MAGNOT', 'bidsname': 'task-magnot_bold'}
+
+{'series_description': 'FUNC_MUX6_RSVP_pRF_S11_TE25', 'bidsname': 'task-rsvp_bold'}
+
+{'series_description': 'FUNC_MUX6_GBU_S11_TE25', 'bidsname': 'task-gbu_bold'}
+
+{'series_description': 'FUNC_rsvppRF_6_MUX6', 'bidsname': 'task-rsvpprf_bold'}
+
+{'series_description': 'FUNC_rsvppRF_4_MUX6', 'bidsname': 'task-rsvpprf_bold'}
+
+{'series_description': 'FUNC_MUX6_Resting_S11_TE25', 'bidsname': 'task-resting_bold'}
+
+{'series_description': 'FUNC_MUX6_SFSWEEP_S10_TE30', 'bidsname': 'task-sfsweep_bold'}
+
+{'series_description': 'STRUC_T2CUBE_SAG3D_ARC_.8mm', 'bidsname': 'T2w'}
+
+{'series_description': 'FUNC_RS_4_MUX6', 'bidsname': 'task-rs_bold'}
+
+{'series_description': 'FUNC_MAGNOT_3_MUX6', 'bidsname': 'task-magnot_bold'}
+
+{'series_description': 'FUNC_MAGNOT_4_MUX6', 'bidsname': 'task-magnot_bold'}
+
+{'series_description': 'FUNC_rsvppRF_2_MUX6', 'bidsname': 'task-rsvpprf_bold'}
+
+{'series_description': 'FUNC_AttnFreq_2_MUX6', 'bidsname': 'task-attnfreq_bold'}
+
+{'series_description': 'FUNC_rsvppRF_7_MUX6', 'bidsname': 'task-rsvpprf_bold'}
+
+{'series_description': 'FUNC_rsvppRF_3_MUX6', 'bidsname': 'task-rsvpprf_bold'}
+
+{'series_description': 'FUNC_GBU_MUX6', 'bidsname': 'task-gbu_bold'}
+
+{'series_description': 'STRUC_BRAVO_SAG3D_.8mm', 'bidsname': 'T1w'}
+
+{'series_description': 'FUNC_MUX6_2mm', 'bidsname': 'task-2mm_bold'}
+
+{'series_description': 'FUNC_MUX6_Resting', 'bidsname': 'task-resting_bold'}
+
+{'series_description': 'FUNC_JHFlicker_1_MUX6', 'bidsname': 'task-jhflicker_bold'}
+
+{'series_description': 'FUNC_MUX6_GBU', 'bidsname': 'task-gbu_bold'}
+
+{'series_description': 'FUNC_MUX6_SOVIG_S10_TE30', 'bidsname': 'task-sovig_bold'}
+
+{'series_description': 'FUNC_AttnFreq_1_MUX6', 'bidsname': 'task-attnfreq_bold'}
+
+{'series_description': 'FUNC_RS_2_MUX6', 'bidsname': 'task-rs_bold'}
+
+{'series_description': 'FUNC_RS_3_MUX6', 'bidsname': 'task-rs_bold'}
+
+{'series_description': 'STRUC_T2CUBE_SAG3D_.8mm', 'bidsname': 'T2w'}
+
+{'series_description': 'FUNC_JHFlicker_2_MUX6', 'bidsname': 'task-jhflicker_bold'}
+
+{'series_description': 'FUNC_RS_1_MUX6', 'bidsname': 'task-rs_bold'}
+
+{'series_description': 'FUNC_MUX6_V992', 'bidsname': 'task-v992_bold'}
+
+{'series_description': 'FUNC_MUX6_GBU_FOV192', 'bidsname': 'task-gbu_bold'}
+
+{'series_description': 'FUNC_rsvppRF_1_MUX6', 'bidsname': 'task-rsvpprf_bold'}
+
+{'series_description': 'STRUC_BRAVO_SAG3D_ARC_.8mm', 'bidsname': 'T1w'}
+
+{'series_description': 'STRUC_T2CUBE_PROMO', 'bidsname': 'T2w'}
+
+{'series_description': 'FUNC_rsvppRF_8_MUX6', 'bidsname': 'task-rsvpprf_bold'}
+
+{'series_description': 'STRUC_T1MPRAGE_noPROMO', 'bidsname': 'T1w'}
+
+{'series_description': 'FUNC_rsvppRF_5_MUX6', 'bidsname': 'task-rsvpprf_bold'}
+
+{'series_description': 'FUNC_MAGNOT_2_MUX6', 'bidsname': 'task-magnot_bold'}
+
+{'series_description': 'FUNC_MAGNOT_1_MUX6', 'bidsname': 'task-magnot_bold'}
+
+{'series_description': 'FUNC_MUX6_V367', 'bidsname': 'task-v367_bold'}
+
+{'series_description': 'FUNC_MTLoc_1_MUX6', 'bidsname': 'task-mtloc_bold'}
+
+{'series_description': 'FUNC_MTLoc_2_MUX6', 'bidsname': 'task-mtloc_bold'}
+
+
+2019-12-16 15:13:39.215953
+
+
+
+
+
+2019-12-16 15:14:05.603997
+
+
+{'series_description': 'FUNC_MUX6_SST', 'bidsname': 'task-sst_bold'}
+
+{'series_description': 'FUNC_MUX6_GNG', 'bidsname': 'task-gng_bold'}
+
+{'series_description': 'FUNC_MUX6_MSIT', 'bidsname': 'task-msit_bold'}
+
+{'series_description': 'func_resting', 'bidsname': 'task-resting_bold'}
+
+{'series_description': 'MB_fMRI_QA', 'bidsname': 'task-fmri_bold'}
+
+{'series_description': 'DTI_102MultiHB', 'bidsname': 'dti'}
+
+{'series_description': 'FM_DTIHB', 'bidsname': 'dti'}
+
+{'series_description': 'func_sst', 'bidsname': 'task-sst_bold'}
+
+{'series_description': 't1spgr_208sl', 'bidsname': 'T1w'}
+
+{'series_description': 'STRUC_T2CUBE_PROMO', 'bidsname': 'T2w'}
+
+{'series_description': 't1overlay_60sl', 'bidsname': 'T1w'}
+
+{'series_description': 't2cube_208sl', 'bidsname': 'T2w'}
+
+{'series_description': 'STRUC_T1MPRAGE_noPROMO', 'bidsname': 'T1w'}
+
+
+2019-12-16 15:22:02.620522
+
+
+{'series_description': 'FUNC_MUX6_MAGNOT', 'bidsname': 'task-magnot_bold'}
+
+{'series_description': 'FUNC_MAGNOT_3_MUX6', 'bidsname': 'task-magnot_bold'}
+
+{'series_description': 'FUNC_MAGNOT_4_MUX6', 'bidsname': 'task-magnot_bold'}
+
+{'series_description': 'FUNC_AttnFreq_2_MUX6', 'bidsname': 'task-attnfreq_bold'}
+
+{'series_description': 'FUNC_MUX6_RSVP_pRF_S11_TE25', 'bidsname': 'task-rsvp_bold'}
+
+{'series_description': 'FUNC_rsvppRF_8_MUX6', 'bidsname': 'task-rsvpprf_bold'}
+
+{'series_description': 'FUNC_RS_3_MUX6', 'bidsname': 'task-rs_bold'}
+
+{'series_description': 'FUNC_rsvppRF_5_MUX6', 'bidsname': 'task-rsvpprf_bold'}
+
+{'series_description': 'FUNC_MAGNOT_1_MUX6', 'bidsname': 'task-magnot_bold'}
+
+{'series_description': 'FUNC_RS_2_MUX6', 'bidsname': 'task-rs_bold'}
+
+{'series_description': 'FUNC_rsvppRF_3_MUX6', 'bidsname': 'task-rsvpprf_bold'}
+
+{'series_description': 'FUNC_MUX6_2mm', 'bidsname': 'task-2mm_bold'}
+
+{'series_description': 'FUNC_AttnFreq_1_MUX6', 'bidsname': 'task-attnfreq_bold'}
+
+{'series_description': 'FUNC_MUX6_SOVIG_S10_TE30', 'bidsname': 'task-sovig_bold'}
+
+{'series_description': 'FUNC_MUX6_Resting_S11_TE25', 'bidsname': 'task-resting_bold'}
+
+{'series_description': 'FUNC_MUX6_GBU_FOV192', 'bidsname': 'task-gbu_bold'}
+
+{'series_description': 'STRUC_T2CUBE_PROMO', 'bidsname': 'T2w'}
+
+{'series_description': 'FUNC_rsvppRF_1_MUX6', 'bidsname': 'task-rsvpprf_bold'}
+
+{'series_description': 'STRUC_T1MPRAGE_noPROMO', 'bidsname': 'T1w'}
+
+{'series_description': 'FUNC_GBU_MUX6', 'bidsname': 'task-gbu_bold'}
+
+{'series_description': 'FUNC_MUX6_V992', 'bidsname': 'task-v992_bold'}
+
+{'series_description': 'FUNC_MUX6_Resting', 'bidsname': 'task-resting_bold'}
+
+{'series_description': 'FUNC_MUX6_SFSWEEP_S10_TE30', 'bidsname': 'task-sfsweep_bold'}
+
+{'series_description': 'FUNC_MUX6_V367', 'bidsname': 'task-v367_bold'}
+
+{'series_description': 'FUNC_RS_4_MUX6', 'bidsname': 'task-rs_bold'}
+
+{'series_description': 'FUNC_MTLoc_1_MUX6', 'bidsname': 'task-mtloc_bold'}
+
+{'series_description': 'FUNC_MUX6_GBU_S11_TE25', 'bidsname': 'task-gbu_bold'}
+
+{'series_description': 'STRUC_T2CUBE_SAG3D_.8mm', 'bidsname': 'T2w'}
+
+{'series_description': 'FUNC_rsvppRF_2_MUX6', 'bidsname': 'task-rsvpprf_bold'}
+
+{'series_description': 'FUNC_rsvppRF_7_MUX6', 'bidsname': 'task-rsvpprf_bold'}
+
+{'series_description': 'STRUC_T2CUBE_SAG3D_ARC_.8mm', 'bidsname': 'T2w'}
+
+{'series_description': 'FUNC_JHFlicker_2_MUX6', 'bidsname': 'task-jhflicker_bold'}
+
+{'series_description': 'FUNC_MAGNOT_2_MUX6', 'bidsname': 'task-magnot_bold'}
+
+{'series_description': 'FUNC_RS_1_MUX6', 'bidsname': 'task-rs_bold'}
+
+{'series_description': 'FUNC_rsvppRF_4_MUX6', 'bidsname': 'task-rsvpprf_bold'}
+
+{'series_description': 'FUNC_MTLoc_2_MUX6', 'bidsname': 'task-mtloc_bold'}
+
+{'series_description': 'STRUC_BRAVO_SAG3D_ARC_.8mm', 'bidsname': 'T1w'}
+
+{'series_description': 'FUNC_MUX6_GBU', 'bidsname': 'task-gbu_bold'}
+
+{'series_description': 'FUNC_JHFlicker_1_MUX6', 'bidsname': 'task-jhflicker_bold'}
+
+{'series_description': 'STRUC_BRAVO_SAG3D_.8mm', 'bidsname': 'T1w'}
+
+{'series_description': 'FUNC_rsvppRF_6_MUX6', 'bidsname': 'task-rsvpprf_bold'}

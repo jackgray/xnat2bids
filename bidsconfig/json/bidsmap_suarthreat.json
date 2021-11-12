@@ -1,0 +1,14 @@
+[
+	{
+		"series_description": "STRUC_T1BRAVO_SAG_1mm",
+		"bidsname": "T1w"
+	},
+	{
+		"series_description": "FUNC_EPI_REST_S27",
+		"bidsname": "task-rest_bold"
+	},
+	{
+		"series_description": "FUNC_EPI_V1626_S48",
+		"bidsname": "task-v_bold"
+	}
+]

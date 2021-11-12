@@ -1,0 +1,1130 @@
+[
+    {
+        "series_description": "STRUC_2D_GRE_MT_MPH",
+        "bidsname": "gre"
+    },
+    {
+        "series_description": "STRUC_SE_COR_fatsat",
+        "bidsname": "struc"
+    },
+    {
+        "series_description": "FUNC_MEPI_MUX3ARC3_TR1500",
+        "bidsname": "task-mepi_bold"
+    },
+    {
+        "series_description": "FUNC_MUX5_ARC2_2.0mm_TE22",
+        "bidsname": "task-arc_bold"
+    },
+    {
+        "series_description": "FUNC_EPI_Resting_V155_S34",
+        "bidsname": "task-resting_bold"
+    },
+    {
+        "series_description": "FUNC_EPI_Decision_S40_ASSET2",
+        "bidsname": "task-decision_bold"
+    },
+    {
+        "series_description": "FUNC_RISE-EX1",
+        "bidsname": "task-rise-ex_bold"
+    },
+    {
+        "series_description": "FUNC_EPI_TR2000_FA77",
+        "bidsname": "task-tr_bold"
+    },
+    {
+        "series_description": "FUNC_EPI_Pairing_S40_ASSET2",
+        "bidsname": "task-pairing_bold"
+    },
+    {
+        "series_description": "FUNC_EPI_Task_S24_ASSET2",
+        "bidsname": "task-task_bold"
+    },
+    {
+        "series_description": "FUNC_EPI_test",
+        "bidsname": "task-test_bold"
+    },
+    {
+        "series_description": "FUNC_MUX6_2mm_seq",
+        "bidsname": "task-2mm_bold"
+    },
+    {
+        "series_description": "FUNC_MUX6_Rest_S10_TE30",
+        "bidsname": "task-rest_bold"
+    },
+    {
+        "series_description": "FUNC_MUX6_TE20_S11",
+        "bidsname": "task-te_bold"
+    },
+    {
+        "series_description": "FUNC_EPI_Run3",
+        "bidsname": "task-run_bold"
+    },
+    {
+        "series_description": "FUNC_EPI_PID_V107_S34",
+        "bidsname": "task-pid_bold"
+    },
+    {
+        "series_description": "FUNC_EPI_Scene_Mem_S41_ASSET2",
+        "bidsname": "task-scene_bold"
+    },
+    {
+        "series_description": "FUNC_task_4_MUX4_ARC2",
+        "bidsname": "task-task_bold"
+    },
+    {
+        "series_description": "FUNC_task_5_MUX4_ARC2",
+        "bidsname": "task-task_bold"
+    },
+    {
+        "series_description": "FUNC_MUX6_TE25_S11",
+        "bidsname": "task-te_bold"
+    },
+    {
+        "series_description": "FUNC_EPI_ArtifactTest",
+        "bidsname": "task-artifacttest_bold"
+    },
+    {
+        "series_description": "FUNC_EPI_Task_S34",
+        "bidsname": "task-task_bold"
+    },
+    {
+        "series_description": "FUNC_MUX4_BOLD_S17_TE25",
+        "bidsname": "task-bold_bold"
+    },
+    {
+        "series_description": "FUNC_MUX6_MSIT",
+        "bidsname": "task-msit_bold"
+    },
+    {
+        "series_description": "FUNC_EPI_REST_V200_S45_ASSET2",
+        "bidsname": "task-rest_bold"
+    },
+    {
+        "series_description": "FUNC_MUX6_2.4mm",
+        "bidsname": "task-2.4mm_bold"
+    },
+    {
+        "series_description": "FUNC_EPI_10vols",
+        "bidsname": "task-10vols_bold"
+    },
+    {
+        "series_description": "FUNC_MUX6_2mm",
+        "bidsname": "task-2mm_bold"
+    },
+    {
+        "series_description": "FUNC_MUX6_HrFCheck_S11_TE25",
+        "bidsname": "task-hrfcheck_bold"
+    },
+    {
+        "series_description": "OFC_FUNC_MUX6_TE20_S11",
+        "bidsname": "task-func_bold"
+    },
+    {
+        "series_description": "FUNC_EPI_HighRes",
+        "bidsname": "task-highres_bold"
+    },
+    {
+        "series_description": "FUNC_RS_EPI",
+        "bidsname": "task-rs_bold"
+    },
+    {
+        "series_description": "FUNC_MUX6_OBL_S60_TE30",
+        "bidsname": "task-obl_bold"
+    },
+    {
+        "series_description": "FUNC_EPI_ICT_V150_S45",
+        "bidsname": "task-ict_bold"
+    },
+    {
+        "series_description": "FUNC_EPI_TR-trigger",
+        "bidsname": "task-tr-trigger_bold"
+    },
+    {
+        "series_description": "FUNC_MUX6_FACES_S10_TE30",
+        "bidsname": "task-faces_bold"
+    },
+    {
+        "series_description": "FUNC_task_3_MUX4_ARC2",
+        "bidsname": "task-task_bold"
+    },
+    {
+        "series_description": "FUNC_RS_2_MUX6",
+        "bidsname": "task-rs_bold"
+    },
+    {
+        "series_description": "FUNC_MUX6",
+        "bidsname": "task-AAAAAAAAAAAAAAAAA_bold"
+    },
+    {
+        "series_description": "FUNC_MUX6_FACES_S60_TE30",
+        "bidsname": "task-faces_bold"
+    },
+    {
+        "series_description": "FUNC_EPI_TASK_V200_S45_ASSET2",
+        "bidsname": "task-task_bold"
+    },
+    {
+        "series_description": "FUNC_MID_2_MUX6_V419",
+        "bidsname": "task-mid_bold"
+    },
+    {
+        "series_description": "FUNC_MUX6_BOLD_S10_TE30",
+        "bidsname": "task-bold_bold"
+    },
+    {
+        "series_description": "FUNC_MID_1_MUX6_V419",
+        "bidsname": "task-mid_bold"
+    },
+    {
+        "series_description": "FUNC_sprlio_V50_S32",
+        "bidsname": "task-sprlio_bold"
+    },
+    {
+        "series_description": "FUNC_MUX6_Rest_S60_seq",
+        "bidsname": "task-rest_bold"
+    },
+    {
+        "series_description": "FUNC_EPI_Resting_V210_S36",
+        "bidsname": "task-resting_bold"
+    },
+    {
+        "series_description": "FUNC_BEADS4_MUX4_ARC2_2.4mm",
+        "bidsname": "task-beads_bold"
+    },
+    {
+        "series_description": "FUNC_EPI_Attention_V360_S36",
+        "bidsname": "task-attention_bold"
+    },
+    {
+        "series_description": "FUNC_EPI_V462_ASSET2",
+        "bidsname": "task-v_bold"
+    },
+    {
+        "series_description": "FUNC_MEPI_MUX4ARC3_TR1500",
+        "bidsname": "task-mepi_bold"
+    },
+    {
+        "series_description": "FUNC_MUX8",
+        "bidsname": "task-AAAAAAAAAAAAAAAAA_bold"
+    },
+    {
+        "series_description": "FUNC_EPI_Visual_S41_ASSET2",
+        "bidsname": "task-visual_bold"
+    },
+    {
+        "series_description": "FUNC_MUX6_Resting_S11_TE25",
+        "bidsname": "task-resting_bold"
+    },
+    {
+        "series_description": "FUNC_EPI_REST_ASSET2",
+        "bidsname": "task-rest_bold"
+    },
+    {
+        "series_description": "FUNC_MUX6_short_2mm",
+        "bidsname": "task-short_bold"
+    },
+    {
+        "series_description": "LESSER_TILT_FUNC_MUX6_TE20_S11",
+        "bidsname": "task-tilt_bold"
+    },
+    {
+        "series_description": "FUNC_MUX5_ARC2_2.5mm",
+        "bidsname": "task-arc_bold"
+    },
+    {
+        "series_description": "FUNC_EPI_Memory_S40_ASSET2",
+        "bidsname": "task-memory_bold"
+    },
+    {
+        "series_description": "FUNC_MUX6_SAG_1x2x2",
+        "bidsname": "task-sag_bold"
+    },
+    {
+        "series_description": "FUNC_MUX6_Rest_S60_TE30",
+        "bidsname": "task-rest_bold"
+    },
+    {
+        "series_description": "FUNC_EPI_MID_V240_S36",
+        "bidsname": "task-mid_bold"
+    },
+    {
+        "series_description": "FUNC_MUX6_1x2x2",
+        "bidsname": "task-1x2x_bold"
+    },
+    {
+        "series_description": "FUNC_EPI_Resting_V128_S34",
+        "bidsname": "task-resting_bold"
+    },
+    {
+        "series_description": "FUNC_EPI_V434_ASSET2",
+        "bidsname": "task-v_bold"
+    },
+    {
+        "series_description": "FUNC_task_2_MUX4_ARC2",
+        "bidsname": "task-task_bold"
+    },
+    {
+        "series_description": "FUNC_EPI_EmoStroop_V192_S45",
+        "bidsname": "task-emostroop_bold"
+    },
+    {
+        "series_description": "FUNC_EPI_Hooley_V90_S32_ASSET2",
+        "bidsname": "task-hooley_bold"
+    },
+    {
+        "series_description": "FUNC_EPI_Pain",
+        "bidsname": "task-pain_bold"
+    },
+    {
+        "series_description": "FUNC_EPI_Run1",
+        "bidsname": "task-run_bold"
+    },
+    {
+        "series_description": "FUNC_EPI_Run2",
+        "bidsname": "task-run_bold"
+    },
+    {
+        "series_description": "FUNC_MUX3_ARC2_1.6mm",
+        "bidsname": "task-arc_bold"
+    },
+    {
+        "series_description": "FUNC_MUX6_GNG",
+        "bidsname": "task-gng_bold"
+    },
+    {
+        "series_description": "FUNC_EPI_1stTR-trigger",
+        "bidsname": "task-1sttr-trigger_bold"
+    },
+    {
+        "series_description": "FUNC_MUX6_EPIRT",
+        "bidsname": "task-epirt_bold"
+    },
+    {
+        "series_description": "FUNC_MUX3_V224_2mm",
+        "bidsname": "task-v_bold"
+    },
+    {
+        "series_description": "OFC_FUNC_MUX6_TEMIN_S11",
+        "bidsname": "task-func_bold"
+    },
+    {
+        "series_description": "FUNC_EPI_rumi_funclo_V270_S45_ASSET2",
+        "bidsname": "task-rumi_bold"
+    },
+    {
+        "series_description": "FUNC_SE-EPI_Rest",
+        "bidsname": "task-se-epi_bold"
+    },
+    {
+        "series_description": "FUNC_EPI_TR2200_S42",
+        "bidsname": "task-tr_bold"
+    },
+    {
+        "series_description": "FUNC_MUX6_ARC2_2mm",
+        "bidsname": "task-arc_bold"
+    },
+    {
+        "series_description": "FUNC_MPH-EPI_TR2200_TE28_S42",
+        "bidsname": "task-mph-epi_bold"
+    },
+    {
+        "series_description": "FUNC_EPI_ICT_V150_S45_ASSET2",
+        "bidsname": "task-ict_bold"
+    },
+    {
+        "series_description": "FUNC_MUX4_ARC2_2mm",
+        "bidsname": "task-arc_bold"
+    },
+    {
+        "series_description": "FUNC_EPI_Food_V240_S45_ASSET1.5",
+        "bidsname": "task-food_bold"
+    },
+    {
+        "series_description": "FUNC_EPI_Task_S45_ASSET2",
+        "bidsname": "task-task_bold"
+    },
+    {
+        "series_description": "W/STIM_FUNC_EPI_EmoStroop_V192_S45_ASSET2_W/STIM",
+        "bidsname": "task-func_bold"
+    },
+    {
+        "series_description": "FUNC_MUX3_ARC2_minTE_1.6mm",
+        "bidsname": "task-arc_bold"
+    },
+    {
+        "series_description": "FUNC_ME-EPI_S46",
+        "bidsname": "task-me-epi_bold"
+    },
+    {
+        "series_description": "FUNC_MUX3_ARC2_V180_S25",
+        "bidsname": "task-arc_bold"
+    },
+    {
+        "series_description": "FUNC_MEPI_MUX3ARC3_TR2000",
+        "bidsname": "task-mepi_bold"
+    },
+    {
+        "series_description": "FUNC_MUX6_RapidSimon",
+        "bidsname": "task-rapidsimon_bold"
+    },
+    {
+        "series_description": "FUNC_EPI_Resting_S42_TE28",
+        "bidsname": "task-resting_bold"
+    },
+    {
+        "series_description": "FUNC_MUX3_V184_2mm",
+        "bidsname": "task-v_bold"
+    },
+    {
+        "series_description": "FUNC_MUX6_TacitLoc_S11_TE25",
+        "bidsname": "task-tacitloc_bold"
+    },
+    {
+        "series_description": "FUNC_EPI_TR2200_TE28_S40",
+        "bidsname": "task-tr_bold"
+    },
+    {
+        "series_description": "FUNC_MUX3_short_2mm",
+        "bidsname": "task-short_bold"
+    },
+    {
+        "series_description": "FUNC_EPI_Resting_S42_ASSET2",
+        "bidsname": "task-resting_bold"
+    },
+    {
+        "series_description": "FUNC_RS_1_MUX6",
+        "bidsname": "task-rs_bold"
+    },
+    {
+        "series_description": "FUNC_BEADS3_MUX4_ARC2_2.4mm",
+        "bidsname": "task-beads_bold"
+    },
+    {
+        "series_description": "FUNC_EPI_Resting_S45_ASSET2",
+        "bidsname": "task-resting_bold"
+    },
+    {
+        "series_description": "FUNC_MUX6_OBL_2mm",
+        "bidsname": "task-obl_bold"
+    },
+    {
+        "series_description": "FUNC_EPI_Resting_S44_ASSET2",
+        "bidsname": "task-resting_bold"
+    },
+    {
+        "series_description": "FUNC_Mem_2_MUX4ARC2",
+        "bidsname": "task-mem_bold"
+    },
+    {
+        "series_description": "FUNC_MUX6_AX_S60_TE30",
+        "bidsname": "task-ax_bold"
+    },
+    {
+        "series_description": "FUNC_EPI_Color_S40_ASSET2",
+        "bidsname": "task-color_bold"
+    },
+    {
+        "series_description": "FUNC_MUX6_SF_Sweep_S11_TE25",
+        "bidsname": "task-sf_bold"
+    },
+    {
+        "series_description": "FUNC_EPI_Default_V210_S30",
+        "bidsname": "task-default_bold"
+    },
+    {
+        "series_description": "FUNC_EPI_EFP_V126_S34",
+        "bidsname": "task-efp_bold"
+    },
+    {
+        "series_description": "FUNC_task_1_MUX4_ARC2",
+        "bidsname": "task-task_bold"
+    },
+    {
+        "series_description": "FUNC_MUX4_ARC2_2.4mm",
+        "bidsname": "task-arc_bold"
+    },
+    {
+        "series_description": "FUNC_MUX6_RSVP1S_S11_TE25",
+        "bidsname": "task-rsvp1s_bold"
+    },
+    {
+        "series_description": "FUNC_MUX6_TEMin_S11",
+        "bidsname": "task-temin_bold"
+    },
+    {
+        "series_description": "FUNC_MUX2_BOLD_S33_TE25",
+        "bidsname": "task-bold_bold"
+    },
+    {
+        "series_description": "FUNC_EPI_CB_and_Pain",
+        "bidsname": "task-cb_bold"
+    },
+    {
+        "series_description": "FUNC_MEPI_MUX3ARC2_3mm",
+        "bidsname": "task-mepi_bold"
+    },
+    {
+        "series_description": "FUNC_MUX5_ARC2_2.0mm_TR2",
+        "bidsname": "task-arc_bold"
+    },
+    {
+        "series_description": "FUNC_task_6_MUX4_ARC2",
+        "bidsname": "task-task_bold"
+    },
+    {
+        "series_description": "FUNC_MUX6_2x1x2",
+        "bidsname": "task-2x1x_bold"
+    },
+    {
+        "series_description": "FUNC_MUX6_Checkerboard_S11_TE25",
+        "bidsname": "task-checkerboard_bold"
+    },
+    {
+        "series_description": "FUNC_MUX3_ARC2_2.4mm",
+        "bidsname": "task-arc_bold"
+    },
+    {
+        "series_description": "FUNC_MUX6_Fables_S11_TE25",
+        "bidsname": "task-fables_bold"
+    },
+    {
+        "series_description": "FUNC_MUX8_BOLD_S9_TE25",
+        "bidsname": "task-bold_bold"
+    },
+    {
+        "series_description": "FUNC_MUX6_BOLD_S11_TE25",
+        "bidsname": "task-bold_bold"
+    },
+    {
+        "series_description": "FUNC_sprlio_V251_S32",
+        "bidsname": "task-sprlio_bold"
+    },
+    {
+        "series_description": "FUNC_EPI_CheckerBoard_V_S45_ASSET2",
+        "bidsname": "task-checkerboard_bold"
+    },
+    {
+        "series_description": "FUNC_MUX6_Gambling_S60_TE30",
+        "bidsname": "task-gambling_bold"
+    },
+    {
+        "series_description": "FUNC_MUX6_SST",
+        "bidsname": "task-sst_bold"
+    },
+    {
+        "series_description": "FUNC_EPI_VR_V216_S43",
+        "bidsname": "task-vr_bold"
+    },
+    {
+        "series_description": "FUNC_MUX6_RS_S11_TE25",
+        "bidsname": "task-rs_bold"
+    },
+    {
+        "series_description": "FUNC_EPI_MoodTask_V189_S35",
+        "bidsname": "task-moodtask_bold"
+    },
+    {
+        "series_description": "FUNC_EPI_Resting_S42_TE30",
+        "bidsname": "task-resting_bold"
+    },
+    {
+        "series_description": "FUNC_EPI_CART_TopDown_V160_S34",
+        "bidsname": "task-cart_bold"
+    },
+    {
+        "series_description": "FUNC_MUX6_MPH-EPI",
+        "bidsname": "task-mph-epi_bold"
+    },
+    {
+        "series_description": "FUNC_MUX4_ARC2_seq",
+        "bidsname": "task-arc_bold"
+    },
+    {
+        "series_description": "FUNC_EPI_Std_Simon_V112_S33",
+        "bidsname": "task-std_bold"
+    },
+    {
+        "series_description": "FUNC_EPI_Food_S40_ASSET2",
+        "bidsname": "task-food_bold"
+    },
+    {
+        "series_description": "FUNC_MUX6_Sparse_MPH-EPI",
+        "bidsname": "task-sparse_bold"
+    },
+    {
+        "series_description": "FUNC_MUX5_ARC2_2.0mm",
+        "bidsname": "task-arc_bold"
+    },
+    {
+        "series_description": "FUNC_MUX6_TM_S11_TE25",
+        "bidsname": "task-tm_bold"
+    },
+    {
+        "series_description": "FUNC_EPI_Localizer_ASSET2",
+        "bidsname": "task-localizer_bold"
+    },
+    {
+        "series_description": "FUNC_SE-EPI_Task",
+        "bidsname": "task-se-epi_bold"
+    },
+    {
+        "series_description": "FUNC_BEADS2_MUX4_ARC2_2.4mm",
+        "bidsname": "task-beads_bold"
+    },
+    {
+        "series_description": "FUNC_EPI_Resting_V185_S45_ASSET2",
+        "bidsname": "task-resting_bold"
+    },
+    {
+        "series_description": "FUNC_NBack_2_MUX6_V419",
+        "bidsname": "task-nback_bold"
+    },
+    {
+        "series_description": "FUNC_NBack_1_MUX6_V419",
+        "bidsname": "task-nback_bold"
+    },
+    {
+        "series_description": "FUNC_glf_1_MUX4_ARC2",
+        "bidsname": "task-glf_bold"
+    },
+    {
+        "series_description": "FUNC_BEADS1_MUX4_ARC2_2.4mm",
+        "bidsname": "task-beads_bold"
+    },
+    {
+        "series_description": "FUNC_EPI_Conditioning_1_S40",
+        "bidsname": "task-conditioning_bold"
+    },
+    {
+        "series_description": "FUNC_EPI_HREF_S45_ASSET2",
+        "bidsname": "task-href_bold"
+    },
+    {
+        "series_description": "NO_STIM_FUNC_EPI_EmoStroop_V192_S45_ASSET2",
+        "bidsname": "task-stim_bold"
+    },
+    {
+        "series_description": "FUNC_EPI_Part2",
+        "bidsname": "task-part_bold"
+    },
+    {
+        "series_description": "FUNC_MUX3_V134_2mm",
+        "bidsname": "task-v_bold"
+    },
+    {
+        "series_description": "FUNC_MUX6_TomLoc_S11_TE25",
+        "bidsname": "task-tomloc_bold"
+    },
+    {
+        "series_description": "FUNC_EPI_EmoStroop_V192_S45_ASSET2",
+        "bidsname": "task-emostroop_bold"
+    },
+    {
+        "series_description": "FUNC_EPI_V319_ASSET2",
+        "bidsname": "task-v_bold"
+    },
+    {
+        "series_description": "FUNC_EPI_RapidSimon_V140_S34",
+        "bidsname": "task-rapidsimon_bold"
+    },
+    {
+        "series_description": "FUNC_EPI_rumi_sart_V300_S45_ASSET2",
+        "bidsname": "task-rumi_bold"
+    },
+    {
+        "series_description": "FUNC_MUX2",
+        "bidsname": "task-AAAAAAAAAAAAAAAAA_bold"
+    },
+    {
+        "series_description": "FUNC_EPI_Default_V102_S24",
+        "bidsname": "task-default_bold"
+    },
+    {
+        "series_description": "STRUC_Sag_IR-FSPGR",
+        "bidsname": "T1w"
+    },
+    {
+        "series_description": "DTI_MUX3_D96_6b0_S81",
+        "bidsname": "dti"
+    },
+    {
+        "series_description": "DTI_MUX3_D64_2mm",
+        "bidsname": "dti"
+    },
+    {
+        "series_description": "DTI_AX_D30_S72_b1500",
+        "bidsname": "dti"
+    },
+    {
+        "series_description": "DTI_AX_D32_S72",
+        "bidsname": "dti"
+    },
+    {
+        "series_description": "STRUC_Sag_IR-FSPGR_ADNI",
+        "bidsname": "T1w"
+    },
+    {
+        "series_description": "DTI_AX_3-Shell_New_ASSET2",
+        "bidsname": "dti"
+    },
+    {
+        "series_description": "DTI_MUX3_ARC2",
+        "bidsname": "dti"
+    },
+    {
+        "series_description": "DTI_3-shell_D11_AP_MUX_nocycling_shortTR",
+        "bidsname": "dti"
+    },
+    {
+        "series_description": "STRUC_MPRAGE",
+        "bidsname": "T1w"
+    },
+    {
+        "series_description": "DTI_AX_D32_S72_RPE",
+        "bidsname": "dti"
+    },
+    {
+        "series_description": "CORONAL_STRUC_T1FLAIR",
+        "bidsname": "T1w"
+    },
+    {
+        "series_description": "STRUC_FSE_T1W_neuromelanin",
+        "bidsname": "T1w"
+    },
+    {
+        "series_description": "STRUC_T1BRAVO_COR_short",
+        "bidsname": "T1w"
+    },
+    {
+        "series_description": "STRUC_T2CUBE_S180_FatSat",
+        "bidsname": "T2w"
+    },
+    {
+        "series_description": "STRUC_BRAVO_SAG3D_.8mm",
+        "bidsname": "T1w"
+    },
+    {
+        "series_description": "DTI_3-shell_D78_nocycling",
+        "bidsname": "dti"
+    },
+    {
+        "series_description": "STRUC_IR-FSPGR_SAG_1mm",
+        "bidsname": "T1w"
+    },
+    {
+        "series_description": "DTI_3-shell_D11_TEmin",
+        "bidsname": "dti"
+    },
+    {
+        "series_description": "DTI_3-shell_D11_RL_MUX",
+        "bidsname": "dti"
+    },
+    {
+        "series_description": "STRUC_T2FLAIR_PURE_3mm",
+        "bidsname": "T2w"
+    },
+    {
+        "series_description": "DTI_3-shell_D11_nocycling_PA",
+        "bidsname": "dti"
+    },
+    {
+        "series_description": "STRUC_T1BRAVO_SAG_1mm",
+        "bidsname": "T1w"
+    },
+    {
+        "series_description": "STRUC_T1FLAIR_S24",
+        "bidsname": "T1w"
+    },
+    {
+        "series_description": "DTI_3-shell_D11_LR_MUX_nocycling",
+        "bidsname": "dti"
+    },
+    {
+        "series_description": "DTI_AX_D60_S72_b2800",
+        "bidsname": "dti"
+    },
+    {
+        "series_description": "STRUC_FSPGR_Amsterdam",
+        "bidsname": "T1w"
+    },
+    {
+        "series_description": "STRUC_T2FSE_AX_infant",
+        "bidsname": "T2w"
+    },
+    {
+        "series_description": "Axial_DTI",
+        "bidsname": "dti"
+    },
+    {
+        "series_description": "STRUC_T2FSE_SAG_infant",
+        "bidsname": "T2w"
+    },
+    {
+        "series_description": "DTI_3-shell_D11_DSE",
+        "bidsname": "dti"
+    },
+    {
+        "series_description": "STRUC_FSPGR_ADNI3_SAG",
+        "bidsname": "T1w"
+    },
+    {
+        "series_description": "AX_OBLQ_STRUC_T1FLAIR",
+        "bidsname": "T1w"
+    },
+    {
+        "series_description": "DTI_3-shell_D11_PA_MUX",
+        "bidsname": "dti"
+    },
+    {
+        "series_description": "DTI",
+        "bidsname": "dti"
+    },
+    {
+        "series_description": "DTI_MUX3_D102_S81",
+        "bidsname": "dti"
+    },
+    {
+        "series_description": "STRUC_T1MPRAGE_noPROMO",
+        "bidsname": "T1w"
+    },
+    {
+        "series_description": "STRUC_T2CUBE_S208_noFatSat",
+        "bidsname": "T2w"
+    },
+    {
+        "series_description": "DTI_AX_D77_Phantom",
+        "bidsname": "dti"
+    },
+    {
+        "series_description": "STRUC_MPRAGE_SAG_no_PROMO",
+        "bidsname": "T1w"
+    },
+    {
+        "series_description": "DTI_3-shell_D78_nocycling_mux",
+        "bidsname": "dti"
+    },
+    {
+        "series_description": "DTI_AX_D64_S60_b2500",
+        "bidsname": "dti"
+    },
+    {
+        "series_description": "STRUC_T1BRAVO_SAG_ARC_1mm",
+        "bidsname": "T1w"
+    },
+    {
+        "series_description": "DTI_AX_D64_S60_PER_ASSET2",
+        "bidsname": "dti"
+    },
+    {
+        "series_description": "DTI_3-shell_D11_PA_MUX_nocycling",
+        "bidsname": "dti"
+    },
+    {
+        "series_description": "DTI_AX_D64_ASSET2",
+        "bidsname": "dti"
+    },
+    {
+        "series_description": "DTI_3-shell_D11_PE_RL",
+        "bidsname": "dti"
+    },
+    {
+        "series_description": "DTI_AX_D11_NEX1_ASSET2",
+        "bidsname": "dti"
+    },
+    {
+        "series_description": "STRUC_MPRAGE_woRF",
+        "bidsname": "T1w"
+    },
+    {
+        "series_description": "AX_STRUC_T1FLAIR",
+        "bidsname": "T1w"
+    },
+    {
+        "series_description": "DTI_3-shell_D11_PA",
+        "bidsname": "dti"
+    },
+    {
+        "series_description": "DTI_AX_D64_S60",
+        "bidsname": "dti"
+    },
+    {
+        "series_description": "DTI_AX_D25_ASSET2",
+        "bidsname": "dti"
+    },
+    {
+        "series_description": "STRUC_T2CUBE_S208_FatSat",
+        "bidsname": "T2w"
+    },
+    {
+        "series_description": "DTI_3-shell_D11_RL_MUX_nocycling",
+        "bidsname": "dti"
+    },
+    {
+        "series_description": "DTI_AX_3-Shell_ASSET2",
+        "bidsname": "dti"
+    },
+    {
+        "series_description": "STRUC_BRAVO_COR3D_192x192_2nex",
+        "bidsname": "T1w"
+    },
+    {
+        "series_description": "STRUC_T1FLAIR_SAG",
+        "bidsname": "T1w"
+    },
+    {
+        "series_description": "STRUC_2D_GRE_MT1200",
+        "bidsname": "T1w"
+    },
+    {
+        "series_description": "STRUC_COR-OBLQ_T1FLAIR",
+        "bidsname": "T1w"
+    },
+    {
+        "series_description": "DTI_MUX3_ARC1_PER",
+        "bidsname": "dti"
+    },
+    {
+        "series_description": "STRUC_T1FLAIR_AX",
+        "bidsname": "T1w"
+    },
+    {
+        "series_description": "DTI_AX_D64_S60_SSGR",
+        "bidsname": "dti"
+    },
+    {
+        "series_description": "STRUC_T2FLAIR",
+        "bidsname": "T2w"
+    },
+    {
+        "series_description": "DTI_3-shell_D78_TE100",
+        "bidsname": "dti"
+    },
+    {
+        "series_description": "DTI_3-shell_D11_TEmin__Phantom",
+        "bidsname": "dti"
+    },
+    {
+        "series_description": "DTI_MUX3_ARC1",
+        "bidsname": "dti"
+    },
+    {
+        "series_description": "STRUC_T2CUBE_PROMO",
+        "bidsname": "T2w"
+    },
+    {
+        "series_description": "STRUC_T1BRAVO_COR_4NEX",
+        "bidsname": "T1w"
+    },
+    {
+        "series_description": "DTI_AX_D32_S60_b1000",
+        "bidsname": "dti"
+    },
+    {
+        "series_description": "DTI_3-shell_D11_LR_MUX",
+        "bidsname": "dti"
+    },
+    {
+        "series_description": "STRUC_FSPGR_SAG3D_ASSET2",
+        "bidsname": "T1w"
+    },
+    {
+        "series_description": "DTI_3-shell_D11_nocycling_mux",
+        "bidsname": "dti"
+    },
+    {
+        "series_description": "STRUC_T2CUBE_S180_noFatSat",
+        "bidsname": "T2w"
+    },
+    {
+        "series_description": "DTI_AX_3-Shell_2mm",
+        "bidsname": "dti"
+    },
+    {
+        "series_description": "DTI_3-shell_D11_LR",
+        "bidsname": "dti"
+    },
+    {
+        "series_description": "STRUC_T1FLAIR",
+        "bidsname": "T1w"
+    },
+    {
+        "series_description": "STRUC_T2CUBE_SAG3D_ARC_.8mm",
+        "bidsname": "T2w"
+    },
+    {
+        "series_description": "DTI_3-shell_D11_AP_MUX",
+        "bidsname": "dti"
+    },
+    {
+        "series_description": "STRUC_MPRAGE_S208_ARC24",
+        "bidsname": "T1w"
+    },
+    {
+        "series_description": "STRUC_T2_FSE",
+        "bidsname": "T2w"
+    },
+    {
+        "series_description": "STRUC_MPRAGE_no_PROMO_ABCD",
+        "bidsname": "T1w"
+    },
+    {
+        "series_description": "DTI_AX_D30_ASSET2",
+        "bidsname": "dti"
+    },
+    {
+        "series_description": "STRUC_BRAVO_SAG3D_ARC_1mm",
+        "bidsname": "T1w"
+    },
+    {
+        "series_description": "STRUC_T2CUBE(PROMO)_SAG",
+        "bidsname": "T2w"
+    },
+    {
+        "series_description": "DTI_AX_D64_nocycling",
+        "bidsname": "dti"
+    },
+    {
+        "series_description": "STRUC_Axial_T2_Star",
+        "bidsname": "T2w"
+    },
+    {
+        "series_description": "DTI_AX_D64_S60_ASSET2",
+        "bidsname": "dti"
+    },
+    {
+        "series_description": "DTI_D138_MUX3_ARC1_Mayberg",
+        "bidsname": "dti"
+    },
+    {
+        "series_description": "STRUC_FSPGR_Pre",
+        "bidsname": "T1w"
+    },
+    {
+        "series_description": "DTI_MUX3_ARC1_Mayberg",
+        "bidsname": "dti"
+    },
+    {
+        "series_description": "DTI_AX_D60_3-shell",
+        "bidsname": "dti"
+    },
+    {
+        "series_description": "STRUC_BRAVO_SAG3D_ARC_.8mm",
+        "bidsname": "T1w"
+    },
+    {
+        "series_description": "STRUC_T1BRAVO_SAG_0.8mm",
+        "bidsname": "T1w"
+    },
+    {
+        "series_description": "DTI_AX_3shell_2.5mm_short",
+        "bidsname": "dti"
+    },
+    {
+        "series_description": "STRUC_T2CUBE_SAG3D_.8mm",
+        "bidsname": "T2w"
+    },
+    {
+        "series_description": "DTI_3-shell_D11_RL",
+        "bidsname": "dti"
+    },
+    {
+        "series_description": "DTI_AX_D30_S72_b700",
+        "bidsname": "dti"
+    },
+    {
+        "series_description": "DTI_AX_D101_S72_ASSET2",
+        "bidsname": "dti"
+    },
+    {
+        "series_description": "DTI_AX_D60_S72_b2400",
+        "bidsname": "dti"
+    },
+    {
+        "series_description": "STRUC_MPRAGE_S208_ARC32",
+        "bidsname": "T1w"
+    },
+    {
+        "series_description": "DTI_3-shell_D11_AP_MUX_nocycling",
+        "bidsname": "dti"
+    },
+    {
+        "series_description": "STRUC_FSPGR_SAG3D_FatSupp_.8mm",
+        "bidsname": "T1w"
+    },
+    {
+        "series_description": "STRUC_T1BRAVO_SAG_0.9mm",
+        "bidsname": "T1w"
+    },
+    {
+        "series_description": "STRUC_BRAVO_SAG",
+        "bidsname": "T1w"
+    },
+    {
+        "series_description": "DTI_AX_D64_S60_b1000",
+        "bidsname": "dti"
+    },
+    {
+        "series_description": "DTI_3-shell_D11_AP",
+        "bidsname": "dti"
+    },
+    {
+        "series_description": "DTI_AX_D25_NEX1_ASSET2",
+        "bidsname": "dti"
+    },
+    {
+        "series_description": "STRUC_T2CUBE_SAG_0.9mm",
+        "bidsname": "T2w"
+    },
+    {
+        "series_description": "STRUC_T2_FSE_ARC",
+        "bidsname": "T2w"
+    },
+    {
+        "series_description": "STRUC_AX-OBLQ_T1FLAIR",
+        "bidsname": "T1w"
+    },
+    {
+        "series_description": "DTI_MUX3_ARC1_2.5mm",
+        "bidsname": "dti"
+    },
+    {
+        "series_description": "DTI_AX_D64_S72_ASSET2",
+        "bidsname": "dti"
+    },
+    {
+        "series_description": "STRUC_MPRAGE_SAG_1mm",
+        "bidsname": "T1w"
+    },
+    {
+        "series_description": "SAG_STRUC_T1BRAVO_1mm_R2",
+        "bidsname": "T1w"
+    },
+    {
+        "series_description": "STRUC_BRAVO_SAG3D_ARC_.9mm",
+        "bidsname": "T1w"
+    },
+    {
+        "series_description": "DTI_3-shell_D11_nocycling_RL",
+        "bidsname": "dti"
+    },
+    {
+        "series_description": "SAG_STRUC_T1FLAIR",
+        "bidsname": "T1w"
+    },
+    {
+        "series_description": "DTI_3-shell_D78_TEmin",
+        "bidsname": "dti"
+    },
+    {
+        "series_description": "DTI_ABCD_GE",
+        "bidsname": "dti"
+    },
+    {
+        "series_description": "STRUC_T2CUBE_SAG_PROMO",
+        "bidsname": "T2w"
+    },
+    {
+        "series_description": "FUNC_MUX6_AX_2mm",
+        "bidsname": "task-ax_bold"
+    }
+]

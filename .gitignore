@@ -12,3 +12,6 @@ pre-trash
 *.bin
 *group*
 *bidsprep*
+config_image/json
+config_image/log
+config_image/sandbox

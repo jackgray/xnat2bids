@@ -5,7 +5,7 @@
 # First generate conda lock file for environment config to add to build
 # nevermind- conda not installed on doctor
 docker buildx build \
---platform linux/amd64 \
+--platform linux/arm64 \
 --push \
--t jackgray/dn_nifti:amd64latest \
-.
+-t jackgray/dn_nifti:arm64latest \
+../download_image

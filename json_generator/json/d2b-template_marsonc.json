@@ -1,0 +1,125 @@
+{
+	"descriptions": [
+		{
+			"dataType": "anat",
+			"modalityLabel": "T1w",
+			"criteria": {
+				"SeriesDescription": "t1spgr_208sl"
+			}
+		},
+		{
+			"dataType": "anat",
+			"modalityLabel": "T2w",
+			"criteria": {
+				"SeriesDescription": "t2cube_208sl"
+			}
+		},
+		{
+			"dataType": "fmap",
+			"modalityLabel": "epi",
+			"customLabels": "dir-msitmv",
+			"criteria": {
+				"SeriesDescription": "FM_msit"
+			}
+		},
+		{
+			"dataType": "fmap",
+			"modalityLabel": "epi",
+			"customLabels": "dir-sstmv",
+			"criteria": {
+				"SeriesDescription": "FM_sst"
+			}
+		},
+		{
+			"dataType": "fmap",
+			"modalityLabel": "epi",
+			"customLabels": "dir-restmv",
+			"criteria": {
+				"SeriesDescription": "FM_resting"
+			}
+		},
+
+		{
+			"dataType": "fmap",
+			"modalityLabel": "epi",
+			"customLabels": "dir-msitfpe",
+			"criteria": {
+				"SeriesDescription": "FM_msit_FPE"
+			}
+		},
+		{
+			"dataType": "fmap",
+			"modalityLabel": "epi",
+			"customLabels": "dir-msitrpe",
+			"criteria": {
+				"SeriesDescription": "FM_msit_RPE"
+			}
+		},
+		{
+			"dataType": "fmap",
+			"modalityLabel": "epi",
+			"customLabels": "dir-sstfpe",
+			"criteria": {
+				"SeriesDescription": "FM_sst_FPE"
+			}
+		},
+		{
+			"dataType": "fmap",
+			"modalityLabel": "epi",
+			"customLabels": "dir-sstrpe",
+			"criteria": {
+				"SeriesDescription": "FM_sst_RPE"
+			}
+		},
+		{
+			"dataType": "fmap",
+			"modalityLabel": "epi",
+			"customLabels": "dir-rpe",
+			"criteria": {
+				"SeriesDescription": "FM_resting_RPE"
+			}
+		},
+		{
+			"dataType": "fmap",
+			"modalityLabel": "epi",
+			"customLabels": "dir-fpe",
+			"criteria": {
+				"SeriesDescription": "FM_resting_FPE"
+			}
+		},
+		{
+			"dataType": "func",
+			"modalityLabel": "bold",
+			"customLabels": "task-rest",
+			"criteria": {
+				"SeriesDescription": "func_resting"
+			},
+			"sidecarChanges": {
+				"TaskName": "resting"
+			}
+		},
+
+		{
+			"dataType": "func",
+			"modalityLabel": "bold",
+			"customLabels": "task-msit",
+			"criteria": {
+				"SeriesDescription": "func_msit"
+			},
+			"sidecarChanges": {
+				"TaskName": "msit"
+			}
+		},
+		{
+			"dataType": "func",
+			"modalityLabel": "bold",
+			"customLabels": "task-sst",
+			"criteria": {
+				"SeriesDescription": "func_sst"
+			},
+			"sidecarChanges": {
+				"TaskName": "sst"
+			}
+		}
+	]
+}

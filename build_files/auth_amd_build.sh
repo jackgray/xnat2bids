@@ -5,7 +5,7 @@
 # First generate conda lock file for environment config to add to build
 # nevermind- conda not installed on doctor
 docker buildx build \
---platform linux/arm64 \
+--platform linux/amd64 \
 --push \
--t jackgray/bids_configurator:arm64latest \
-.
+-t jackgray/xnat_auth:amd64latest \
+../auth_image

@@ -7,5 +7,5 @@
 docker buildx build \
 --platform linux/amd64 \
 --push \
--t jackgray/nifti2bids:amd64latest \
-.
+-t jackgray/dn_nifti:amd64latest \
+../download_image

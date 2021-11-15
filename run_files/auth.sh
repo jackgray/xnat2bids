@@ -11,11 +11,11 @@
 # and places this token file in the folder .../<project ID>/.tokens
 
 project_id=$1
-project_path=/MRI_DATA/nyspi/${project_id}
+project_path=/Users/j/MRI_DATA/nyspi/${project_id}
 token_path_doctor=${project_path}/.tokens
 token_path_container=/tokens
 token_file=${token_path_doctor}/xnat2bids_${project_id}_login.bin
-auth_image=jackgray/xnat_auth:amd64
+auth_image=jackgray/xnat_auth:arm64
 auth_service_name=xnat_auth_${project_id}
 docker container rm ${auth_service_name}
 # -s flag for any file that is not empty, -r for readable, -e any type

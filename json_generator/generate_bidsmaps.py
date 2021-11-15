@@ -53,16 +53,16 @@ encrypted_file_path = token_path + '/xnat2bids_' + project_id + '_login.bin'
 # Initialize variables
 sequence_list = []
 # Identifying keywords: add as needed
-ignore = ['LOC','Localizer', '3Plane', 'EDT', 'ORIG', 'Screen_Save', 'CAL_ASSET', ':', 'Coronal', 'MRS']
+ignore = ['LOC','B0', 'Localizer', '3Plane', 'EDT', 'ORIG', 'Screen_Save', 'CAL_ASSET', ':', 'Coronal', 'MRS']
 accept = ['FUNC', 'DTI', 'STRUC']
 t1s = ['t1','mprage', 'bravo', 'fspgr']
 t2s = ['t2', 't2cube', 'cubet2']
-fms = ['b0', 'fm_', 'topup', 'top-up']
+fms = ['fm_', 'topup', 'top-up']
 strucs = t1s + t2s + ['struc']
 funcs = ['func', 'fmri']
 dtis = ['dti']
 rs_names = ['rs', 'resting', 'restingstate']
-not_rs = ['rsvp']
+not_rs = ['rsvp', 'rsvpprf']
 
 existing_bids = []
 existing_d2b = []
@@ -187,23 +187,15 @@ except:
 # Open XNAT session to access page with auth
 try:
     with session.get(session_url) as res:
-# try:
-#     with requests.Session() as session:
-#         session.auth = (xnat_username, xnat_password)
-#         post = session.post(login_url, data=session.auth)
-#         res = session.get(session_url)
         html = BeautifulSoup(res.content, 'html.parser')   # extract all html/xml from url and parse it
-
         # Sequence names are sorted in a column with a html <tr> tag
         trs = html.find_all('tr',{'valign':'top'}) # find all <tr> tags; narrow down index with formatting filters
-
         # Index each row of the 5th column (td[4]) by looking for the 5th occurrence of the td tag in each of the tr elements
         raw_list = []
         td = str
         for tr in trs:
             td = tr.find_all('input')[4]['value'].replace(' ', '_')
             raw_list.append(td)
-
             # Exclude sequences we don't care about
             if not any(x in td for x in ignore):
                 sequence_list.append(td)
@@ -280,18 +272,25 @@ print('\nAttempting to match the following ' + str(len(not_in_map_bids)) + ' seq
 #                          bidsmap
 #######################################################
 for i in not_in_map_bids:
-    taskname = ''
     print(i)
+    taskname = ''
+    run_number = ''
     i_lower = i.lower()
     if any(x in i_lower for x in funcs) and not any(x in i_lower for x in fms):
         if re.match('func_mux.$', i_lower):
             taskname = 'untitled'
-        elif i_lower.startswith('func_mux') or i_lower.startswith('func_epi'):
-            # emperically, if the name starts with FUNC_MUX or FUNC_EPI then the task 
-            # name is put in the 3rd column of _ separated list
+        elif i_lower.startswith('func') or i_lower.startswith('func_epi'):
             taskname = i_lower.split('_')[2]
         else:
             taskname = i_lower.split('_')[1]
+        for element in i_lower.split('_'):
+            if element.isdigit():
+                if not element.isalpha():
+                    run_number = element
+        sidecar_name = taskname
+        if any(y in taskname for y in rs_names) and not any(z in taskname for z in not_rs):
+            sidecar_name = taskname
+            taskname = 'rest'
         bidsname = 'task-' + taskname + '_bold'
         addSequence_bids()
 
@@ -344,6 +343,7 @@ for i in not_in_map_d2b:
                 if not element.isalpha():
                     run_number = element
         if any(y in taskname for y in rs_names) and not any(z in taskname for z in not_rs):
+            sidecar_name = taskname
             taskname = 'rest'
         dataType = "func"
         modalityLabel = "bold"
@@ -351,8 +351,8 @@ for i in not_in_map_d2b:
             customLabels = 'task-' + taskname + '_run-0' + run_number
         else:
             customLabels = 'task-' + taskname
-
-        with_d2b = {  "dataType": dataType, "modatlityLabel": modalityLabel, "customLabels": customLabels, "criteria": { "SeriesDescription": i}, "sidecarChanges": { "TaskName": taskname} }
+        sidecar_name = taskname
+        with_d2b = {  "dataType": dataType, "modatlityLabel": modalityLabel, "customLabels": customLabels, "criteria": { "SeriesDescription": i}, "sidecarChanges": { "TaskName": sidecar_name} }
         addSequence_d2b()
 
     # collect top-ups, discern between functional and dti top-up

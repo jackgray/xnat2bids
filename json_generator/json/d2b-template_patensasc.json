@@ -1,0 +1,190 @@
+{
+  "descriptions": [
+    {
+      "dataType": "anat",
+      "modalityLabel": "T1w",
+      "criteria": {
+        "SeriesDescription": "STRUC_T1MPRAGE_noPROMO"
+      }
+    },
+    {
+      "dataType": "anat",
+      "modalityLabel": "T2w",
+      "criteria": {
+        "SeriesDescription": "STRUC_T2CUBE_PROMO"
+      }
+    },
+    {
+      "dataType": "fmap",
+      "modalityLabel": "epi",
+      "customLabels": "dir-rpe",
+      "criteria": {
+        "SeriesDescription": "FUNC_TOPUP_RPE"
+      }
+    },
+    {
+      "dataType": "fmap",
+      "modalityLabel": "epi",
+      "customLabels": "dir-fpe",
+      "criteria": {
+        "SeriesDescription": "FUNC_TOPUP_FPE"
+      }
+    },
+    {
+      "dataType": "fmap",
+      "modalityLabel": "epi",
+      "customLabels": "dir-restmv",
+      "criteria": {
+        "SeriesDescription": "FM_resting"
+      }
+    },
+
+    {
+      "dataType": "fmap",
+      "modalityLabel": "epi",
+      "customLabels": "dir-msitfpe",
+      "criteria": {
+        "SeriesDescription": "FM_msit_FPE"
+      }
+    },
+    {
+      "dataType": "fmap",
+      "modalityLabel": "epi",
+      "customLabels": "dir-msitrpe",
+      "criteria": {
+        "SeriesDescription": "FM_msit_RPE"
+      }
+    },
+    {
+      "dataType": "fmap",
+      "modalityLabel": "epi",
+      "customLabels": "dir-sstfpe",
+      "criteria": {
+        "SeriesDescription": "FM_sst_FPE"
+      }
+    },
+    {
+      "dataType": "fmap",
+      "modalityLabel": "epi",
+      "customLabels": "dir-sstrpe",
+      "criteria": {
+        "SeriesDescription": "FM_sst_RPE"
+      }
+    },
+    {
+      "dataType": "fmap",
+      "modalityLabel": "epi",
+      "customLabels": "dir-rpe",
+      "criteria": {
+        "SeriesDescription": "FM_resting_RPE"
+      }
+    },
+    {
+      "dataType": "fmap",
+      "modalityLabel": "epi",
+      "customLabels": "dir-fpe",
+      "criteria": {
+        "SeriesDescription": "FM_resting_FPE"
+      }
+    },
+    {
+      "dataType": "func",
+      "modalityLabel": "bold",
+      "customLabels": "task-rest_run-01",
+      "criteria": {
+        "SeriesDescription": "FUNC_RS_1_MUX6"
+      },
+      "sidecarChanges": {
+        "TaskName": "rest"
+      }
+    },
+    {
+      "dataType": "func",
+      "modalityLabel": "bold",
+      "customLabels": "task-rest_run-02",
+      "criteria": {
+        "SeriesDescription": "FUNC_RS_2_MUX6"
+      },
+      "sidecarChanges": {
+        "TaskName": "rest"
+      }
+    },
+    {
+      "dataType": "func",
+      "modalityLabel": "bold",
+      "customLabels": "task-rest_run-03",
+      "criteria": {
+        "SeriesDescription": "FUNC_RS_3_MUX6"
+      },
+      "sidecarChanges": {
+        "TaskName": "rest"
+      }
+    },
+    {
+      "dataType": "func",
+      "modalityLabel": "bold",
+      "customLabels": "task-rest_run-04",
+      "criteria": {
+        "SeriesDescription": "FUNC_RS_4_MUX6"
+      },
+      "sidecarChanges": {
+        "TaskName": "rest"
+      }
+    },
+    {
+      "dataType": "func",
+      "modalityLabel": "bold",
+      "customLabels": "task-gbu_run-01",
+      "criteria": {
+        "SeriesDescription": "FUNC_GBU_MUX6"
+      },
+      "sidecarChanges": {
+        "TaskName": "gbu"
+      }
+    },
+    {
+      "dataType": "func",
+      "modalityLabel": "bold",
+      "customLabels": "task-mtloc",
+      "criteria": {
+        "SeriesDescription": "FUNC_MTLoc*"
+      },
+      "sidecarChanges": {
+        "TaskName": "mtloc"
+      }
+    },
+    {
+      "dataType": "func",
+      "modalityLabel": "bold",
+      "customLabels": "task-jhflicker",
+      "criteria": {
+        "SeriesDescription": "FUNC_JHFlicker*"
+      },
+      "sidecarChanges": {
+        "TaskName": "jhflicker"
+      }
+    },
+    {
+      "dataType": "func",
+      "modalityLabel": "bold",
+      "customLabels": "task-rsvpprf",
+      "criteria": {
+        "SeriesDescription": "FUNC_rsvppRF*"
+      },
+      "sidecarChanges": {
+        "TaskName": "rsvpprf"
+      }
+    },
+    {
+      "dataType": "func",
+      "modalityLabel": "bold",
+      "customLabels": "task-attnfreq",
+      "criteria": {
+        "SeriesDescription": "FUNC_AttnFreq*"
+      },
+      "sidecarChanges": {
+        "TaskName": "attnfrq"
+      }
+    }
+  ]
+}

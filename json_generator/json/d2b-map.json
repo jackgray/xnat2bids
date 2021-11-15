@@ -1,0 +1,15 @@
+{
+	"descriptions": [
+		{
+			"dataType": "func",
+			"modatlityLabel": "bold",
+			"customLabels": "task-msit",
+			"criteria": {
+				"SeriesDescription": "func_msit"
+			},
+			"sidecarChanges": {
+				"TaskName": "msit"
+			}
+		}
+	]
+}

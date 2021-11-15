@@ -1,0 +1,11 @@
+
+
+servicename=rllt0xzr2fhf 
+
+
+while [ "$(docker service ps $servicename | awk '{print $6}' | sed -n '2p')"  != 'Failed' ] && [ "$(docker service ps $servicename | awk '{print $6}' | sed -n '2p')"  != 'Complete' ]; do
+
+
+sleep 5 &
+
+done

@@ -19,7 +19,7 @@
 #.........................................
 project_id=$1
 # single_exam_no=$2
-project_path=/Users/j/MRI_DATA/nyspi/${project_id}
+project_path=/MRI_DATA/nyspi/${project_id}
 image_name=jackgray/bids_json_generator:arm64latest
 service_name=${project_id}_bids_json_generator
 #.........................................

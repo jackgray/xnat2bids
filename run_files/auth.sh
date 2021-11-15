@@ -11,7 +11,7 @@
 # and places this token file in the folder .../<project ID>/.tokens
 
 project_id=$1
-project_path=/Users/j/MRI_DATA/nyspi/${project_id}
+project_path=/MRI_DATA/nyspi/${project_id}
 token_path_doctor=${project_path}/.tokens
 token_path_container=/tokens
 token_file=${token_path_doctor}/xnat2bids_${project_id}_login.bin

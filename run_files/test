@@ -1,0 +1,6 @@
+#!/bin/bash
+
+
+docker service ls | grep -i "nyspi_nibabies_`id -un`"
+
+

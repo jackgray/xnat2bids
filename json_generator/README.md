@@ -1,6 +1,6 @@
 # Generates two files, "bidsmap*<project ID>.json" and "d2b-template*<project ID>.json"
 
-# Expects xnat auth token created by jackgray/xnat_auth image
+# Expects xnat auth token created by the jackgray/xnat_auth image
 
 USAGE:
 docker run \

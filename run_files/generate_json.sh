@@ -20,7 +20,7 @@
 project_id=$1
 # single_exam_no=$2
 project_path=/MRI_DATA/nyspi/${project_id}
-image_name=jackgray/bids_json_generator:arm64latest
+image_name=jackgray/bids_json_generator:amd64latest
 service_name=${project_id}_bids_json_generator
 #.........................................
 
@@ -29,11 +29,11 @@ service_name=${project_id}_bids_json_generator
 #################################################################################
 
 ######### MOUNT PATH DEFS #################################
-bidsconfigpath_doctor=${project_path}/ 
+bidsconfigpath_doctor=${project_path}/bidsconfig
 bidsconfigpath_container=/bidsconfig 
 token_path_doctor=${project_path}/.tokens
 token_path_container=/tokens
-private_path_doctor=${project_path}/.tokens/xnat2bids_private.pem
+private_path_doctor=/.xnat/xnat2bids_private.pem
 private_path_container=/xnat/xnat2bids_private.pem
 ###########################################################
 

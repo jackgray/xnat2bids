@@ -4,10 +4,10 @@
 
 USAGE:
 docker run \
--e project_id=<project ID> \
---mount type=bind,source=<project directory>,destination=bidsconfig \
---mount type=bind,source=<xnat auth token path>,destination=/tokens,readonly=true \
---mount type=bind,source=<private key path>,destination=/xnat/xnat2bids_private.pem,readonly=true \
+-e project_id={project ID} \
+--mount type=bind,source={project directory},destination=bidsconfig \
+--mount type=bind,source={xnat auth token path},destination=/tokens,readonly=true \
+--mount type=bind,source={private key path},destination=/xnat/xnat2bids_private.pem,readonly=true \
 jackgray/bids_json_generator:amd64latest;
 
 Script will scrape every sequence name in that project from the XNAT web client and create a configuration map to be used in dcm2bids

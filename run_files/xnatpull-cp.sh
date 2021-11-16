@@ -8,7 +8,7 @@ log=/MRI_DATA/nyspi/${project_id}/derivatives/bidsonly/xnatpull.log
 
 #.........................................
 image_name=jackgray/dn_nifti:amd64latest
-service_name=${project_id}_bidsprep_xnat-pull_${single_exam_no}
+service_name=${project_id}_bidsprep_xnat_pull_${single_exam_no}
 project_path=/MRI_DATA/nyspi/${project_id}
 #.........................................
 

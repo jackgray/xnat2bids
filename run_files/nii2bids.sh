@@ -2,31 +2,31 @@
 
 # USAGE: nii2bids.sh <project ID> <exam no.>
 
+# bash ./get_user_info.sh 
+
+
 # UNIVERSAL SERVICE SETUP
 #.........................................
 project_id=$1
 single_exam_no=$2
 project_path=/MRI_DATA/nyspi/${project_id}
 
-image_name=jackgray/nifti2bids:amd64latest
-service_name=nifti2bids_${project_id}_${single_exam_no}
-#.........................................
-
-# UID/GID setup
+# UID/GID setup for permissions handling
 # Pull group ID from project_id (working_gid)
 groupinfo=$(getent group ${project_id})
 while IFS=$':' read -r -a tmp ; do
 working_gid="${tmp[2]}"
 userinfo="${tmp[3]}"
 done <<< $groupinfo
-# get primary user for group
-while IFS=$',' read -r -a tmp ; do
-username="${tmp[0]}"
-done <<< $userinfo
-# Pull user ID from primary username
+username=$(whoami)
 working_uid="$(id -u ${username})"
-echo primary uid for ${project_id}: $working_uid
 echo primary gid for ${project_id}: $working_gid
+echo your uid: $working_uid
+
+image_name=jackgray/nifti2bids:amd64latest
+service_name=${project_id}_bidsprep_nii2bids_${single_exam_no}_${username}
+#.........................................
+
 
 ######### MOUNT PATH DEFS #################################
 bidsonlypath_doctor=${project_path}/derivatives/bidsonly 

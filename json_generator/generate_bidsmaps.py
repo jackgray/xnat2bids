@@ -279,7 +279,7 @@ for i in not_in_map_bids:
     if any(x in i_lower for x in funcs) and not any(x in i_lower for x in fms):
         if re.match('func_mux.$', i_lower):
             taskname = 'untitled'
-        elif i_lower.startswith('func') or i_lower.startswith('func_epi'):
+        elif i_lower.startswith('func_mux') or i_lower.startswith('func_epi'):
             taskname = i_lower.split('_')[2]
         else:
             taskname = i_lower.split('_')[1]

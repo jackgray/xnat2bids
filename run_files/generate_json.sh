@@ -53,7 +53,7 @@ private_path_container=/xnat/xnat2bids_private.pem
 # docker service rm ${service_name}
 docker pull ${image_name}
 
-# BIDSCONFIG SERVICE
+# BIDSCONFIG CONTAINER (DOES IT NEED A SERVICE?)
 docker run \
 -it \
 -e project_id=${project_id} \

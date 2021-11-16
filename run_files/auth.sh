@@ -11,7 +11,8 @@
 # and places this token file in the folder .../<project ID>/.tokens
 
 project_id=$1
-project_path=/MRI_DATA/nyspi/${project_id}
+department=$2
+project_path=/MRI_DATA/${department}/${project_id}
 token_path_doctor=${project_path}/.tokens
 token_path_container=/tokens
 token_file=${token_path_doctor}/xnat2bids_${project_id}_login.bin
@@ -29,7 +30,7 @@ else
     docker run \
     -it \
     -e project_id=${project_id} \
-    --name=${auth_service_name} \
+    --name=`echo ${auth_service_name}` \
     --mount type=bind,source=${project_path}/.tokens,destination=/tokens,readonly=false \
      ${auth_image};
 fi

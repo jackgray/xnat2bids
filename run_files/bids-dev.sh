@@ -59,11 +59,11 @@ intendtovalid
 
 totalarg=`echo $listofarg | sed 's/ /|/'g`
 
-if  [[ "$arg"  != $(totalarg)  ]]; then
-        echo -en "\nERROR: INCORRECT ARGUMENT\n"
-        usage
-        exit 1
-fi
+#if  [[ "$arg" != $(totalarg)$  ]]; then
+#        echo -en "\nERROR: INCORRECT ARGUMENT\n"
+#        usage
+#        exit 1
+#fi
 ############################################
 
 
@@ -93,7 +93,7 @@ done
 
 pull()
 {
-/usr/local/pipeline/bids-dev-setup/scripts/xnatpull-cp.sh ${project_id}
+/usr/local/pipelines/nyspiXnat2bids/run_files/auth.sh ${project_id} ${dept} && /usr/local/pipelines/nyspiXnat2bids/run_files/xnatpull-cp.sh ${project_id} ${dept} && /usr/local/pipelines/nyspiXnat2bids/run_files/nii2bids.sh ${project_id} ${dept}
 }
 
 ####

@@ -20,8 +20,21 @@
 project_id=$1
 # single_exam_no=$2
 project_path=/MRI_DATA/nyspi/${project_id}
+
+# UID/GID setup for permissions handling
+# Pull group ID from project_id (working_gid)
+groupinfo=$(getent group ${project_id})
+while IFS=$':' read -r -a tmp ; do
+working_gid="${tmp[2]}"
+userinfo="${tmp[3]}"
+done <<< $groupinfo
+username=$(whoami)
+working_uid="$(id -u ${username})"
+echo primary gid for ${project_id}: $working_gid
+echo your uid: $working_uid
+
 image_name=jackgray/bids_json_generator:amd64latest
-service_name=${project_id}_bids_json_generator
+service_name=${project_id}_bidsprep_bidsmap_generator_${username}
 #.........................................
 
 #################################################################################
@@ -40,7 +53,7 @@ private_path_container=/xnat/xnat2bids_private.pem
 # docker service rm ${service_name}
 docker pull ${image_name}
 
-# BIDSCONFIG SERVICE
+# BIDSCONFIG CONTAINER (DOES IT NEED A SERVICE?)
 docker run \
 -it \
 -e project_id=${project_id} \

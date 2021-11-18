@@ -8,10 +8,8 @@
 # UNIVERSAL SERVICE SETUP
 #.........................................
 project_id=$1
-department=$2
-
-#single_exam_no=$2
-project_path=/MRI_DATA/${department}/${project_id}
+single_exam_no=$2
+project_path=/MRI_DATA/nyspi/${project_id}
 
 # UID/GID setup for permissions handling
 # Pull group ID from project_id (working_gid)
@@ -26,8 +24,7 @@ echo primary gid for ${project_id}: $working_gid
 echo your uid: $working_uid
 
 image_name=jackgray/nifti2bids:amd64latest
-service_name=${project_id}_bidsprep_nii2bids_${username}
-log=${project_path}/derivatives/bidsonly/xnatpull.log
+service_name=${project_id}_bidsprep_nii2bids_${single_exam_no}_${username}
 #.........................................
 
 
@@ -42,15 +39,8 @@ private_path_doctor=/MRI_DATA/.xnat/xnat2bids_private.pem
 private_path_container=/xnat/xnat2bids_private.pem
 ###########################################################
 
-for line in `cat ${project_path}/scripts/${project_id}_working.lst`
-do
-single_exam_no=$line
-name=${project_id}_${single_exam_no}
-echo "Starting service for unzip_${name}" >> ${log}
-
-
-docker service rm ${service_name} >> ${log} 2>&1
-docker pull ${image_name} >> ${log} 2>&1
+docker service rm ${service_name}
+docker pull ${image_name}
 
 # NII2BIDS SERVICE
 docker service create \
@@ -64,22 +54,9 @@ docker service create \
 --reserve-cpu 1 \
 --mode replicated \
 --restart-condition none \
---name=`echo ${service_name}` \
+--name=${service_name} \
 --mount type=bind,source=${rawdata_path_doctor},destination=${rawdata_path_container} \
 --mount type=bind,source=${bidsonlypath_doctor},destination=${bidsonlypath_container} \
 --mount type=bind,source=${token_path_doctor},destination=${token_path_container},readonly=true \
 --mount type=bind,source=${private_path_doctor},destination=${private_path_container},readonly=true \
-${image_name} >> ${log} 2>&1 &
-
- sleep 30
-
-while [ "$(docker service ps ${service_name} | awk '{print $6}' | sed -n '2p')"  != 'Failed' ] && [ "$(docker service ps ${service_name} | awk '{print $6}' | sed -n '2p')"  != 'Complete' ]; do
-echo $(docker service ps ${service_name} | awk '{print $6}' | sed -n '2p')
- 
-done
-
-docker service rm ${service_name} >> ${log} 2>&1
-
-
-done
-
+${image_name};

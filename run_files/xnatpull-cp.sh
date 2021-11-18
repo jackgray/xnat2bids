@@ -3,13 +3,16 @@
 # USAGE: bash xnat_pull.sh <<project ID> <exam no.>
 
 project_id=$1
+department=$2
 #single_exam_no=$2
-log=/MRI_DATA/nyspi/${project_id}/derivatives/bidsonly/xnatpull.log
 
 #.........................................
 image_name=jackgray/dn_nifti:amd64latest
-service_name=${project_id}_bidsprep_xnat-pull_${single_exam_no}
-project_path=/MRI_DATA/nyspi/${project_id}
+service_name=${project_id}_bidsprep_xnat_pull_${single_exam_no}
+#servicename=${project_id}_bidsprep_xnat_pull_${single_exam_no}
+project_path=/MRI_DATA/${department}/${project_id}
+log=${project_path}/derivatives/bidsonly/xnatpull.log
+
 #.........................................
 
 # UID/GID setup
@@ -44,10 +47,11 @@ docker pull ${image_name}
 docker service rm ${service_name} >> /dev/null 2>&1
 ########################################################################
 
-cat ${project_path}/scripts/${project_id}_working.lst | while read -r line
+for line in `cat ${project_path}/scripts/${project_id}_working.lst`
 do
-single_exam_no=(echo $line)
+single_exam_no=$line
 name=${project_id}_${single_exam_no}
+service_name=${project_id}_bidsprep_xnat_pull_${single_exam_no}
 echo "Starting service for ${name}" >> ${log}
 # DOWNLOAD SERVICE
 docker service create \
@@ -61,20 +65,25 @@ docker service create \
 --reserve-memory 1g \
 --reserve-cpu 1 \
 --restart-condition none \
---name=${service_name} \
+--name=`echo $service_name` \
 --mount type=bind,source=${rawdata_path_doctor},destination=${rawdata_path_container} \
 --mount type=bind,source=${bidsonlypath_doctor},destination=${bidsonlypath_container} \
 --mount type=bind,source=${token_path_doctor},destination=${token_path_container},readonly=true \
 --mount type=bind,source=${private_path_doctor},destination=${private_path_container},readonly=true \
 ${image_name} >> ${log} 2>&1 &
-#sleep 10
 
-#while [ "$(docker service ps ${service_name} | awk '{print $6}' | sed -n '2p')"  != 'Failed' ] && [ "$(docker service ps ${service_name} | awk '{print $6}' | sed -n '2p')"  != 'Complete' ]; do
+ sleep 10 
+
+while [ "$(docker service ps ${service_name} | awk '{print $6}' | sed -n '2p')"  != 'Failed' ] && [ "$(docker service ps ${service_name} | awk '{print $6}' | sed -n '2p')"  != 'Complete' ]; do
+echo $(docker service ps ${service_name} | awk '{print $6}' | sed -n '2p')
+ 
+done
+
+sleep 5 &
+
+docker service rm ${service_name} >> ${log} 2>&1
 
 
-#sleep 5 &
-
-#done
 
 done
 # docker service rm ${service_name} >> xnat2bids.log 2>&1

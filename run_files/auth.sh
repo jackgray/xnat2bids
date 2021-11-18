@@ -13,6 +13,7 @@
 project_id=$1
 department=$2
 project_path=/MRI_DATA/${department}/${project_id}
+log=${project_path}/derivatives/bidsonly/xnatpull.log
 token_path_doctor=${project_path}/.tokens
 token_path_container=/tokens
 token_file=${token_path_doctor}/xnat2bids_${project_id}_login.bin
@@ -25,12 +26,13 @@ if test -s "$token_file"; then
 else
     
     echo Token ${token_file} not found--trying to run auth container.
-    docker pull ${auth_image}
+    # docker pull ${auth_image}
     # touch token_file
     docker run \
     -it \
     -e project_id=${project_id} \
     --name=`echo ${auth_service_name}` \
     --mount type=bind,source=${project_path}/.tokens,destination=/tokens,readonly=false \
-     ${auth_image};
+     ${auth_image} 
+    #  >> ${log} 2>&1 &;
 fi

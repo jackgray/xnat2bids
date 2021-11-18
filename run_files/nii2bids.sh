@@ -70,8 +70,11 @@ docker service create \
 --mount type=bind,source=${token_path_doctor},destination=${token_path_container},readonly=true \
 --mount type=bind,source=${private_path_doctor},destination=${private_path_container},readonly=true \
 ${image_name} >> ${log} 2>&1 &
+sleep 5
 
- sleep 30
+docker service logs --details ${service_name} >> ${log} 2>&1
+
+ sleep 60
 
 while [ "$(docker service ps ${service_name} | awk '{print $6}' | sed -n '2p')"  != 'Failed' ] && [ "$(docker service ps ${service_name} | awk '{print $6}' | sed -n '2p')"  != 'Complete' ]; do
 echo $(docker service ps ${service_name} | awk '{print $6}' | sed -n '2p')

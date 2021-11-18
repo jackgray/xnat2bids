@@ -287,10 +287,14 @@ for i in not_in_map_bids:
             if element.isdigit():
                 if not element.isalpha():
                     run_number = element
-        sidecar_name = taskname
         if any(y in taskname for y in rs_names) and not any(z in taskname for z in not_rs):
-            sidecar_name = taskname
             taskname = 'rest'
+
+        if len(run_number) > 0: 
+            taskname = taskname + '_run-0' + run_number
+        # Uncomment below to have no-run-number names default to run-01
+        # else:
+        #     sidecar_name = sidecar_name + '_run-01'
         bidsname = 'task-' + taskname + '_bold'
         addSequence_bids()
 

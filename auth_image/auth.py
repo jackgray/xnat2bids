@@ -21,7 +21,6 @@ project_id = env['project_id']
 print(project_id)
 
 # # is current path script path?
-# project_id = 'patensasc'
 project_path = '/MRI_DATA/nyspi/' + project_id
 
 # token_folder = project_path + '/.tokens'
@@ -53,7 +52,7 @@ time.sleep(1)
 # Create padding function so that password is multiple of 8 no matter what
 def pad(text):
     while len(text) % 8 != 0:
-        text += ' '
+        text += '!'
     return text
 
 # OPEN FILE
@@ -89,12 +88,15 @@ with open(encrypted_file_path, "wb") as encrypted_file:
     print("\ncipher_aes: ")
     print(cipher_aes)
 
-    ciphertext, tag = cipher_aes.encrypt_and_digest(pad(getpass.getpass(\
-    "\n\nPlease enter your XNAT username: "))\
-        .encode("utf-8") + pad(getpass.getpass(\
-    "\n\nPlease enter your XNAT password: "))\
-        .encode("utf-8"))
+    ciphertext, tag = cipher_aes.encrypt_and_digest(\
+        pad(getpass.getpass("\n\nPlease enter your XNAT username: ")).encode("utf-8") \
+        + pad(getpass.getpass("\n\nPlease enter your XNAT password: ")).encode("utf-8"))
     
+    print("cipher aes nonce char count: " + len(cipher_aes.nonce))
+    print("tag char count: " + len(tag))
+    print("ciphertext char count: "     + len(ciphertext))
+
+
     encrypted_file.write(cipher_aes.nonce)
     encrypted_file.write(tag)
     encrypted_file.write(ciphertext)

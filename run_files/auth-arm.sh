@@ -12,7 +12,7 @@
 
 project_id=$1
 department=$2
-project_path=/MRI_DATA/${department}/${project_id}
+project_path=/Users/j/MRI_DATA/${department}/${project_id}
 log=${project_path}/derivatives/bidsonly/xnatpull.log
 token_path_doctor=${project_path}/.tokens
 token_path_container=/tokens
@@ -29,7 +29,7 @@ else
     -it \
     -e project_id=${project_id} \
     --name=`echo ${auth_service_name}` \
-    --mount type=bind,source=${project_path}/.tokens,destination=/tokens,readonly=false \
+    --mount type=bind,source=${token_path_doctor},destination=${token_path_container},readonly=false \
      ${auth_image} 
     #  >> ${log} 2>&1 &;
 fi

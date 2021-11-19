@@ -62,10 +62,13 @@ with open(encrypted_file_path, "rb") as encrypted_file:
 # split username and password into separate variables
 if len(username_password) > 0:
     # Remove this for production!
+    print('username_pass = ' + username_password)
     username_password = str(username_password\
         .decode("utf-8"))\
             .strip()\
                 .split()
+    print(username_password)
+    print(username_password)
     xnat_username = username_password[0].strip()
     xnat_password = username_password[1].strip()
 else:

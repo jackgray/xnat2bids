@@ -25,7 +25,7 @@ working_uid="$(id -u ${username})"
 echo primary gid for ${project_id}: $working_gid
 echo your uid: $working_uid
 
-image_name=jackgray/nifti2bids:amd64latest
+image_name=jackgray/nifti2bids:arm64latest
 service_name=${project_id}_bidsprep_nii2bids_${username}
 log=${project_path}/derivatives/bidsonly/xnatpull.log
 #.........................................
@@ -38,7 +38,7 @@ rawdata_path_doctor=${project_path}/rawdata
 rawdata_path_container=/rawdata 
 token_path_doctor=${project_path}/.tokens
 token_path_container=/tokens
-private_path_doctor=/MRI_DATA/.xnat/xnat2bids_private.pem
+private_path_doctor=/Users/j/MRI_DATA/.xnat/xnat2bids_private.pem
 private_path_container=/xnat/xnat2bids_private.pem
 ###########################################################
 
@@ -47,7 +47,6 @@ do
 single_exam_no=$line
 name=${project_id}_${single_exam_no}
 echo "Starting service for unzip_${name}" >> ${log}
-
 
 docker service rm ${service_name} >> ${log} 2>&1
 docker pull ${image_name} >> ${log} 2>&1

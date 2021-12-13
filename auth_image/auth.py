@@ -10,7 +10,7 @@ import getpass
 import os
 import time
 
-# TODO: store public key in central location.
+# TODO: store public key in different location on 
 # - discuss permissions 
 
 # CODE USED TO GENERATE COMMON PUBLIC/PRIVATE RSA TOKENS
@@ -22,10 +22,6 @@ print(project_id)
 
 # # is current path script path?
 project_path = '/MRI_DATA/nyspi/' + project_id
-
-# token_folder = project_path + '/.tokens'
-# private_key_path = token_folder + '/xnat2bids_private.pem'
-# public_key_path = token_folder + '/xnat2bids_public.pem'
 
 # public key stored in auth image
 # TODO: should we go ahead and generate the alias token here and encrypt/store that instead?
@@ -52,8 +48,11 @@ time.sleep(1)
 # Create padding function so that password is multiple of 8 no matter what
 def pad(text):
     while len(text) % 8 != 0:
-        text += '!'
+        text += " "
     return text
+delimiter = " ".encode("utf-8")
+print(delimiter)
+
 
 # OPEN FILE
 # This is unique to each project and should be stored in .../<project ID>/.tokens (hidden)
@@ -88,14 +87,18 @@ with open(encrypted_file_path, "wb") as encrypted_file:
     print("\ncipher_aes: ")
     print(cipher_aes)
 
-    ciphertext, tag = cipher_aes.encrypt_and_digest(\
-        pad(getpass.getpass("\n\nPlease enter your XNAT username: ")).encode("utf-8") \
-        + pad(getpass.getpass("\n\nPlease enter your XNAT password: ")).encode("utf-8"))
-    
-    print("cipher aes nonce char count: " + len(cipher_aes.nonce))
-    print("tag char count: " + len(tag))
-    print("ciphertext char count: "     + len(ciphertext))
+    # on the decrypt side, we will separate the token with the space (' ') character
+    # add one just in case
+    ciphertext, tag = cipher_aes.encrypt_and_digest(pad(getpass.getpass("\n\nPlease enter your XNAT username: ")).encode("utf-8") + " ".encode("utf-8") + pad(getpass.getpass("\n\nPlease enter your XNAT password: ")).encode("utf-8"))
 
+
+    
+    print("cipher aes nonce char count: ")
+    print(len(cipher_aes.nonce))
+    print("tag char count: ")
+    print(len(tag))
+    print("ciphertext char count: ")
+    print(len(ciphertext))
 
     encrypted_file.write(cipher_aes.nonce)
     encrypted_file.write(tag)

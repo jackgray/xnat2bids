@@ -1,0 +1,9 @@
+pathlib
+requests
+# zipfile
+# getpass
+# json
+# subprocess
+
+
+pycryptodome

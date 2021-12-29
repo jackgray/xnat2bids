@@ -1,0 +1,4 @@
+pycryptodome
+requests
+html5lib
+bs4

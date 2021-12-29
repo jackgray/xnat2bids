@@ -1,0 +1,186 @@
+#!/bin/bash
+
+
+
+###### BEGIN ########
+#Usage message to display
+usage()
+{
+  echo -en "\nSYNTAX ERROR\n"
+  echo -e "usage: $0 [ -d department -p project_id -a arguments -u username_for_xnat]\n"
+  echo -e "Where directory is before the projects\n"
+  echo -en "[arguments] can be:\n
+Individual:
+            [pull] - Download bids into rawdata
+            [pull_nm] - Download neuromelanin into rawdata
+           [split] - Split multivolume data.
+          [intend] - Apply intendedFor and taskName
+
+Combined:
+     [pulltosplit] - pull + split
+    [pulltointend] - pull + split + intend
+   [splittointend] - split + intend
+"
+}
+#
+if [ "$1" == "" ]; then
+  usage
+  exit 1
+fi
+
+if [[ $# -eq 1 ]]; then
+  usage
+  exit
+fi
+
+if [[ $# -lt 4 ]]; then
+  usage
+  exit 1
+fi
+
+
+############################################
+
+
+while [ "$1" != "" ]; do
+    case $1 in
+        -d )           shift
+                       dept=$1
+                       ;;
+        -p )           shift
+                       project_id=$1
+                       ;;
+        -a)            shift
+                       arg=$1
+                       ;;
+        -u)            shift
+                       user=$1
+                       ;;
+        * )            usage
+                       exit 1
+    esac
+    shift
+done
+
+#############################################
+
+#List of acceptable arguments
+listofarg="
+pull
+pull_nm
+split
+intend
+pulltosplit
+pulltointend
+splittointend
+"
+
+totalarg=`echo $listofarg | sed 's/ /|/'g`
+
+if  ! [[  "$arg" =~ ^($totalarg)$ ]]; then
+        echo -en "\nERROR: INCORRECT ARGUMENT\n"
+        usage
+        exit 1
+fi
+
+
+#####################################
+# DEFINED FUNCTIONS #
+#####################################
+
+pull()
+{
+#/usr/local/pipelines/nyspiXnat2bids/run_files/auth.sh ${project_id} ${dept} && /usr/local/pipelines/nyspiXnat2bids/run_files/xnatpull-cp.sh ${project_id} ${dept} && /usr/local/pipelines/nyspiXnat2bids/run_files/nii2bids.sh ${project_id} ${dept}
+/usr/local/pipelines/bids.pull -i /MRI_DATA/${dept}/${project_id}/derivatives/bidsonly -o /MRI_DATA/${dept}/${project_id}/rawdata/ -l /MRI_DATA/${dept}/${project_id}/derivatives/pull.log -d ${dept} -p ${project_id} -u ${user}
+}
+
+pull_nm()
+{   
+    type=dl_nm
+    /usr/local/pipelines/nyspiXnat2bids/run_files/xnat_sync.sh \
+    -d ${dept} -p ${project_id} -u ${user} -t ${type}
+}
+
+####
+
+split()
+{
+docker run -v /MRI_DATA/${dept}/${project_id}:/input -v /usr/local/pipelines/split.sh:/test -v /MRI_DATA/${dept}/${project_id}/scripts/${project_id}_working.lst:/working.lst -it bids/base_fsl /test
+}
+
+####
+
+intend()
+{
+#/intend.sh ${projid} ${subjid} ${exam} ${dept}
+for exam in `cat /MRI_DATA/${dept}/${project_id}/scripts/${project_id}_working.lst`
+do
+/usr/local/pipelines/intend.sh ${project_id} ${exam} ${dept}
+done
+}
+
+####
+
+####
+
+##################
+
+
+#####################################
+# ACTUAL PROCECSS #
+#####################################
+
+if [[ "$arg" == "pull" ]]; then
+pull
+fi
+
+if [[ "$arg" == "pull_nm" ]]; then
+pull_nm
+fi
+
+if [[ "$arg" == "split" ]]; then
+split
+fi
+
+
+if [[ "$arg" == "intend" ]]; then
+intend
+fi
+
+
+if [[ "$arg" == "pulltosplit" ]]; then
+pull
+service_name=nyspi_bids_setup_`id -un`
+
+echo -en "\n =================== $service_name is running=========================== \n"
+echo -en "\n      =================== Please wait =========================== \n"
+
+while [ "$(docker service ps ${service_name} 2> /dev/null | awk '{print $6}' | sed -n '2p')"  != 'Failed' ] && [ "$(docker service ps ${service_name} 2>/dev/null | awk '{print $6}' | sed -n '2p')"  != 'Complete' ] ; do
+echo $(docker service ps ${service_name} 2> /dev/null | awk '{print $6}' | sed -n '2p') >> /dev/null 2>&1 
+done
+split
+
+fi
+
+
+if [[ "$arg" == "pulltointend" ]]; then
+pull
+service_name=nyspi_bids_setup_`id -un`
+
+echo -en "\n =================== $service_name is running=========================== \n"
+echo -en "\n      =================== Please wait =========================== \n"
+
+while [ "$(docker service ps ${service_name} 2> /dev/null | awk '{print $6}' | sed -n '2p')"  != 'Failed' ] && [ "$(docker service ps ${service_name} 2> /dev/null | awk '{print $6}' | sed -n '2p')"  != 'Complete' ] ; do
+echo $(docker service ps ${service_name} 2> /dev/null | awk '{print $6}' | sed -n '2p') >> /dev/null 2>&1 
+done 
+split 
+intend
+
+fi
+
+
+if [[ "$arg" == "splittointend" ]]; then
+split
+intend
+fi
+

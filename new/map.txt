@@ -1,1 +1,0 @@
-make_token-encrypt(token) >> decrypt(token)-make_alias-encrypt(alias) >> decrypt(alias)-login(jsession) >> download_scans(jsession) >> organize

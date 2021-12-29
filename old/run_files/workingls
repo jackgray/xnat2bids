@@ -1,0 +1,25 @@
+#Make a temp directory
+mkdir -p ${tmpdir}
+# && chmod 770 ${tmpdir}
+#Copy monitoring script to temp directory
+cp ${fileloc}/bidsqmonitor.sh ${tmpdir}/bidsqmonitor_${projid}.sh
+#Delete any previous cronjob for this specific monitoring
+crontab -l | sed "/bidsqmonitor_${projid}/d" | crontab -
+#Empty/Create a file inside temp directory that has a list service names used for monitoring
+cat /dev/null > ${tmpdir}/${projid}_working.service.lst
+#Backup the original working list file
+if ! [[ $(ls -d ${listpath}/${projid}_working.lst.orig 2>/dev/null) ]] ; then cp ${listpath}/${projid}_working.lst ${listpath}/${projid}_working.lst.orig; fi
+#Create a temp file of the original working list inside temp directory
+if ! [[ $(ls -d ${tmpdir}/${projid}_working.lst.tmp 2>/dev/null) ]] ; then cp ${listpath}/${projid}_working.lst ${tmpdir}/${projid}_working.lst.tmp; fi
+#If tmp file is empty, then delete the whole temp directory and exit
+if [ $(cat ${tmpdir}/${projid}_working.lst.tmp | wc -l) == 0 ]; then
+        mv ${listpath}/${projid}_working.lst.orig ${listpath}/${projid}_working.lst \
+        && rm -rf ${tmpdir} 2>/dev/null
+        exit
+fi
+
+
+
+
+
+

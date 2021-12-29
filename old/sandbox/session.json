@@ -1,0 +1,217 @@
+{
+  "ResultSet": {
+    "Result": [
+      {
+        "xsiType": "xnat:mrScanData",
+        "xnat_imagescandata_id": "155426",
+        "note": "",
+        "series_description": "LOC_3-P_FGRE",
+        "ID": "1",
+        "type": "LOC_3-P_FGRE",
+        "URI": "/data/experiments/XNATnyspi19_E00509/scans/1",
+        "quality": "usable"
+      },
+      {
+        "xsiType": "xnat:mrScanData",
+        "xnat_imagescandata_id": "155427",
+        "note": "",
+        "series_description": "STRUC_T1MPRAGE_noPROMO",
+        "ID": "2",
+        "type": "STRUC_T1MPRAGE_noPROMO",
+        "URI": "/data/experiments/XNATnyspi19_E00509/scans/2",
+        "quality": "usable"
+      },
+      {
+        "xsiType": "xnat:mrScanData",
+        "xnat_imagescandata_id": "155428",
+        "note": "",
+        "series_description": "STRUC_T2CUBE_PROMO",
+        "ID": "3",
+        "type": "STRUC_T2CUBE_PROMO",
+        "URI": "/data/experiments/XNATnyspi19_E00509/scans/3",
+        "quality": "usable"
+      },
+      {
+        "xsiType": "xnat:mrScanData",
+        "xnat_imagescandata_id": "155429",
+        "note": "",
+        "series_description": "FUNC_TOPUP_FM_SST",
+        "ID": "5",
+        "type": "FUNC_TOPUP_FM_SST",
+        "URI": "/data/experiments/XNATnyspi19_E00509/scans/5",
+        "quality": "usable"
+      },
+      {
+        "xsiType": "xnat:mrScanData",
+        "xnat_imagescandata_id": "155430",
+        "note": "",
+        "series_description": "FUNC_MUX6_SST",
+        "ID": "6",
+        "type": "FUNC_MUX6_SST",
+        "URI": "/data/experiments/XNATnyspi19_E00509/scans/6",
+        "quality": "usable"
+      },
+      {
+        "xsiType": "xnat:mrScanData",
+        "xnat_imagescandata_id": "155431",
+        "note": "",
+        "series_description": "FUNC_MUX6_SST",
+        "ID": "7",
+        "type": "FUNC_MUX6_SST",
+        "URI": "/data/experiments/XNATnyspi19_E00509/scans/7",
+        "quality": "usable"
+      },
+      {
+        "xsiType": "xnat:mrScanData",
+        "xnat_imagescandata_id": "155432",
+        "note": "",
+        "series_description": "FUNC_TOPUP_FM_Resting",
+        "ID": "8",
+        "type": "FUNC_TOPUP_FM_Resting",
+        "URI": "/data/experiments/XNATnyspi19_E00509/scans/8",
+        "quality": "usable"
+      },
+      {
+        "xsiType": "xnat:mrScanData",
+        "xnat_imagescandata_id": "155433",
+        "note": "",
+        "series_description": "FUNC_MUX6_Resting",
+        "ID": "9",
+        "type": "FUNC_MUX6_Resting",
+        "URI": "/data/experiments/XNATnyspi19_E00509/scans/9",
+        "quality": "usable"
+      },
+      {
+        "xsiType": "xnat:mrScanData",
+        "xnat_imagescandata_id": "155434",
+        "note": "",
+        "series_description": "FUNC_MUX6_Resting",
+        "ID": "10",
+        "type": "FUNC_MUX6_Resting",
+        "URI": "/data/experiments/XNATnyspi19_E00509/scans/10",
+        "quality": "usable"
+      },
+      {
+        "xsiType": "xnat:mrScanData",
+        "xnat_imagescandata_id": "155435",
+        "note": "",
+        "series_description": "struct_2dgreMT_short",
+        "ID": "11",
+        "type": "struct_2dgreMT_short",
+        "URI": "/data/experiments/XNATnyspi19_E00509/scans/11",
+        "quality": "usable"
+      },
+      {
+        "xsiType": "xnat:mrScanData",
+        "xnat_imagescandata_id": "155436",
+        "note": "",
+        "series_description": "struct_2dgreMT_short",
+        "ID": "12",
+        "type": "struct_2dgreMT_short",
+        "URI": "/data/experiments/XNATnyspi19_E00509/scans/12",
+        "quality": "usable"
+      },
+      {
+        "xsiType": "xnat:mrScanData",
+        "xnat_imagescandata_id": "155437",
+        "note": "",
+        "series_description": "struct_2dgreMT_short",
+        "ID": "13",
+        "type": "struct_2dgreMT_short",
+        "URI": "/data/experiments/XNATnyspi19_E00509/scans/13",
+        "quality": "usable"
+      },
+      {
+        "xsiType": "xnat:mrScanData",
+        "xnat_imagescandata_id": "155438",
+        "note": "",
+        "series_description": "struct_2dgreMT_short",
+        "ID": "14",
+        "type": "struct_2dgreMT_short",
+        "URI": "/data/experiments/XNATnyspi19_E00509/scans/14",
+        "quality": "usable"
+      },
+      {
+        "xsiType": "xnat:mrScanData",
+        "xnat_imagescandata_id": "155439",
+        "note": "",
+        "series_description": "struct_2dgreMT_short",
+        "ID": "15",
+        "type": "struct_2dgreMT_short",
+        "URI": "/data/experiments/XNATnyspi19_E00509/scans/15",
+        "quality": "usable"
+      },
+      {
+        "xsiType": "xnat:mrScanData",
+        "xnat_imagescandata_id": "155440",
+        "note": "",
+        "series_description": "DTI_MUX3_RPE_2mm",
+        "ID": "17",
+        "type": "DTI_MUX3_RPE_2mm",
+        "URI": "/data/experiments/XNATnyspi19_E00509/scans/17",
+        "quality": "usable"
+      },
+      {
+        "xsiType": "xnat:mrScanData",
+        "xnat_imagescandata_id": "155441",
+        "note": "",
+        "series_description": "DTI_MUX3_D64_2mm",
+        "ID": "18",
+        "type": "DTI_MUX3_D64_2mm",
+        "URI": "/data/experiments/XNATnyspi19_E00509/scans/18",
+        "quality": "usable"
+      },
+      {
+        "xsiType": "xnat:mrScanData",
+        "xnat_imagescandata_id": "155442",
+        "note": "",
+        "series_description": "MultiPlanar Reconstruction (MPR) Ob_Ax_S -> I_Average_sp:1.0_th:",
+        "ID": "200",
+        "type": "MultiPlanar Reconstruction (MPR) Ob_Ax_S -&amp;amp;amp;gt; I_Average_sp:1.0_th:",
+        "URI": "/data/experiments/XNATnyspi19_E00509/scans/200",
+        "quality": "usable"
+      },
+      {
+        "xsiType": "xnat:mrScanData",
+        "xnat_imagescandata_id": "155443",
+        "note": "",
+        "series_description": "MultiPlanar Reconstruction (MPR) Ob_Sag_R -> L_Average_sp:1.0_th",
+        "ID": "201",
+        "type": "MultiPlanar Reconstruction (MPR) Ob_Sag_R -&amp;gt; L_Average_sp:1.0_th",
+        "URI": "/data/experiments/XNATnyspi19_E00509/scans/201",
+        "quality": "usable"
+      },
+      {
+        "xsiType": "xnat:mrScanData",
+        "xnat_imagescandata_id": "155444",
+        "note": "",
+        "series_description": "MultiPlanar Reconstruction (MPR) Ob_Cor_A -> P_Average_sp:1.0_th",
+        "ID": "202",
+        "type": "MultiPlanar Reconstruction (MPR) Ob_Cor_A -> P_Average_sp:1.0_th",
+        "URI": "/data/experiments/XNATnyspi19_E00509/scans/202",
+        "quality": "usable"
+      },
+      {
+        "xsiType": "xnat:mrScanData",
+        "xnat_imagescandata_id": "155445",
+        "note": "",
+        "series_description": "ORIG STRUC_T1MPRAGE_noPROMO",
+        "ID": "40002",
+        "type": "ORIG STRUC_T1MPRAGE_noPROMO",
+        "URI": "/data/experiments/XNATnyspi19_E00509/scans/40002",
+        "quality": "usable"
+      },
+      {
+        "xsiType": "xnat:mrScanData",
+        "xnat_imagescandata_id": "155446",
+        "note": "",
+        "series_description": "ORIG STRUC_T2CUBE_PROMO",
+        "ID": "40003",
+        "type": "ORIG STRUC_T2CUBE_PROMO",
+        "URI": "/data/experiments/XNATnyspi19_E00509/scans/40003",
+        "quality": "usable"
+      }
+    ],
+    "totalRecords": "21"
+  }
+}

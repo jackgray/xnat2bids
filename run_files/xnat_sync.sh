@@ -43,25 +43,31 @@ username=$(whoami)
 uid=$(id -u ${username})
 gid=$(id -g ${project_id})
 
-service_name=${project_id}_xnat_sync_${username}
+# service_name=${project_id}_xnat_sync_${username}
+service_name=nyspi_bids_setup_`id -un`
 #.........................................
 
 ######### MOUNT PATH DEFS #################################
 working_list_path_doctor=${project_path}/scripts
 working_list_path_container=/scripts
+
 bidsonlypath_doctor=${project_path}/derivatives/bidsonly
 bidsonlypath_container=/bidsonly
+
 rawdata_path_doctor=${project_path}/rawdata 
 rawdata_path_container=/rawdata
+
 token_path_doctor=/MRI_DATA/.xnatauth
 token_path_container=/tokens
+
 private_path_doctor=/MRI_DATA/.xnat
 private_path_container=/xnat
+
 public_path_doctor=/MRI_DATA/.xnat
 public_path_container=/public_token
 ############################################################
 
-# AUTH SERVICE 
+# AUTH SERVICE --- run only if there are errors with download task
 auth()
 {
 /usr/bin/docker run \
@@ -110,5 +116,5 @@ download()
 --mount type=bind,source=${public_path_doctor},destination=${public_path_container} \
 ${image_name}
 }
-
+auth
 download

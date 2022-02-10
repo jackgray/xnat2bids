@@ -67,7 +67,7 @@ done
 #List of acceptable arguments
 listofarg="
 pull
-pull_nm
+nm
 split
 intend
 pulltosplit
@@ -90,15 +90,23 @@ fi
 
 pull()
 {
-#/usr/local/pipelines/nyspiXnat2bids/run_files/auth.sh ${project_id} ${dept} && /usr/local/pipelines/nyspiXnat2bids/run_files/xnatpull-cp.sh ${project_id} ${dept} && /usr/local/pipelines/nyspiXnat2bids/run_files/nii2bids.sh ${project_id} ${dept}
-/usr/local/pipelines/bids.pull -i /MRI_DATA/${dept}/${project_id}/derivatives/bidsonly -o /MRI_DATA/${dept}/${project_id}/rawdata/ -l /MRI_DATA/${dept}/${project_id}/derivatives/pull.log -d ${dept} -p ${project_id} -u ${user}
+  type=all
+  /usr/local/pipelines/nyspiXnat2bids/run_files/xnat_sync.sh \
+  -d ${dept} -p ${project_id} -u ${user} -t ${type}
+}
+
+pull_bids()
+{
+  type=bids
+  /usr/local/pipelines/nyspiXnat2bids/run_files/xnat_sync.sh \
+  -d ${dept} -p ${project_id} -u ${user} -t ${type}
 }
 
 pull_nm()
 {   
-    type=dl_nm
-    /usr/local/pipelines/nyspiXnat2bids/run_files/xnat_sync.sh \
-    -d ${dept} -p ${project_id} -u ${user} -t ${type}
+  type=nm
+  /usr/local/pipelines/nyspiXnat2bids/run_files/xnat_sync.sh \
+  -d ${dept} -p ${project_id} -u ${user} -t ${type}
 }
 
 ####

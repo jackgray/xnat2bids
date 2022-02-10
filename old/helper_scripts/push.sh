@@ -1,1 +1,0 @@
-scp -r . grayjoh@10.20.193.112:~/xnat2bids

@@ -15,3 +15,6 @@ pre-trash
 config_image/json
 config_image/log
 config_image/sandbox
+old 
+backburner
+__pycache__

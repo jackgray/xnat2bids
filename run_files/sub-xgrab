@@ -167,9 +167,7 @@ while [ "$(docker service ps ${service_name} 2> /dev/null | awk '{print $6}' | s
 echo $(docker service ps ${service_name} 2> /dev/null | awk '{print $6}' | sed -n '2p') >> /dev/null 2>&1 
 done
 split
-
 fi
-
 
 if [[ "$arg" == "pulltointend" ]]; then
 pull

@@ -1,10 +1,6 @@
 #!/pythonlibs python3
 
 '''
-TODO: make files and directory structures if not exists
-
-generate_bidsmaps.py
-
 USAGE: generate_bidsmaps.py <project ID>
 
 Generates two files, "bidsmap.json" and "d2b-map.json"
@@ -154,10 +150,10 @@ def bidsmap():
         taskname = ''
         run_number = ''
         add_series = add_series.lower()
-        if any(x in add_serie for x in funcs) and not any(x in add_serie for x in fmaps):
-            if re.match('func_mux.$', add_serie):
+        if any(x in add_serie for x in funcs) and not any(x in add_series for x in fmaps):
+            if re.match('func_mux.$', add_series):
                 taskname = 'untitled'
-            elif add_serie.startswith('func_mux') or add_serie.startswith('func_epi'):
+            elif add_series.startswith('func_mux') or add_series.startswith('func_epi'):
                 taskname = add_series.split('_')[2]
             else:
                 taskname = add_series.split('_')[1]
@@ -177,15 +173,6 @@ def bidsmap():
             bidsname = 'task-' + taskname + '_bold'
             addSequence_bids()
 
-
-
-
-        # elif any(x in to_add for x in fmaps):
-        #     else_bids.append(i)
-
-        # elif 'topup' in to_add:
-        #     to_skip.append(i)
-
         elif 'asl' in to_add:
             bidsname = 'asl'
             addSequence_bids()
@@ -203,7 +190,7 @@ def bidsmap():
             bidsname = 'T2w'
             addSequence_bids()
         else:
-            else_bids.append(i)
+            else_bids.append(add_series)
     print('----------------------------------------------------------')
 
     # Print sequences to be added to d2b
@@ -213,10 +200,10 @@ def bidsmap():
     #                          d2b
     #######################################################
     for add_series in not_in_map_d2b:
-        print(i)
+        print(add_series)
         taskname = ''
         run_number = ''
-        add_series = i.lower()
+        add_series = add_series.lower()
         if any(x in add_series for x in funcs) and not any(x in add_series for x in fmaps):
             if re.match('func_mux.$', add_series):
                 taskname = 'untitled'
@@ -277,27 +264,11 @@ def bidsmap():
             addSequence_d2b()
             continue
 
-        # elif 'topup' in to_add:
-        #     taskname = to_add.split('_')
-        #     # some topups have a preceding "__" making the index choose an empty string
-            
-        #     if "rpe" in to_add:
-        #         customLabels = 'dir-' + taskname + 'rpe'
-        #     elif "fpe" in to_add:
-        #         customLabels = 'dir-' + taskname + 'fpe'
-        #     else:
-        #         customLabels = 'dir-' + taskname + 'mv'
-        #     dataType = "fmap"
-        #     modalityLabel = "epi"
-        #     with_d2b = {  "dataType": dataType, "modatlityLabel": modalityLabel, "customLabels": customLabels, "criteria": { "SeriesDescription": i}}
-        #     addSequence_d2b()
-
         elif 'asl' in add_series:
             dataType = 'asl'
             modalityLabel = 'asl'
             with_d2b = {  "dataType": dataType, "modatlityLabel": modalityLabel, "customLabels": customLabels, "criteria": { "SeriesDescription": i}, "sidecarChanges": { "TaskName": taskname} }
             addSequence_d2b()
-        # taskname=''
 
         elif 'dti' in add_series:
             dataType = 'dti'
@@ -392,12 +363,6 @@ def bidsmap():
     added.write('\n\n\n' + str(datetime.datetime.now()) + '\n\n\n')
     added.write('\n\n'.join(map(str,generated_d2b)))
     added.close()
-
-    # Option to quit
-    # finish = input('\nSave file? (y/n): ')
-    # if finish == 'n':
-    #     print('\n Exiting \n')
-    #     sys.exit()
 
     # Overwrite existing_json JSON file with old + new - duplicates
     with open(bidsmap_file, 'w') as jsonFile:
